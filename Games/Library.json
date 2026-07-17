@@ -346,5 +346,125 @@
             "Maker": "Varun Ramesh",
             "Engine": "Unity"
         }
+    },
+    {
+        "id": "31",
+        "name": "Awesome Tanks 2",
+        "cover": "Games/Game-Storage/31/index.png",
+        "html": "Games/Game-Storage/31/index.html",
+        "size": "7469145",
+        "install": "Games/Game-Storage/31/install.json",
+        "info": {
+            "Maker": "EmitterCritter",
+            "Engine": "Flash"
+        }
+    },
+    {
+        "id": "32",
+        "name": "Baldi's Basics Plus",
+        "cover": "Games/Game-Storage/32/index.png",
+        "html": "Games/Game-Storage/32/index.html",
+        "size": "217121671",
+        "install": "Games/Game-Storage/32/install.json",
+        "info": {
+            "Maker": "Basically Games",
+            "Engine": "Unity"
+        }
+    },
+    {
+            "id": "33",
+            "name": "Baldi's Basics Remastered",
+            "cover": "Games/Game-Storage/33/index.png",
+            "html": "Games/Game-Storage/33/index.html",
+            "size": "111983191",
+            "install": "Games/Game-Storage/33/install.json",
+            "info": {
+                "Maker": "Basically Games",
+                "Engine": "Unity"
+            }
+    },
+    {
+        "id": "34",
+        "name": "Bank Robbery",
+        "cover": "Games/Game-Storage/34/index.png",
+        "html": "Games/Game-Storage/34/index.html",
+        "size": "66926079",
+        "install": "Games/Game-Storage/34/install.json",
+        "info": {
+            "Maker": "justaliendev",
+            "Engine": "Unity"
+        }
+    },
+    {
+        "id": "35",
+        "name": "Battle Ship",
+        "cover": "Games/Game-Storage/35/index.png",
+        "html": "Games/Game-Storage/35/index.html",
+        "size": "419406",
+        "install": "Games/Game-Storage/35/install.json",
+        "info": {
+            "Maker": "Miniclip",
+            "Engine": "Flash"
+        }
+    },
+    {
+        "id": "36",
+        "name": "BERGENTRUCK_201X",
+        "cover": "Games/Game-Storage/36/index.png",
+        "html": "Games/Game-Storage/36/index.html",
+        "size": "81419821",
+        "install": "Games/Game-Storage/36/install.json",
+        "info": {
+            "Maker": "Paledoptera",
+            "Engine": "Godot"
+        }
+    },
+    {
+        "id": "37",
+        "name": "Bloodmoney!",
+        "cover": "Games/Game-Storage/37/index.png",
+        "html": "Games/Game-Storage/37/index.html",
+        "size": "131423559",
+        "install": "Games/Game-Storage/37/install.json",
+        "info": {
+            "Maker": "ShroomyChrist",
+            "Engine": "Glacier Engine"
+        }
+    },
+    {
+        "id": "38",
+        "name": "Hollow Knight",
+        "cover": "Games/Game-Storage/38/index.png",
+        "html": "Games/Game-Storage/38/index.html",
+        "size": "1025617764",
+        "install": "Games/Game-Storage/38/install.json",
+        "info": {
+            "Maker": "Team Cherry",
+            "Engine": "Unity"
+        }
+    },
+    {
+        "id": "39",
+        "name": "Smash Remix",
+        "cover": "Games/Game-Storage/39/index.png",
+        "html": "Games/Game-Storage/39/index.html",
+        "size": "65576282",
+        "install": "Games/Game-Storage/39/install.json",
+        "info": {
+            "Maker": "Smash Remix Development Team",
+            "Engine": "N64"
+        }
+    },
+    {
+        "id": "40",
+        "name": "Tanks 3D",
+        "cover": "Games/Game-Storage/40/index.png",
+        "html": "Games/Game-Storage/40/index.html",
+        "size": "2039272",
+        "install": "Games/Game-Storage/40/install.json",
+        "info": {
+            "Maker": "???",
+            "Engine": "Flash"
+        }
     }
 ]

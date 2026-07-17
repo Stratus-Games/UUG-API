@@ -1,0 +1,100 @@
+[
+  {
+    "name": "Andy's Apple Farm",
+    "maker": "M36 Games",
+    "engine": "GameMaker",
+    "cover": "Games/Game-Storage/26/index.png",
+    "start": "index.html",
+    "amount": "182517658",
+    "data": [
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/26/audio-worklet.js"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/26/game.unx.part2"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/26/game.unx.part3"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/26/game.unx.part4"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/26/game.unx.part1"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/26/game.unx.part5"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/26/fnames"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/26/game.unx.part6"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/26/game.unx.part9"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/26/game.unx.part7"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/26/index.html"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/26/index.png"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/26/index.js"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/26/runner.data"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/26/game.unx.part8"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/26/runner-sw.js"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/26/runner.json"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/26/runner.js"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/26/runner.svg"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/26/runner.wasm"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/26/sw.js"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/26/runnerLocal.svg"
+      }
+    ]
+  }
+]

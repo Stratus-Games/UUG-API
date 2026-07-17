@@ -238,5 +238,113 @@
             "Maker": "Yury Koshechkin",
             "Engine": "Flash"
         }
+    },
+    {
+        "id": "21",
+        "name": "Amigo Pancho 3",
+        "cover": "Games/Game-Storage/21/index.png",
+        "html": "Games/Game-Storage/21/index.html",
+        "size": "10177532",
+        "install": "Games/Game-Storage/21/install.json",
+        "info": {
+            "Maker": "Yury Koshechkin",
+            "Engine": "Flash"
+        }
+    },
+    {
+        "id": "22",
+        "name": "Amigo Pancho 4",
+        "cover": "Games/Game-Storage/22/index.png",
+        "html": "Games/Game-Storage/22/index.html",
+        "size": "8909686",
+        "install": "Games/Game-Storage/22/install.json",
+        "info": {
+            "Maker": "Yury Koshechkin",
+            "Engine": "Flash"
+        }
+    },
+    {
+        "id": "23",
+        "name": "Amigo Pancho 5",
+        "cover": "Games/Game-Storage/23/index.png",
+        "html": "Games/Game-Storage/23/index.html",
+        "size": "11930003",
+        "install": "Games/Game-Storage/23/install.json",
+        "info": {
+            "Maker": "Yury Koshechkin",
+            "Engine": "Flash"
+        }
+    },
+    {
+        "id": "24",
+        "name": "Amigo Pancho 6",
+        "cover": "Games/Game-Storage/24/index.png",
+        "html": "Games/Game-Storage/24/index.html",
+        "size": "9172987",
+        "install": "Games/Game-Storage/24/install.json",
+        "info": {
+            "Maker": "Yury Koshechkin",
+            "Engine": "Flash"
+        }
+    },
+    {
+        "id": "25",
+        "name": "Amorphous",
+        "cover": "Games/Game-Storage/25/index.png",
+        "html": "Games/Game-Storage/25/index.html",
+        "size": "5786457",
+        "install": "Games/Game-Storage/25/install.json",
+        "info": {
+            "Maker": "Caleb Rhodes",
+            "Engine": "Flash"
+        }
+    },
+    {
+        "id": "26",
+        "name": "Andy's Apple Farm",
+        "cover": "Games/Game-Storage/26/index.png",
+        "html": "Games/Game-Storage/26/index.html",
+        "size": "182517658",
+        "install": "Games/Game-Storage/26/install.json",
+        "info": {
+            "Maker": "M36 Games",
+            "Engine": "GameMaker"
+        }
+    },
+    {
+        "id": "27",
+        "name": "Angry Birds Space",
+        "cover": "Games/Game-Storage/27/index.png",
+        "html": "Games/Game-Storage/27/index.html",
+        "size": "10977504",
+        "install": "Games/Game-Storage/27/install.json",
+        "info": {
+            "Maker": "Rovio Entertainment",
+            "Engine": "Flash"
+        }
+    },
+    {
+        "id": "28",
+        "name": "Animal Crossing (GameCube)",
+        "cover": "Games/Game-Storage/28/index.png",
+        "html": "Games/Game-Storage/28/index.html",
+        "size": "37297770",
+        "install": "Games/Game-Storage/28/install.json",
+        "info": {
+            "Maker": "Nintendo",
+            "Engine": "Nintendo"
+        }
+    },
+    {
+        "id": "29",
+        "name": "Arthur's Nightmare",
+        "cover": "Games/Game-Storage/29/index.png",
+        "html": "Games/Game-Storage/29/index.html",
+        "size": "66024273",
+        "install": "Games/Game-Storage/29/install.json",
+        "info": {
+            "Maker": "Varun Ramesh",
+            "Engine": "Unity"
+        }
     }
 ]

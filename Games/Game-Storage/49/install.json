@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Tung Tung Basics",
+    "maker": "Bildb",
+    "engine": "Unity",
+    "cover": "Games/Game-Storage/49/index.png",
+    "start": "index.html",
+    "amount": "61249350",
+    "data": [
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/49/Build/tungtungbog.data.unityweb.part1"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/49/Build/tungtungbog.data.unityweb.part2"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/49/Build/tungtungbog.json"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/49/Build/tungtungbog.wasm.code.unityweb.part1"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/49/Build/tungtungbog.wasm.code.unityweb.part2"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/49/Build/tungtungbog.wasm.framework.unityweb"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/49/Build/UnityLoader.js"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/49/TemplateData/progressEmpty.Dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/49/TemplateData/favicon.ico"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/49/TemplateData/progressEmpty.Light.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/49/TemplateData/progressFull.Dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/49/TemplateData/progressFull.Light.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/49/TemplateData/fullscreen.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/49/TemplateData/progressLogo.Dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/49/TemplateData/progressLogo.Light.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/49/TemplateData/UnityProgress.js"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/49/TemplateData/webgl-logo.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/49/TemplateData/style.css"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/49/index.png"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/49/index.html"
+      }
+    ]
+  }
+]

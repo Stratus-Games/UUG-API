@@ -1,0 +1,92 @@
+[
+  {
+    "name": "-B",
+    "maker": "???",
+    "engine": "Unity",
+    "cover": "Games/Game-Storage/48/index.png",
+    "start": "index.html",
+    "amount": "52838177",
+    "data": [
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/48/Build/minusbbog.data.unityweb.part2"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/48/Build/minusbbog.data.unityweb.part1"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/48/Build/minusbbog.json"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/48/Build/minusbbog.wasm.code.unityweb.part2"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/48/Build/minusbbog.wasm.code.unityweb.part1"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/48/Build/UnityLoader.js"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/48/Build/minusbbog.wasm.framework.unityweb"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/48/TemplateData/favicon.ico"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/48/TemplateData/fullscreen.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/48/TemplateData/progressEmpty.Dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/48/TemplateData/progressEmpty.Light.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/48/TemplateData/progressFull.Dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/48/TemplateData/progressLogo.Dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/48/TemplateData/progressLogo.Light.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/48/TemplateData/webgl-logo.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/48/TemplateData/style.css"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/48/TemplateData/progressFull.Light.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/48/TemplateData/UnityProgress.js"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/48/index.html"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/48/index.png"
+      }
+    ]
+  }
+]

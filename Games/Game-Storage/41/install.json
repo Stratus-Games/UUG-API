@@ -1,0 +1,972 @@
+[
+  {
+    "name": "1 DATE DANGER",
+    "maker": "Knives",
+    "engine": "Ren'Py",
+    "cover": "Games/Game-Storage/41/index.png",
+    "start": "index.html",
+    "amount": "305929551",
+    "data": [
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyalright.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneybye3.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneybye4.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneybye5.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneybye1.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneybye2.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyabsolutely.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneybye6.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneycool.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneycool2.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyforsure.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneydude.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyforsure2.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyfuckyou1.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyforsure3.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyfuckyou2.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneygood1.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneygood2.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneygood3.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneygroan1.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneygood4.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneygroan2.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneygroan3.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneygroan4.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneygroan5.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneygroan6.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneygroan7.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyhello1.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyhello2.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyhello3.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyhitthat.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyholyshit.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyidk.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyidk2.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneylaugh1.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneylaugh3.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneylaugh2.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneylaugh4.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneynah.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyno1.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyno2.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyno3.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyno4.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyno5.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneynoproblem.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyomfg.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyomg.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneystop3.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyuh.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyum.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyum2.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneywell1.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneywaytogo.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneywell2.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneywell3.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneywhat1.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneywhat2.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneywhat3.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneywhatthe1.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneywhat4.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneywhatthe2.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyyaknow.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyyeah1.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyyeah2.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyyeah3.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyyeah4.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyyoupieceofshit.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyyousuck.mp3"
+      },
+      {
+        "path": "./game/audio/voice/",
+        "asset": "Games/Game-Storage/41/game/audio/voice/stoneyyousuck2.mp3"
+      },
+      {
+        "path": "./game/audio/",
+        "asset": "Games/Game-Storage/41/game/audio/9 again.wav"
+      },
+      {
+        "path": "./game/audio/",
+        "asset": "Games/Game-Storage/41/game/audio/back.mp3"
+      },
+      {
+        "path": "./game/audio/",
+        "asset": "Games/Game-Storage/41/game/audio/9again.wav"
+      },
+      {
+        "path": "./game/audio/",
+        "asset": "Games/Game-Storage/41/game/audio/dango_menu.wav"
+      },
+      {
+        "path": "./game/audio/",
+        "asset": "Games/Game-Storage/41/game/audio/click.mp3"
+      },
+      {
+        "path": "./game/audio/",
+        "asset": "Games/Game-Storage/41/game/audio/evening.wav"
+      },
+      {
+        "path": "./game/audio/",
+        "asset": "Games/Game-Storage/41/game/audio/bell.mp3"
+      },
+      {
+        "path": "./game/audio/",
+        "asset": "Games/Game-Storage/41/game/audio/date.wav"
+      },
+      {
+        "path": "./game/audio/",
+        "asset": "Games/Game-Storage/41/game/audio/evening2.mp3"
+      },
+      {
+        "path": "./game/audio/",
+        "asset": "Games/Game-Storage/41/game/audio/holiday_menu.wav"
+      },
+      {
+        "path": "./game/audio/",
+        "asset": "Games/Game-Storage/41/game/audio/everythingiknow.wav"
+      },
+      {
+        "path": "./game/audio/",
+        "asset": "Games/Game-Storage/41/game/audio/hover.mp3"
+      },
+      {
+        "path": "./game/audio/",
+        "asset": "Games/Game-Storage/41/game/audio/main_menu.wav"
+      },
+      {
+        "path": "./game/audio/",
+        "asset": "Games/Game-Storage/41/game/audio/morning.wav"
+      },
+      {
+        "path": "./game/audio/",
+        "asset": "Games/Game-Storage/41/game/audio/notif.mp3"
+      },
+      {
+        "path": "./game/audio/",
+        "asset": "Games/Game-Storage/41/game/audio/itemget.mp3"
+      },
+      {
+        "path": "./game/audio/",
+        "asset": "Games/Game-Storage/41/game/audio/knock.mp3"
+      },
+      {
+        "path": "./game/audio/",
+        "asset": "Games/Game-Storage/41/game/audio/mcm.mp3"
+      },
+      {
+        "path": "./game/audio/",
+        "asset": "Games/Game-Storage/41/game/audio/ruin.mp3"
+      },
+      {
+        "path": "./game/audio/",
+        "asset": "Games/Game-Storage/41/game/audio/sample.mp3"
+      },
+      {
+        "path": "./game/audio/",
+        "asset": "Games/Game-Storage/41/game/audio/tense.wav"
+      },
+      {
+        "path": "./game/audio/",
+        "asset": "Games/Game-Storage/41/game/audio/train-ride.mp3"
+      },
+      {
+        "path": "./game/audio/",
+        "asset": "Games/Game-Storage/41/game/audio/weird.wav"
+      },
+      {
+        "path": "./game/audio/",
+        "asset": "Games/Game-Storage/41/game/audio/yaoi.wav"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg art room.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg class.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg alley.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg dining night.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg dining.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg dining room.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg dutchie house.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg empty room.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg festival.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg festival night.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg fireworks.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg hallway.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg field.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg hallway night.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg mc room night.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg mc room.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg mus room night.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg mus room.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg school.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg station 2.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg station.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg stoney room.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg stoney room2 night.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg tommy room.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg train.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/bg trait room.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/cg dango.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/cg laptop.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/cg mcm.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/cg stoney bag blush.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/cg stoney number.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/cg stoney bag.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/cg trait number.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/cg tim schenectady.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/cg yaoi.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/cg yaoi1.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/cg yaoi2.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/cg yaoi3.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/cg yaoi4.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/cossett.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/damien.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/dutchie softsmile.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/dutchie worry.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/dutchie.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/everythingiknow.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/itm dango.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/itm snowy bologne.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/itm stoney art.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/itm doujin.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/itm tommy art 2.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/itm tommy art.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/mcm.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney blushsmile.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney cas angry.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney angry.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney cas blushsmile.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney cas embarrassed.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney cas eyebrowraise.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney cas furrow.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney cas nervousblush.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney cas sad.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney cas smirk.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney cas smirkblush.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney embarrassed.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney eyebrowraise.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney furrow.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney nervous.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney nervousblush.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney noglasses angry.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney noglasses blushsmile.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney noglasses cryblush.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney noglasses cryangry.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney noglasses cryclose.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney noglasses embarrassed.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney noglasses furrow.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney noglasses nervous.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney noglasses nervousblush.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney noglasses smirk.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney noglasses smirkblush.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney pj angry.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney pj embarrassed.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney pj eyebrowraise.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney pj furrow.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney pj smirk.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney pj smirkblush.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney sad.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney smirk.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/stoney smirkblush.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/tommy angry.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/tommy angrybleed.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/tommy angryflush.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/tommy angryflushbleed.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/tommy embarrassed.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/tommy extreme.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/tommy neutral.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/tommy shockblush.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/tommy neutralblush.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/tommy speak.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/tommy speakblush.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait angry.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait cas blush.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait blush.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait cas angry.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait cas concern.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait cas empty.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait cas flustered.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait cas happy.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait cas nervous.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait cas neutral.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait concern.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait embarrassed.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait empty.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait flustered.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait happy.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait mad.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait nervous.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait neutral.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait nm angry.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait nm concern.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait nm embarrassed.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait nm blush.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait nm happy.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait nm nervous.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait nm mad.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait nm neutral.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait pj concern.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait pj empty.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait pj happy.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait pj flustered.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait pj neutral.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait pj2 blush.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait pj2 concern.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait pj2 embarrassed.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait pj2 happy.png"
+      },
+      {
+        "path": "./game/images/",
+        "asset": "Games/Game-Storage/41/game/images/trait pj2 neutral.png"
+      },
+      {
+        "path": "./icons/",
+        "asset": "Games/Game-Storage/41/icons/icon-144x144.png"
+      },
+      {
+        "path": "./icons/",
+        "asset": "Games/Game-Storage/41/icons/icon-512x512.png"
+      },
+      {
+        "path": "./icons/",
+        "asset": "Games/Game-Storage/41/icons/icon-72x72.png"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/41/index.html"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/41/game.zip"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/41/index.png"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/41/renpy.data"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/41/renpy.js"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/41/web-presplash.jpg"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/41/manifest.json"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/41/renpy-pre.js"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/41/renpy.wasm"
+      }
+    ]
+  }
+]

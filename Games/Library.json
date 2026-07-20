@@ -348,6 +348,18 @@
         }
     },
     {
+        "id": "30",
+        "name": "Awesome Tanks",
+        "cover": "Games/Game-Storage/30/index.png",
+        "html": "Games/Game-Storage/30/index.html",
+        "size": "5879663",
+        "install": "Games/Game-Storage/30/install.json",
+        "info": {
+            "Maker": "EmitterCritter",
+            "Engine": "Flash"
+        }
+    },
+    {
         "id": "31",
         "name": "Awesome Tanks 2",
         "cover": "Games/Game-Storage/31/index.png",
@@ -753,6 +765,78 @@
         "info": {
             "Maker": "Miro Haverinen",
             "Engine": "RPG MAKER MV Engine"
+        }
+    },
+    {
+        "id": "65",
+        "name": "Sonic Robo Blast 2",
+        "cover": "Games/Game-Storage/65/index.png",
+        "html": "Games/Game-Storage/65/index.html",
+        "size": "175393544",
+        "install": "Games/Game-Storage/65/install.json",
+        "info": {
+            "Maker": "Sonic Team Junior",
+            "Engine": "???"
+        }
+    },
+    {
+        "id": "66",
+        "name": "Lethal Ape",
+        "cover": "Games/Game-Storage/66/index.png",
+        "html": "Games/Game-Storage/66/index.html",
+        "size": "131457075",
+        "install": "Games/Game-Storage/66/install.json",
+        "info": {
+            "Maker": "StellaDev",
+            "Engine": "Unity"
+        }
+    },
+    {
+        "id": "67",
+        "name": "Dictators: No Peace Countryballs",
+        "cover": "Games/Game-Storage/67/index.png",
+        "html": "Games/Game-Storage/67/index.html",
+        "size": "83372120",
+        "install": "Games/Game-Storage/67/install.json",
+        "info": {
+            "Maker": "RPN Indie Developer",
+            "Engine": "Unity"
+        }
+    },
+    {
+        "id": "68",
+        "name": "Whos Your Daddy",
+        "cover": "Games/Game-Storage/68/index.png",
+        "html": "Games/Game-Storage/68/index.html",
+        "size": "126680426",
+        "install": "Games/Game-Storage/68/install.json",
+        "info": {
+            "Maker": "Joe Willaims",
+            "Engine": "Unity"
+        }
+    },
+    {
+        "id": "69",
+        "name": "Gabriels Awesome Schoolhouse",
+        "cover": "Games/Game-Storage/69/index.png",
+        "html": "Games/Game-Storage/69/index.html",
+        "size": "550930982",
+        "install": "Games/Game-Storage/69/install.json",
+        "info": {
+            "Maker": "DamsGames",
+            "Engine": "Unity"
+        }
+    },
+    {
+        "id": "70",
+        "name": "Your Only Move Is HUSTLE",
+        "cover": "Games/Game-Storage/70/index.png",
+        "html": "Games/Game-Storage/70/index.html",
+        "size": "37582578",
+        "install": "Games/Game-Storage/70/install.json",
+        "info": {
+            "Maker": "Ivy Sly",
+            "Engine": "Unity"
         }
     }
 ]

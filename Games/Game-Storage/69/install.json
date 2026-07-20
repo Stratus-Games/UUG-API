@@ -1,0 +1,176 @@
+[
+  {
+    "name": "Gabriels Awesome Schoolhouse",
+    "maker": "DansGames",
+    "engine": "Unity",
+    "cover": "Games/69/index.png",
+    "start": "index.html",
+    "amount": 550930982,
+    "data": [
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part12"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part1"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part13"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part10"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part14"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part11"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part15"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part17"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part18"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part16"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part2"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part20"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part22"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part19"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part21"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part23"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part25"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part24"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part26"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part3"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part4"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part5"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part6"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part8"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part7"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.data.part9"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.framework.js"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.wasm"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/69/Build/GASH.loader.js"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/69/TemplateData/fullscreen-button.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/69/TemplateData/progress-bar-empty-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/69/TemplateData/favicon.ico"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/69/TemplateData/progress-bar-empty-light.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/69/TemplateData/progress-bar-full-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/69/TemplateData/progress-bar-full-light.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/69/TemplateData/style.css"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/69/TemplateData/unity-logo-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/69/TemplateData/unity-logo-light.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/69/TemplateData/webgl-logo.png"
+      },
+      {
+        "path": "./",
+        "asset": "Games/69/index.png"
+      },
+      {
+        "path": "./",
+        "asset": "Games/69/index.html"
+      }
+    ]
+  }
+]

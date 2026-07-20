@@ -1,0 +1,628 @@
+[
+  {
+    "name": "Totally Accurate Battle Simulator",
+    "maker": "Landfall Games",
+    "engine": "Unity",
+    "cover": "Games/Game-Storage/60/index.png",
+    "start": "index.html",
+    "amount": "1840153025",
+    "data": [
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part11"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part12"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part13"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part14"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part15"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part16"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part18"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part17"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part19"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part20"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part2"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part10"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part21"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part22"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part23"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part24"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part25"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part26"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part27"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part28"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part29"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part3"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part32"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part33"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part34"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part35"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part37"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part36"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part38"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part39"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part4"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part50"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part49"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part51"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part52"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part53"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part54"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part55"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part56"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part58"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part57"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part6"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part59"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part61"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part60"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part62"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part64"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part65"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part66"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part67"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part68"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part69"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part30"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part31"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part1"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part40"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part43"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part42"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part41"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part70"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part45"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part46"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part44"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part7"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part48"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part47"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part5"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part63"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part71"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part72"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part74"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part73"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part75"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part76"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part77"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part78"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part79"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part8"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part80"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part81"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part82"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part84"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part83"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part85"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.json"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.wasm.code.unityweb.part2"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part9"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.data.unityweb.part86"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.wasm.code.unityweb.part1"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.wasm.code.unityweb.part3"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/tabs.wasm.framework.unityweb"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/60/Build/UnityLoader.js"
+      },
+      {
+        "path": "./StreamingAssets/GeneratedDuringBuild/Playstation/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/GeneratedDuringBuild/Playstation/SaveIcon.png"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_DYNASTYSMALL.tld"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_DYNASTYLARGE.png"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_DYNASTYVACANT.png"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_DYNASTYLARGE.tld"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_DYNASTYVACANT.tld"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_DYNASTYSMALL.png"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_MEDIEVALLARGE.png"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_MEDIEVALSMALL.png"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_MEDIEVALLARGE.tld"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_MEDIEVALSMALL.tld"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_MEDIEVALVACANT.png"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_PIRATELARGE.png"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_MEDIEVALVACANT.tld"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_PIRATELARGE.tld"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_PIRATESMALL.png"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_PIRATESMALL.tld"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_PIRATEVACANT.png"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_PIRATEVACANT.tld"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_RENAISSANCELARGE.png"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_RENAISSANCELARGE.tld"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_RENAISSANCESMALL.png"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_RENAISSANCEVACANT.png"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_RENAISSANCESMALL.tld"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_RENAISSANCEVACANT.tld"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_TRIBALLARGE.png"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_TRIBALLARGE.tld"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_TRIBALSMALL.tld"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_TRIBALSMALL.png"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_TRIBALVACANT.tld"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_TRIBALVACANT.png"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_VIKINGLARGE.tld"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_VIKINGLARGE.png"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_VIKINGSMALL.tld"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_VIKINGSMALL.png"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_VIKINGVACANT.png"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/StandardLevels/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/StandardLevels/LC_TEMPLATE_VIKINGVACANT.tld"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/LC_TEMPLATE_CANONAMBUSH.png"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/LC_TEMPLATE_CANONAMBUSH.tld"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/LC_TEMPLATE_TRIBALFOREST.png"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/LC_TEMPLATE_FROZENLANDSCAPE.png"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/LC_TEMPLATE_TEMPLEGROUNDS.tld"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/LC_TEMPLATE_TRIBALFOREST.tld"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/LC_TEMPLATE_ISLAND.tld"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/LC_TEMPLATE_FROZENLANDSCAPE.tld"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/LC_TEMPLATE_TEMPLEGROUNDS.png"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/LC_TEMPLATE_ISLAND.png"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/LC_TEMPLATE_LAKE.png"
+      },
+      {
+        "path": "./StreamingAssets/LevelTemplates/",
+        "asset": "Games/Game-Storage/60/StreamingAssets/LevelTemplates/LC_TEMPLATE_LAKE.tld"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/60/TemplateData/favicon.ico"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/60/TemplateData/progressEmpty.Dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/60/TemplateData/fullscreen.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/60/TemplateData/UnityProgress.js"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/60/TemplateData/progressEmpty.Light.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/60/TemplateData/webgl-logo.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/60/TemplateData/progressFull.Light.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/60/TemplateData/progressLogo.Light.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/60/TemplateData/style.css"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/60/TemplateData/progressFull.Dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/60/TemplateData/progressLogo.Dark.png"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/60/index.png"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/60/index.html"
+      }
+    ]
+  }
+]

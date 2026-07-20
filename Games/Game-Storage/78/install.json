@@ -1,0 +1,332 @@
+[
+  {
+    "name": "Bendy and The Ink Machine",
+    "maker": "Joey Drew Studios Inc",
+    "engine": "Unity",
+    "cover": "Games/78/index.png",
+    "start": "index.html",
+    "amount": "635367971",
+    "data": [
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.003"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.002"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.004"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.001"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.005"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.006"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.007"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.008"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.009"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.010"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.011"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.013"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.014"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.015"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.012"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.016"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.017"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.018"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.019"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.020"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.021"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.022"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.023"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.024"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.025"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.026"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.027"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.028"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.data.029"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.framework.js"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.loader.js"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.wasm.001"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/78/Build/bend.wasm.002"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_01.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_02_b.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_03.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_04.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_06.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_07.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/aa_clip_01.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_05.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_09.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_Babysitter.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_08.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_Blank.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_Chef.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_BlankFlicker.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_Fire.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_Circus.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_Handbasket.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_Island.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_Picnic.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_SentFromAbove.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_SIren.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_Soup.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_TheButcherGang.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_TheEnd.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_Tonic.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_Train.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/BendyFilmClip_Treasure.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/CH1_Finale.mp4"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/HelloThereBendyClip.webm"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/78/StreamingAssets/TheEnd.mp4"
+      },
+      {
+        "path": "./TemplateData/icons/",
+        "asset": "Games/78/TemplateData/icons/unity-logo-dark.png"
+      },
+      {
+        "path": "./TemplateData/icons/",
+        "asset": "Games/78/TemplateData/icons/unity-logo-light.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/78/TemplateData/favicon.ico"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/78/TemplateData/progress-bar-empty-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/78/TemplateData/progress-bar-full-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/78/TemplateData/progress-bar-empty-light.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/78/TemplateData/unity-logo-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/78/TemplateData/progress-bar-full-light.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/78/TemplateData/style.css"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/78/TemplateData/unity-logo-light.png"
+      },
+      {
+        "path": "./",
+        "asset": "Games/78/manifest.webmanifest"
+      },
+      {
+        "path": "./",
+        "asset": "Games/78/merge.js"
+      },
+      {
+        "path": "./",
+        "asset": "Games/78/index.html"
+      },
+      {
+        "path": "./",
+        "asset": "Games/78/index.png"
+      },
+      {
+        "path": "./",
+        "asset": "Games/78/README.md"
+      },
+      {
+        "path": "./",
+        "asset": "Games/78/split.py"
+      },
+      {
+        "path": "./",
+        "asset": "Games/78/ServiceWorker.js"
+      }
+    ]
+  }
+]

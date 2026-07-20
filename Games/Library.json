@@ -850,5 +850,89 @@
             "Maker": "Dennis Vakanovic",
             "Engine": "Unity"
         }
+    },
+    {
+        "id": "72",
+        "name": "Slime Ranchers",
+        "cover": "Games/Game-Storage/72/index.png",
+        "html": "Games/Game-Storage/72/index.html",
+        "size": "65853220",
+        "install": "Games/Game-Storage/72/install.json",
+        "info": {
+            "Maker": "Monomi Park",
+            "Engine": "Unity"
+        }
+    },
+    {
+        "id": "73",
+        "name": "Flying Gorilla",
+        "cover": "Games/Game-Storage/73/index.png",
+        "html": "Games/Game-Storage/73/index.html",
+        "size": "74770535",
+        "install": "Games/Game-Storage/73/install.json",
+        "info": {
+            "Maker": "Pinbit LLC",
+            "Engine": "Unity"
+        }
+    },
+    {
+        "id": "74",
+        "name": "FISH",
+        "cover": "Games/Game-Storage/74/index.png",
+        "html": "Games/Game-Storage/74/index.html",
+        "size": "168199603",
+        "install": "Games/Game-Storage/17/install.json",
+        "info": {
+            "Maker": "dmcaguy",
+            "Engine": "Unity"
+        }
+    },
+    {
+        "id": "75",
+        "name": "Dumb Ways To Die",
+        "cover": "Games/Game-Storage/75/index.png",
+        "html": "Games/Game-Storage/75/index.html",
+        "size": "25836953",
+        "install": "Games/Game-Storage/75/install.json",
+        "info": {
+            "Maker": "Metro Trains Melbourne",
+            "Engine": "Flash"
+        }
+    },
+    {
+        "id": "76",
+        "name": "Jumbo Mario",
+        "cover": "Games/Game-Storage/76/index.png",
+        "html": "Games/Game-Storage/76/index.html",
+        "size": "30102085",
+        "install": "Games/Game-Storage/76/install.json",
+        "info": {
+            "Maker": "Wik",
+            "Engine": "???"
+        }
+    },
+    {
+        "id": "77",
+        "name": "Power Hover",
+        "cover": "Games/Game-Storage/77/index.png",
+        "html": "Games/Game-Storage/15/index.html",
+        "size": "97144511",
+        "install": "Games/Game-Storage/19/install.json",
+        "info": {
+            "Maker": "ODDROK",
+            "Engine": "Unity"
+        }
+    },
+    {
+        "id": "78",
+        "name": "Bendy and The Ink Machine",
+        "cover": "Games/Game-Storage/78/index.png",
+        "html": "Games/Game-Storage/78/index.html",
+        "size": "635367971",
+        "install": "Games/Game-Storage/78/install.json",
+        "info": {
+            "Maker": "Joey Drew Studios Inc",
+            "Engine": "Unity"
+        }
     }
 ]

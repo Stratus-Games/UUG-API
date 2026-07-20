@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Flying Gorilla",
+    "maker": "Pinbit LLC",
+    "engine": "Unity",
+    "cover": "Games/73/index.png",
+    "start": "index.html",
+    "amount": "74770535",
+    "data": [
+      {
+        "path": "./Build/",
+        "asset": "Games/73/Build/vb.data.part2"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/73/Build/vb.data.part1"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/73/Build/vb.framework.js"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/73/Build/vb.loader.js"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/73/Build/vb.wasm.part1"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/73/Build/vb.wasm.part2"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/73/TemplateData/fullscreen-button.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/73/TemplateData/progress-bar-full-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/73/TemplateData/progress-bar-empty-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/73/TemplateData/favicon.ico"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/73/TemplateData/style.css"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/73/TemplateData/unity-logo-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/73/TemplateData/webgl-logo.png"
+      },
+      {
+        "path": "./",
+        "asset": "Games/73/index.png"
+      },
+      {
+        "path": "./",
+        "asset": "Games/73/index.html"
+      }
+    ]
+  }
+]

@@ -1,0 +1,116 @@
+[
+  {
+    "name": "Spaceflight Simulator",
+    "maker": "Štefo Mai Morojna",
+    "engine": "Unity",
+    "cover": "Games/63/index.png",
+    "start": "index.html",
+    "amount": "92614094",
+    "data": [
+      {
+        "path": "./Build/",
+        "asset": "Games/63/Build/sfsim.data.part1"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/63/Build/sfsim.data.part2"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/63/Build/sfsim.data.part3"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/63/Build/sfsim.loader.js"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/63/Build/sfsim.framework.js"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/63/Build/sfsim.wasm.part2"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/63/Build/sfsim.wasm.part1"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/63/Build/sfsim.wasm.part3"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/63/StreamingAssets/agconnect-services.json"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/63/StreamingAssets/build_info"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/63/StreamingAssets/UnityServicesProjectConfiguration.json"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/63/StreamingAssets/google-services-desktop.json"
+      },
+      {
+        "path": "./StreamingAssets/",
+        "asset": "Games/63/StreamingAssets/version.txt"
+      },
+      {
+        "path": "./TemplateData/icons/",
+        "asset": "Games/63/TemplateData/icons/unity-logo-dark.png"
+      },
+      {
+        "path": "./TemplateData/icons/",
+        "asset": "Games/63/TemplateData/icons/unity-logo-light.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/63/TemplateData/progress-bar-empty-light.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/63/TemplateData/favicon.ico"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/63/TemplateData/progress-bar-empty-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/63/TemplateData/progress-bar-full-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/63/TemplateData/progress-bar-full-light.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/63/TemplateData/style.css"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/63/TemplateData/unity-logo-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/63/TemplateData/unity-logo-light.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/63/TemplateData/webmemd-icon.png"
+      },
+      {
+        "path": "./",
+        "asset": "Games/63/index.html"
+      },
+      {
+        "path": "./",
+        "asset": "Games/63/index.png"
+      }
+    ]
+  }
+]

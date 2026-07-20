@@ -696,15 +696,51 @@
         }
     },
     {
-            "id": "60",
-            "name": "Totally Accurate Battle Simulator",
-            "cover": "Games/Game-Storage/60/index.png",
-            "html": "Games/Game-Storage/60/index.html",
-            "size": "1840153025",
-            "install": "Games/Game-Storage/60/install.json",
-            "info": {
-                "Maker": "Landfall Games",
-                "Engine": "Unity"
-            }
+        "id": "60",
+        "name": "Totally Accurate Battle Simulator",
+        "cover": "Games/Game-Storage/60/index.png",
+        "html": "Games/Game-Storage/60/index.html",
+        "size": "1840153025",
+        "install": "Games/Game-Storage/60/install.json",
+        "info": {
+            "Maker": "Landfall Games",
+            "Engine": "Unity"
+        }
+    },
+    {
+        "id": "61",
+        "name": "Cruelty Squad",
+        "cover": "Games/Game-Storage/61/index.png",
+        "html": "Games/Game-Storage/61/index.html",
+        "size": "586096642",
+        "install": "Games/Game-Storage/61/install.json",
+        "info": {
+            "Maker": "Ville Kallio",
+            "Engine": "Godot"
+        }
+    },
+    {
+        "id": "62",
+        "name": "Miside",
+        "cover": "Games/Game-Storage/62/index.png",
+        "html": "Games/Game-Storage/62/index.html",
+        "size": "172993114",
+        "install": "Games/Game-Storage/62/install.json",
+        "info": {
+            "Maker": "AIHASTO",
+            "Engine": "Unity"
+        }
+    },
+    {
+        "id": "63",
+        "name": "Spaceflight Simulator",
+        "cover": "Games/Game-Storage/63/index.png",
+        "html": "Games/Game-Storage/63/index.html",
+        "size": "92614094",
+        "install": "Games/Game-Storage/63/install.json",
+        "info": {
+            "Maker": "Štefo Mai Morojna",
+            "Engine": "Unity"
+        }
     }
 ]

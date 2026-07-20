@@ -1,0 +1,60 @@
+[
+  {
+    "name": "PVZ GOTY",
+    "maker": "PopCap Games",
+    "engine": "PopCap Framework",
+    "cover": "Games/Game-Storage/54/index.png",
+    "start": "index.html",
+    "amount": "51448024",
+    "data": [
+      {
+        "path": "./properties/",
+        "asset": "Games/Game-Storage/54/properties/default.xml"
+      },
+      {
+        "path": "./properties/",
+        "asset": "Games/Game-Storage/54/properties/Layout.xml"
+      },
+      {
+        "path": "./properties/",
+        "asset": "Games/Game-Storage/54/properties/partner.xml"
+      },
+      {
+        "path": "./properties/",
+        "asset": "Games/Game-Storage/54/properties/partner.xml.sig"
+      },
+      {
+        "path": "./properties/",
+        "asset": "Games/Game-Storage/54/properties/partner_logo.jpg"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/54/index.png"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/54/index.html"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/54/main.pak.part1"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/54/main.pak.part2"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/54/main.pak.part3"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/54/pvz.wasm"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/54/pvz.js"
+      }
+    ]
+  }
+]

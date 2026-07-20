@@ -742,5 +742,17 @@
             "Maker": "Štefo Mai Morojna",
             "Engine": "Unity"
         }
+    },
+    {
+        "id": "64",
+        "name": "Fears and Hunger 2",
+        "cover": "Games/Game-Storage/64/index.png",
+        "html": "Games/Game-Storage/64/index.html",
+        "size": "1862411904",
+        "install": "Games/Game-Storage/64/install.json",
+        "info": {
+            "Maker": "Miro Haverinen",
+            "Engine": "RPG MAKER MV Engine"
+        }
     }
 ]

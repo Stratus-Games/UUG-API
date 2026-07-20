@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Slendytubbies 2D",
+    "maker": "Sean Toman",
+    "engine": "Unity",
+    "cover": "Games/Game-Storage/58/index.png",
+    "start": "index.html",
+    "amount": "84622745",
+    "data": [
+      {
+        "path": "./Release/",
+        "asset": "Games/Game-Storage/58/Release/Build.datagz"
+      },
+      {
+        "path": "./Release/",
+        "asset": "Games/Game-Storage/58/Release/Build.datagz.part1"
+      },
+      {
+        "path": "./Release/",
+        "asset": "Games/Game-Storage/58/Release/Build.datagz.part2"
+      },
+      {
+        "path": "./Release/",
+        "asset": "Games/Game-Storage/58/Release/Build.jsgz"
+      },
+      {
+        "path": "./Release/",
+        "asset": "Games/Game-Storage/58/Release/UnityLoader.js"
+      },
+      {
+        "path": "./Release/",
+        "asset": "Games/Game-Storage/58/Release/Build.memgz"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/58/index.png"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/58/index.html"
+      }
+    ]
+  }
+]

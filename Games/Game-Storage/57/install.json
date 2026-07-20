@@ -1,0 +1,100 @@
+[
+  {
+    "name": "Slendytubbies 2",
+    "maker": "Sean Toman",
+    "engine": "Unity",
+    "cover": "Games/Game-Storage/57/index.png",
+    "start": "index.html",
+    "amount": "315277797",
+    "data": [
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/57/Build/Build.asm.code.unityweb.part2"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/57/Build/Build.asm.code.unityweb.part1"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/57/Build/Build.data.unityweb.part11"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/57/Build/Build.data.unityweb.part12"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/57/Build/Build.data.unityweb.part14"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/57/Build/Build.data.unityweb.part13"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/57/Build/Build.asm.framework.unityweb"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/57/Build/Build.data.unityweb.part10"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/57/Build/Build.asm.memory.unityweb"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/57/Build/Build.data.unityweb.part1"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/57/Build/Build.data.unityweb.part2"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/57/Build/Build.data.unityweb.part7"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/57/Build/Build.data.unityweb.part3"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/57/Build/Build.data.unityweb.part6"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/57/Build/Build.data.unityweb.part4"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/57/Build/Build.data.unityweb.part8"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/57/Build/Build.data.unityweb.part5"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/57/Build/Build.data.unityweb.part9"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/57/Build/Build.json"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/57/Build/UnityLoader.js"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/57/index.html"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/57/index.png"
+      }
+    ]
+  }
+]

@@ -586,5 +586,125 @@
             "Maker": "???",
             "Engine": "???"
         }
+    },
+    {
+        "id": "51",
+        "name": "Granny 2",
+        "cover": "Games/Game-Storage/51/index.png",
+        "html": "Games/Game-Storage/51/index.html",
+        "size": "338285596",
+        "install": "Games/Game-Storage/51/install.json",
+        "info": {
+            "Maker": "Dennis Vakanovic",
+            "Engine": "Unity"
+        }
+    },
+    {
+        "id": "52",
+        "name": "In Stars And Time",
+        "cover": "Games/Game-Storage/52/index.png",
+        "html": "Games/Game-Storage/52/index.html",
+        "size": "261270097",
+        "install": "Games/Game-Storage/52/install.json",
+        "info": {
+            "Maker": "insertdisc5",
+            "Engine": "RPG MAKER MV Engine"
+        }
+    },
+    {
+        "id": "53",
+        "name": "La Madriguera",
+        "cover": "Games/Game-Storage/53/index.png",
+        "html": "Games/Game-Storage/53/index.html",
+        "size": "101722259",
+        "install": "Games/Game-Storage/53/install.json",
+        "info": {
+            "Maker": "camiloh488",
+            "Engine": "Unity"
+        }
+    },
+    {
+        "id": "54",
+        "name": "Plants VS Zombies GOTY",
+        "cover": "Games/Game-Storage/54/index.png",
+        "html": "Games/Game-Storage/54/index.html",
+        "size": "51448024",
+        "install": "Games/Game-Storage/54/install.json",
+        "info": {
+            "Maker": "PopCap Games",
+            "Engine": "PopCap Framefork"
+        }
+    },
+    {
+        "id": "55",
+        "name": "Just Shapes and Beats",
+        "cover": "Games/Game-Storage/55/index.png",
+        "html": "Games/Game-Storage/55/index.html",
+        "size": "391618048",
+        "install": "Games/Game-Storage/55/install.json",
+        "info": {
+            "Maker": "Berzerk Studio",
+            "Engine": "Unity"
+        }
+    },
+    {
+        "id": "56",
+        "name": "Slendytubbies",
+        "cover": "Games/Game-Storage/56/index.png",
+        "html": "Games/Game-Storage/56/index.html",
+        "size": "142768730",
+        "install": "Games/Game-Storage/56/install.json",
+        "info": {
+            "Maker": "Sean Toman",
+            "Engine": "Unity"
+        }
+    },
+    {
+        "id": "57",
+        "name": "Slendytubbies 2",
+        "cover": "Games/Game-Storage/57/index.png",
+        "html": "Games/Game-Storage/57/index.html",
+        "size": "315277797",
+        "install": "Games/Game-Storage/57/install.json",
+        "info": {
+            "Maker": "Sean Toman",
+            "Engine": "Unity"
+        }
+    },
+    {
+        "id": "58",
+        "name": "Slendytubbies 2D",
+        "cover": "Games/Game-Storage/58/index.png",
+        "html": "Games/Game-Storage/58/index.html",
+        "size": "84622745",
+        "install": "Games/Game-Storage/58/install.json",
+        "info": {
+            "Maker": "Sean Toman",
+            "Engine": "Unity"
+        }
+    },
+    {
+        "id": "59",
+        "name": "Talking Hippo",
+        "cover": "Games/Game-Storage/59/index.png",
+        "html": "Games/Game-Storage/59/index.html",
+        "size": "23789561",
+        "install": "Games/Game-Storage/59/install.json",
+        "info": {
+            "Maker": "Outfit7",
+            "Engine": "Unity"
+        }
+    },
+    {
+            "id": "60",
+            "name": "Totally Accurate Battle Simulator",
+            "cover": "Games/Game-Storage/60/index.png",
+            "html": "Games/Game-Storage/60/index.html",
+            "size": "1840153025",
+            "install": "Games/Game-Storage/60/install.json",
+            "info": {
+                "Maker": "Landfall Games",
+                "Engine": "Unity"
+            }
     }
 ]

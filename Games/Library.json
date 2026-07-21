@@ -994,5 +994,17 @@
             "Maker": "Panik Archade",
             "Engine": "Unity"
         }
+    },
+    {
+        "id": "84",
+        "name": "Peaks of Yore",
+        "cover": "Games/Game-Storage/84/index.png",
+        "html": "Games/Game-Storage/84/index.html",
+        "size": "1793343603",
+        "install": "Games/Game-Storage/18/install.json",
+        "info": {
+            "Maker": "Anders Grube Jensen",
+            "Engine": "Unity"
+        }
     }
 ]

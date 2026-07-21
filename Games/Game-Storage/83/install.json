@@ -1,0 +1,96 @@
+[
+  {
+    "name": "Clover Pit",
+    "maker": "Panik Arcade",
+    "engine": "Unity",
+    "cover": "Games/83/index.png",
+    "start": "index.html",
+    "amount": "91700614",
+    "data": [
+      {
+        "path": "./Build/",
+        "asset": "Games/83/Build/CloverPit.data.part2"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/83/Build/CloverPit.data.part1"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/83/Build/CloverPit.data.part3"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/83/Build/CloverPit.framework.js"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/83/Build/CloverPit.loader.js"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/83/Build/CloverPit.wasm.part1"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/83/Build/CloverPit.wasm.part2"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/83/Build/CloverPit.wasm.part3"
+      },
+      {
+        "path": "./TemplateData/icons/",
+        "asset": "Games/83/TemplateData/icons/unity-logo-light.png"
+      },
+      {
+        "path": "./TemplateData/icons/",
+        "asset": "Games/83/TemplateData/icons/unity-logo-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/83/TemplateData/favicon.ico"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/83/TemplateData/progress-bar-empty-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/83/TemplateData/progress-bar-empty-light.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/83/TemplateData/progress-bar-full-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/83/TemplateData/progress-bar-full-light.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/83/TemplateData/style.css"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/83/TemplateData/unity-logo-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/83/TemplateData/unity-logo-light.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/83/TemplateData/webmemd-icon.png"
+      },
+      {
+        "path": "./",
+        "asset": "Games/83/index.png"
+      },
+      {
+        "path": "./",
+        "asset": "Games/83/index.html"
+      }
+    ]
+  }
+]

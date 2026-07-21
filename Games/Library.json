@@ -958,5 +958,41 @@
             "Maker": "Puppet Combo",
             "Engine": "Unity"
         }
+    },
+    {
+        "id": "81",
+        "name": "FANF World: Refreshed",
+        "cover": "Games/Game-Storage/81/index.png",
+        "html": "Games/Game-Storage/81/index.html",
+        "size": "680692607",
+        "install": "Games/Game-Storage/81/install.json",
+        "info": {
+            "Maker": "Pyturret",
+            "Engine": "Clickteam Fusion 2.5"
+        }
+    },
+    {
+        "id": "82",
+        "name": "Untitled Goose Game",
+        "cover": "Games/Game-Storage/82/index.png",
+        "html": "Games/Game-Storage/82/index.html",
+        "size": "100809495",
+        "install": "Games/Game-Storage/82/install.json",
+        "info": {
+            "Maker": "House House",
+            "Engine": "Unity"
+        }
+    },
+    {
+        "id": "83",
+        "name": "Clover Pit",
+        "cover": "Games/Game-Storage/83/index.png",
+        "html": "Games/Game-Storage/83/index.html",
+        "size": "91700614",
+        "install": "Games/Game-Storage/83/install.json",
+        "info": {
+            "Maker": "Panik Archade",
+            "Engine": "Unity"
+        }
     }
 ]

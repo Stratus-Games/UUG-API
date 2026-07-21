@@ -1,0 +1,96 @@
+[
+  {
+    "name": "Untitled Goose Game",
+    "maker": "House House",
+    "engine": "Unity",
+    "cover": "Games/82/index.png",
+    "start": "index.html",
+    "amount": "100809495",
+    "data": [
+      {
+        "path": "./Build/",
+        "asset": "Games/82/Build/Untitled Goose Game.data.part1"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/82/Build/Untitled Goose Game.data.part2"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/82/Build/Untitled Goose Game.data.part3"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/82/Build/Untitled Goose Game.data.part4"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/82/Build/Untitled Goose Game.framework.js"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/82/Build/Untitled Goose Game.loader.js"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/82/Build/Untitled Goose Game.wasm.part2"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/82/Build/Untitled Goose Game.wasm.part1"
+      },
+      {
+        "path": "./TemplateData/icons/",
+        "asset": "Games/82/TemplateData/icons/unity-logo-light.png"
+      },
+      {
+        "path": "./TemplateData/icons/",
+        "asset": "Games/82/TemplateData/icons/unity-logo-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/82/TemplateData/progress-bar-empty-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/82/TemplateData/favicon.ico"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/82/TemplateData/progress-bar-empty-light.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/82/TemplateData/progress-bar-full-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/82/TemplateData/style.css"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/82/TemplateData/unity-logo-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/82/TemplateData/progress-bar-full-light.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/82/TemplateData/unity-logo-light.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/82/TemplateData/webmemd-icon.png"
+      },
+      {
+        "path": "./",
+        "asset": "Games/82/index.png"
+      },
+      {
+        "path": "./",
+        "asset": "Games/82/index.html"
+      }
+    ]
+  }
+]

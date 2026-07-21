@@ -934,5 +934,29 @@
             "Maker": "Joey Drew Studios Inc",
             "Engine": "Unity"
         }
+    },
+    {
+        "id": "79",
+        "name": "Saihate Station",
+        "cover": "Games/Game-Storage/79/index.png",
+        "html": "Games/Game-Storage/79/index.html",
+        "size": "530600388",
+        "install": "Games/Game-Storage/79/install.json",
+        "info": {
+            "Maker": "びぶ",
+            "Engine": "RPG MAKER MZ"
+        }
+    },
+    {
+        "id": "80",
+        "name": "Christmas Massacre",
+        "cover": "Games/Game-Storage/80/index.png",
+        "html": "Games/Game-Storage/80/index.html",
+        "size": "372904055",
+        "install": "Games/Game-Storage/80/install.json",
+        "info": {
+            "Maker": "Puppet Combo",
+            "Engine": "Unity"
+        }
     }
 ]

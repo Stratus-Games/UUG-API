@@ -1006,5 +1006,41 @@
             "Maker": "Anders Grube Jensen",
             "Engine": "Unity"
         }
+    },
+    {
+        "id": "85",
+        "name": "Antonblast",
+        "cover": "Games/Game-Storage/85/index.png",
+        "html": "Games/Game-Storage/85/index.html",
+        "size": "39496295",
+        "install": "Games/Game-Storage/85/install.json",
+        "info": {
+            "Maker": "Summitsphere",
+            "Engine": "GameMaker"
+        }
+    },
+    {
+        "id": "86",
+        "name": "Five Night's At Epsteins",
+        "cover": "Games/Game-Storage/86/index.png",
+        "html": "Games/Game-Storage/86/index.html",
+        "size": "164349974",
+        "install": "Games/Game-Storage/86/install.json",
+        "info": {
+            "Maker": "Evan Productions",
+            "Engine": "Unity"
+        }
+    },
+    {
+        "id": "87",
+        "name": "Class of '09 | The Flip Side",
+        "cover": "Games/Game-Storage/87/index.png",
+        "html": "Games/Game-Storage/87/index.html",
+        "size": "1107242370",
+        "install": "Games/Game-Storage/87/install.json",
+        "info": {
+            "Maker": "SBN3",
+            "Engine": "Ren'Py"
+        }
     }
 ]

@@ -1042,5 +1042,17 @@
             "Maker": "SBN3",
             "Engine": "Ren'Py"
         }
+    },
+    {
+        "id": "88",
+        "name": "Needy Streamer Overload",
+        "cover": "Games/Game-Storage/88/index.png",
+        "html": "Games/Game-Storage/88/index.html",
+        "size": "920708511",
+        "install": "Games/Game-Storage/88/install.json",
+        "info": {
+            "Maker": "Xemono",
+            "Engine": "Unity"
+        }
     }
 ]

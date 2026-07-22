@@ -1054,5 +1054,17 @@
             "Maker": "Xemono",
             "Engine": "Unity"
         }
+    },
+    {
+        "id": "89",
+        "name": "Fear and Hunger",
+        "cover": "Games/Game-Storage/89/index.png",
+        "html": "Games/Game-Storage/89/index.html",
+        "size": "861124748",
+        "install": "Games/Game-Storage/89/install.json",
+        "info": {
+            "Maker": "Miro Haverinen",
+            "Engine": "RPG Maker MV"
+        }
     }
 ]

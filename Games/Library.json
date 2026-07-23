@@ -1089,5 +1089,16 @@
             "Maker": "Wix Games",
             "Engine": "Unity"
         }
+    },
+    {
+        "id": "92",
+        "name": "Kirby: Soft and Wet",
+        "cover": "Games/Game-Storage/92/index.png",
+        "html": "Games/Game-Storage/92/index.png",
+        "size": "158981535",
+        "info": {
+            "Maker": "Strimp's Kitchen",
+            "Engine": "GameMaker"
+        }
     }
 ]

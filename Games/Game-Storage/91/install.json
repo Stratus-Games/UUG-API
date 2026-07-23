@@ -1,0 +1,100 @@
+[
+  {
+    "name": "Duck Life 8",
+    "maker": "Wix Games",
+    "engine": "Unity",
+    "cover": "Games/Game-Storage/91/index.png",
+    "start": "index.html",
+    "amount": "187478466",
+    "data": [
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/91/Build/dl8.data.unityweb.part1"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/91/Build/dl8.data.unityweb.part3"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/91/Build/dl8.data.unityweb.part2"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/91/Build/dl8.data.unityweb.part4"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/91/Build/dl8.data.unityweb.part6"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/91/Build/dl8.json"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/91/Build/dl8.wasm.code.unityweb.part1"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/91/Build/dl8.wasm.code.unityweb.part2"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/91/Build/dl8.wasm.framework.unityweb"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/91/Build/UnityLoader.js"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/91/Build/dl8.data.unityweb.part5"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/91/Build/dl8.data.unityweb.part7"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/91/Build/dl8.data.unityweb.part8"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/91/TemplateData/favicon.ico"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/91/TemplateData/progress-bar-empty-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/91/TemplateData/progress-bar-full-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/91/TemplateData/fullscreen-button.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/91/TemplateData/style.css"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/91/TemplateData/unity-logo-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/91/TemplateData/webgl-logo.png"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/91/index.html"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/91/index.png"
+      }
+    ]
+  }
+]

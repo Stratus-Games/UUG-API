@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Iron Lung",
+    "maker": "David Szymanski",
+    "engine": "Unity",
+    "cover": "Games/Game-Storage/90/index.png",
+    "start": "index.html",
+    "amount": "66401495",
+    "data": [
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/90/Build/built.data.part1"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/90/Build/built.loader.js"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/90/Build/built.wasm.part1"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/90/Build/built.data.part2"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/90/Build/built.framework.js"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/90/Build/built.wasm.part2"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/90/index.png"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/90/index.html"
+      }
+    ]
+  }
+]

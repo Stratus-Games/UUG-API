@@ -1,0 +1,124 @@
+[
+  {
+    "name": "A Difficult Game About Climbing",
+    "maker": "Pontypants",
+    "engine": "Unity",
+    "cover": "Games/Game-Storage/93/index.png",
+    "start": "index.html",
+    "amount": "329386227",
+    "data": [
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/93/Build/adgac.data.part1"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/93/Build/adgac.data.part11"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/93/Build/adgac.data.part12"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/93/Build/adgac.data.part10"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/93/Build/adgac.data.part3"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/93/Build/adgac.data.part5"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/93/Build/adgac.data.part4"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/93/Build/adgac.data.part7"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/93/Build/adgac.data.part6"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/93/Build/adgac.data.part9"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/93/Build/adgac.framework.js"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/93/Build/adgac.data.part8"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/93/Build/adgac.loader.js"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/93/Build/adgac.data.part14"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/93/Build/adgac.data.part2"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/93/Build/adgac.data.part13"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/93/Build/adgac.wasm.part2"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/93/Build/adgac.wasm.part1"
+      },
+      {
+        "path": "./Build/",
+        "asset": "Games/Game-Storage/93/Build/adgac.wasm.part3"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/93/TemplateData/favicon.ico"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/93/TemplateData/fullscreen-button.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/93/TemplateData/progress-bar-empty-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/93/TemplateData/progress-bar-full-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/93/TemplateData/unity-logo-dark.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/93/TemplateData/webgl-logo.png"
+      },
+      {
+        "path": "./TemplateData/",
+        "asset": "Games/Game-Storage/93/TemplateData/style.css"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/93/index.png"
+      },
+      {
+        "path": "./",
+        "asset": "Games/Game-Storage/93/index.html"
+      }
+    ]
+  }
+]

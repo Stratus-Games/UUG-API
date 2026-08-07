@@ -1,0 +1,2289 @@
+<script>
+(function () {
+  // ==========================================================================
+  // Account API config
+  // ==========================================================================
+  const ACCOUNT_API_BASE = "https://stratus-account-system.th15isar0bothi.workers.dev";
+  const ACCOUNT_WS_BASE = ACCOUNT_API_BASE.replace(/^http/, "ws");
+
+  const HOME_ICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48"><path d="M 23.951172 4 A 1.50015 1.50015 0 0 0 23.072266 4.3222656 L 8.859375 15.519531 C 7.0554772 16.941163 6 19.113506 6 21.410156 L 6 40.5 C 6 41.863594 7.1364058 43 8.5 43 L 18.5 43 C 19.863594 43 21 41.863594 21 40.5 L 21 30.5 C 21 30.204955 21.204955 30 21.5 30 L 26.5 30 C 26.795045 30 27 30.204955 27 30.5 L 27 40.5 C 27 41.863594 28.136406 43 29.5 43 L 39.5 43 C 40.863594 43 42 41.863594 42 40.5 L 42 21.410156 C 42 19.113506 40.944523 16.941163 39.140625 15.519531 L 24.927734 4.3222656 A 1.50015 1.50015 0 0 0 23.951172 4 z M 24 7.4101562 L 37.285156 17.876953 C 38.369258 18.731322 39 20.030807 39 21.410156 L 39 40 L 30 40 L 30 30.5 C 30 28.585045 28.414955 27 26.5 27 L 21.5 27 C 19.585045 27 18 28.585045 18 30.5 L 18 40 L 9 40 L 9 21.410156 C 9 20.030807 9.6307412 18.731322 10.714844 17.876953 L 24 7.4101562 z"></path></svg>`;
+
+  const GRAD_CAP_ICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M 25 4 A 6 6 0 0 0 25 16 A 6 6 0 0 0 25 4 z M 23 17.867188 C 22.415 17.987188 21.837391 18.155859 21.275391 18.380859 L 3.2070312 25.630859 C 1.5940312 26.277859 1.5179844 28.532109 3.0839844 29.287109 L 18.484375 36.714844 C 22.600375 38.699844 27.397672 38.699844 31.513672 36.714844 L 46.914062 29.287109 C 48.481063 28.532109 48.405969 26.277859 46.792969 25.630859 L 28.724609 18.380859 C 28.163609 18.155859 27.585 17.988141 27 17.869141 L 27 27.914062 C 27 29.019063 26.105 29.914062 25 29.914062 C 23.895 29.914062 23 29.019063 23 27.914062 L 23 17.867188 z M 11.5 26 C 13.433 26 15 26.895 15 28 C 15 29.104 13.433 30 11.5 30 C 9.567 30 8 29.104 8 28 C 8 26.895 9.567 26 11.5 26 z M 2.9199219 32.556641 C 2.427875 32.592266 2 33.001031 2 33.550781 L 2 36.257812 C 2 36.642812 2.2203594 36.992203 2.5683594 37.158203 L 17.496094 44.298828 C 22.241094 46.567828 27.758906 46.567828 32.503906 44.298828 L 47.431641 37.158203 C 47.779641 36.991203 48 36.640859 48 36.255859 L 48 33.556641 C 48 32.821641 47.235219 32.337203 46.574219 32.658203 C 42.720219 34.522203 32.382813 39.515625 32.382812 39.515625 C 30.094812 40.619625 27.541 41.203125 25 41.203125 C 22.459 41.203125 19.904234 40.619625 17.615234 39.515625 C 17.615234 39.515625 7.2689219 34.517297 3.4199219 32.654297 C 3.2551719 32.574547 3.0839375 32.544766 2.9199219 32.556641 z"></path></svg>`;
+
+  const TV_ICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50"><path d="M0 0 C16.5 0 33 0 50 0 C50 10.56 50 21.12 50 32 C33.5 32 17 32 0 32 C0 21.44 0 10.88 0 0 Z " transform="translate(0,7)"></path><path d="M0 0 C9.9 0 19.8 0 30 0 C30 0.66 30 1.32 30 2 C20.1 2 10.2 2 0 2 C0 1.34 0 0.68 0 0 Z " transform="translate(10,41)"></path></svg>`;
+
+  const VOLUME_ICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M11.536 14.01A8.47 8.47 0 0 0 14.026 8a8.47 8.47 0 0 0-2.49-6.01l-.708.707A7.48 7.48 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303z"></path><path d="M10.121 12.596A6.48 6.48 0 0 0 12.025 8a6.48 6.48 0 0 0-1.904-4.596l-.707.707A5.48 5.48 0 0 1 11.025 8a5.48 5.48 0 0 1-1.61 3.89z"></path><path d="M10.025 8a4.5 4.5 0 0 1-1.318 3.182L8 10.475A3.5 3.5 0 0 0 9.025 8c0-.966-.392-1.841-1.025-2.475l.707-.707A4.5 4.5 0 0 1 10.025 8M7 4a.5.5 0 0 0-.812-.39L3.825 5.5H1.5A.5.5 0 0 0 1 6v4a.5.5 0 0 0 .5.5h2.325l2.363 1.89A.5.5 0 0 0 7 12zM4.312 6.39 6 5.04v5.92L4.312 9.61A.5.5 0 0 0 4 9.5H2v-3h2a.5.5 0 0 0 .312-.11"></path></svg>`;
+
+  const SEARCH_ICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path d="M 56.599609 21.599609 C 34.099609 21.599609 15.800781 40.100781 15.800781 62.800781 C 15.800781 85.600781 34.099609 104 56.599609 104 C 66.899609 104 76.3 100.09922 83.5 93.699219 L 85.800781 96 L 83.699219 98.199219 C 82.499219 99.399219 82.499219 101.3 83.699219 102.5 L 101.69922 120.69922 C 102.29922 121.29922 103.00078 121.59961 103.80078 121.59961 C 104.60078 121.59961 105.40039 121.29922 105.90039 120.69922 L 113.90039 112.59961 C 115.00039 111.39961 115.00078 109.50039 113.80078 108.40039 L 95.800781 90.199219 C 95.200781 89.599219 94.499219 89.300781 93.699219 89.300781 C 92.899219 89.300781 92.099609 89.599219 91.599609 90.199219 L 89.5 92.400391 L 87.199219 90 C 93.499219 82.7 97.400391 73.200781 97.400391 62.800781 C 97.400391 40.100781 79.099609 21.599609 56.599609 21.599609 z M 56.599609 27.699219 C 75.799609 27.699219 91.400391 43.500391 91.400391 62.900391 C 91.400391 82.300391 75.799609 98 56.599609 98 C 37.399609 98 21.800781 82.300391 21.800781 62.900391 C 21.800781 43.500391 37.399609 27.699219 56.599609 27.699219 z M 56.699219 40.199219 C 47.199219 40.199219 38.7 46.300781 35.5 55.300781 C 35 56.600781 35.699609 58.199609 37.099609 58.599609 C 37.399609 58.699609 37.7 58.800781 38 58.800781 C 39.1 58.800781 40.1 58.1 40.5 57 C 42.9 50.1 49.499219 45.400391 56.699219 45.400391 C 58.099219 45.400391 59.300781 44.200781 59.300781 42.800781 C 59.300781 41.400781 58.099219 40.199219 56.699219 40.199219 z M 37.699219 64.900391 C 36.299219 64.900391 35.099609 66 35.099609 67.5 L 35.099609 67.900391 C 35.199609 69.300391 36.300781 70.5 37.800781 70.5 C 39.200781 70.5 40.400391 69.300391 40.400391 67.900391 L 40.400391 67.599609 C 40.400391 66.099609 39.300781 64.900391 37.800781 64.900391 L 37.699219 64.900391 z M 93.800781 96.599609 L 107.59961 110.59961 L 103.80078 114.40039 L 90 100.40039 L 93.800781 96.599609 z"></path></svg>`;
+
+  const AI_ICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><path d="M14.217,19.707l-1.112,2.547c-0.427,0.979-1.782,0.979-2.21,0l-1.112-2.547c-0.99-2.267-2.771-4.071-4.993-5.057	L1.73,13.292c-0.973-0.432-0.973-1.848,0-2.28l2.965-1.316C6.974,8.684,8.787,6.813,9.76,4.47l1.126-2.714	c0.418-1.007,1.81-1.007,2.228,0L14.24,4.47c0.973,2.344,2.786,4.215,5.065,5.226l2.965,1.316c0.973,0.432,0.973,1.848,0,2.28	l-3.061,1.359C16.988,15.637,15.206,17.441,14.217,19.707z"></path><path d="M24.481,27.796l-0.339,0.777c-0.248,0.569-1.036,0.569-1.284,0l-0.339-0.777c-0.604-1.385-1.693-2.488-3.051-3.092	l-1.044-0.464c-0.565-0.251-0.565-1.072,0-1.323l0.986-0.438c1.393-0.619,2.501-1.763,3.095-3.195l0.348-0.84	c0.243-0.585,1.052-0.585,1.294,0l0.348,0.84c0.594,1.432,1.702,2.576,3.095,3.195l0.986,0.438c0.565,0.251,0.565,1.072,0,1.323	l-1.044,0.464C26.174,25.308,25.085,26.411,24.481,27.796z"></path></svg>`;
+
+  const MUSIC_ICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 104.23 122.88"><path fill-rule="evenodd" clip-rule="evenodd" d="M87.9,78.04c2.74-0.48,5.33-0.4,7.6,0.13V24.82L39.05,41.03v61.95c0.03,0.34,0.05,0.69,0.05,1.03 c0,0,0,0.01,0,0.01c0,8.34-8.75,16.62-19.55,18.49C8.76,124.37,0,119.12,0,110.77c0-8.34,8.76-16.62,19.55-18.48 c4.06-0.7,7.84-0.39,10.97,0.71l0-76.26h0.47L104.04,0v85.92c0.13,0.63,0.2,1.27,0.2,1.91c0,0,0,0,0,0.01 c0,6.97-7.32,13.89-16.33,15.44c-9.02,1.56-16.33-2.83-16.33-9.8C71.57,86.51,78.88,79.59,87.9,78.04L87.9,78.04L87.9,78.04z"></path></svg>`;
+
+  const APPS_ICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect x="4" y="4" width="4" height="4" rx="1"></rect><rect x="10" y="4" width="4" height="4" rx="1"></rect><rect x="16" y="4" width="4" height="4" rx="1"></rect><rect x="4" y="10" width="4" height="4" rx="1"></rect><rect x="10" y="10" width="4" height="4" rx="1"></rect><rect x="16" y="10" width="4" height="4" rx="1"></rect><rect x="4" y="16" width="4" height="4" rx="1"></rect><rect x="10" y="16" width="4" height="4" rx="1"></rect><rect x="16" y="16" width="4" height="4" rx="1"></rect></svg>`;
+
+  // Single-color silhouette (no black backing circle, no white/black split) so
+  // it can be tinted red via CSS like every other menu icon. Same head+shoulders
+  // geometry as the worker's DEFAULT_ICON_SVG, just stripped down to one shape.
+  const ACCOUNT_ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600"><defs><clipPath id="account-icon-clip"><circle cx="300" cy="300" r="280"/></clipPath></defs><circle cx="300" cy="230" r="115"></circle><circle cx="300" cy="550" r="205" clip-path="url(#account-icon-clip)"></circle></svg>`;
+
+  // Comment-bubble / chat icon. No fill attribute on the path is intentional
+  // (it inherits var(--red) below) — kept as one solid red glyph everywhere
+  // it's used, matching the rest of the icon set.
+  const CHAT_ICON_SVG = `<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 122.09"><title>comment-bubble</title><path fill="var(--red)" d="M31.23,113.89,30,115.11a5.2,5.2,0,0,1-9-3.48V99.45H19.39A9,9,0,0,1,13,96.79a9.28,9.28,0,0,1-1.82-2.61h-.44A10.75,10.75,0,0,1,0,83.45V10.73A10.68,10.68,0,0,1,2.8,3.56l.36-.4A10.72,10.72,0,0,1,10.73,0h94.41A10.81,10.81,0,0,1,115.7,8.79a9.2,9.2,0,0,1,4.51,2.47,9.05,9.05,0,0,1,2.67,6.4V90.38a9.08,9.08,0,0,1-9.07,9.07h-54L37.39,120.93a3.54,3.54,0,0,1-6.16-2.37v-4.67ZM27.94,60.37a3.54,3.54,0,0,1,0-7.07H76.87a3.54,3.54,0,1,1,0,7.07Zm0-23a3.54,3.54,0,0,1,0-7.07h60a3.54,3.54,0,0,1,0,7.07ZM26.1,111.63,49.71,89h55.43a5.55,5.55,0,0,0,5.54-5.53V10.73a5.58,5.58,0,0,0-5.54-5.53H10.73A5.59,5.59,0,0,0,5.2,10.73V83.45A5.57,5.57,0,0,0,10.73,89H26.1v22.65Z"></path></svg>`;
+
+  // Phone / call icon. Same treatment as CHAT_ICON_SVG - the path has no
+  // fill of its own so it just takes on var(--red) wherever it's dropped in.
+  const CALL_ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 122.88 122.267"><path fill="var(--red)" d="M33.822,50.291c4.137,7.442,8.898,14.604,15.074,21.133C55.1,77.984,62.782,83.962,72.771,89.03l0.01,0.005l0.002-0.005 c0.728,0.371,1.421,0.362,2.072,0.118c0.944-0.353,1.927-1.137,2.883-2.086c0.729-0.726,1.643-1.924,2.631-3.223 c3.846-5.054,8.601-11.301,15.314-8.193c0.142,0.065,0.276,0.141,0.402,0.226l22.373,12.852c0.08,0.046,0.157,0.095,0.23,0.147 c2.966,2.036,4.177,5.172,4.19,8.683c0.014,3.621-1.329,7.674-3.274,11.101c-2.565,4.517-6.387,7.502-10.761,9.525 c-4.17,1.928-8.798,2.954-13.267,3.608c-6.989,1.025-13.578,0.374-20.288-1.692c-6.55-2.017-13.176-5.385-20.4-9.86l-0.526-0.326 c-3.326-2.06-6.906-4.276-10.389-6.904C31.108,93.296,18.007,79.283,9.512,63.904C2.361,50.958-1.552,36.995,0.581,23.681 C1.75,16.375,4.901,9.743,10.333,5.35c4.762-3.853,11.188-5.94,19.448-5.203c0.973,0.084,1.793,0.639,2.255,1.419l0.006-0.003 l14.324,24.27c2.11,2.718,2.344,5.415,1.203,8.096c-0.943,2.218-2.892,4.251-5.476,6.168c-0.786,0.65-1.708,1.325-2.659,2.021 C36.236,44.459,32.578,47.136,33.822,50.291L33.822,50.291z M44.67,75.422C38.066,68.44,33.035,60.88,28.695,53.065 c-0.076-0.123-0.144-0.253-0.202-0.39c-3.174-7.459,2.52-11.625,7.493-15.262c0.845-0.618,1.663-1.217,2.401-1.829l0.002,0.003 c0.043-0.036,0.088-0.071,0.135-0.105c1.843-1.354,3.171-2.647,3.678-3.837c0.289-0.679,0.182-1.426-0.466-2.265 c-0.111-0.129-0.213-0.271-0.303-0.423L27.795,5.852c-5.869-0.241-10.419,1.321-13.784,4.044 c-4.239,3.429-6.723,8.759-7.674,14.699c-1.905,11.894,1.716,24.594,8.292,36.5c8.078,14.623,20.575,27.977,32.864,37.25 c3.379,2.55,6.776,4.653,9.932,6.607l0.526,0.326c6.818,4.223,13.017,7.386,19.052,9.244c5.876,1.809,11.634,2.38,17.729,1.486 c4.009-0.587,8.113-1.485,11.668-3.129c3.351-1.55,6.248-3.785,8.134-7.104c1.496-2.637,2.53-5.653,2.521-8.222 c-0.006-1.63-0.472-3.029-1.605-3.844L93.2,80.93c-2.461-1.081-5.629,3.081-8.193,6.45c-1.104,1.452-2.125,2.792-3.156,3.817 c-1.477,1.466-3.118,2.723-4.962,3.411c-2.136,0.799-4.395,0.834-6.755-0.37l0.002-0.004C59.522,88.849,51.323,82.457,44.67,75.422 L44.67,75.422z"></path></svg>`;
+
+  // ==========================================================================
+  // Main radial ring — back to the original 8 items. Account is NOT one of
+  // these; it's a separate, smaller satellite button (see "mini" button below)
+  // that sits on the same spoke as Games, between the center trigger and the ring.
+  // ==========================================================================
+  const MENU_ITEMS = [
+    { label: "1", name: "Home", icon: HOME_ICON, onClick: () => { window.location.href = "/index.html"; } },
+    { label: "2", name: "Games", icon: GRAD_CAP_ICON, onClick: () => { window.location.href = "/pages/g.html"; } },
+    { label: "3", name: "Tv", icon: TV_ICON, onClick: () => { window.location.href = "/pages/tv.html"; } },
+    { label: "4", name: "Soundboard", icon: VOLUME_ICON, onClick: () => { window.location.href = "/pages/sb.html"; } },
+    { label: "5", name: "Proxy", icon: SEARCH_ICON, onClick: () => { window.location.href = "/pages/prox.html"; } },
+    { label: "6", name: "AI", icon: AI_ICON, onClick: () => { window.location.href = "/pages/ai.html"; } },
+    { label: "7", name: "Music", icon: MUSIC_ICON, onClick: () => { window.location.href = "/pages/music.html"; } },
+    { label: "8", name: "Apps", icon: APPS_ICON, onClick: () => { window.location.href = "/pages/apps.html"; } },
+  ];
+
+  const START_POSITION = { bottom: "40px", right: "40px" };
+
+  const style = document.createElement("style");
+  style.textContent = `
+    .radial-menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+      z-index: 9998;
+    }
+    .radial-menu-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Wrapper stays anchored bottom-right at all times. Movement to/from
+       center is handled purely via transform, which CSS can animate
+       smoothly (unlike animating between fixed left/right/top/bottom
+       values, which snaps because of the "auto" swap). */
+    .radial-menu-wrapper {
+      position: fixed;
+      bottom: ${START_POSITION.bottom};
+      right: ${START_POSITION.right};
+      width: 60px;
+      height: 60px;
+      z-index: 9999;
+      --black: #000000;
+      --night-rider: #2e2e2e;
+      --eer-black: #1b1b1b;
+      --accent: #ffffff;
+      --red: #ff3b30;
+      transform: translate(0, 0);
+      transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+      will-change: transform;
+    }
+
+    .radial-menu-trigger { display: none; }
+
+    .radial-menu-circle {
+      display: block;
+      position: relative;
+      z-index: 98;
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 3px solid var(--red);
+      box-shadow: 0 6px 10px 0 rgba(0,0,0,0.3);
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    .radial-menu-circle:active {
+      transform: scale(0.9);
+    }
+    .radial-menu-trigger:checked ~ .radial-menu-circle {
+      background-color: rgba(0, 0, 0, 0.55);
+    }
+
+    .radial-menu-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 22px;
+      height: 22px;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+    .radial-menu-icon .line {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      border-radius: 10em;
+      background: var(--red);
+      transition: transform 700ms ease, opacity 700ms ease, top 700ms ease;
+      transition-delay: 0.45s;
+    }
+    .radial-menu-icon .line-1 { top: 3px; }
+    .radial-menu-icon .line-2 { top: 10px; }
+    .radial-menu-icon .line-3 { top: 17px; }
+
+    .radial-menu-trigger:checked ~ .radial-menu-circle .radial-menu-icon .line-1 {
+      top: 10px;
+      transform: rotate(45deg);
+    }
+    .radial-menu-trigger:checked ~ .radial-menu-circle .radial-menu-icon .line-2 {
+      opacity: 0;
+    }
+    .radial-menu-trigger:checked ~ .radial-menu-circle .radial-menu-icon .line-3 {
+      top: 10px;
+      transform: rotate(-45deg);
+    }
+
+    .radial-menu-subs {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 60px;
+      height: 60px;
+      pointer-events: none;
+      perspective: 800px;
+    }
+
+    /* Sub-circles (72px) with a red outline. Centered inside the 60px wrapper:
+       (60-72)/2 = -6px, so the circle's center point stays exactly where it
+       was — only the circle itself grows. */
+    .radial-menu-sub {
+      position: absolute;
+      top: -6px;
+      left: -6px;
+      z-index: 0;
+      height: 72px;
+      width: 72px;
+      border-radius: 50%;
+      border: 3px solid var(--red);
+      margin: 0;
+      padding: 0;
+      color: #f3f3f3;
+      background-color: var(--eer-black);
+      box-shadow: 0 6px 14px 0 rgba(0,0,0,0.35);
+      transform: translate(0px, 0px) scale(0.3) rotateY(0deg);
+      opacity: 0;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      cursor: pointer;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .radial-menu-sub-label {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translate(-50%, 6px);
+      white-space: nowrap;
+      background: rgba(0, 0, 0, 0.8);
+      color: #ffffff;
+      font-family: sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 9px;
+      border-radius: 5px;
+      border: 1px solid var(--red);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 5;
+    }
+    .radial-menu-sub:hover .radial-menu-sub-label {
+      opacity: 1;
+      transform: translate(-50%, 10px);
+    }
+    .radial-menu-sub svg {
+      width: 32px;
+      height: 32px;
+      fill: var(--red);
+      pointer-events: none;
+    }
+    .radial-menu-sub:hover {
+      background-color: var(--black);
+      box-shadow: 0 0 0 2px var(--red), 0 6px 14px 0 rgba(0,0,0,0.35);
+    }
+
+    .radial-menu-trigger:checked ~ .radial-menu-subs { pointer-events: auto; }
+    .radial-menu-trigger:checked ~ .radial-menu-subs .radial-menu-sub { pointer-events: auto; }
+    .radial-menu-trigger:checked ~ .radial-menu-subs .radial-menu-mini { pointer-events: auto; }
+
+    /* Original 8-item ring: 45deg apart, 130px radius, starting straight up
+       and going clockwise. */
+    .radial-menu-trigger:checked ~ .radial-menu-subs .radial-menu-sub:nth-of-type(1) { transform: translate(0px, -130px) scale(1) rotateY(720deg); opacity: 1; transition: transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease; transition-delay: 1.15s; }
+    .radial-menu-trigger:checked ~ .radial-menu-subs .radial-menu-sub:nth-of-type(2) { transform: translate(92px, -92px) scale(1) rotateY(720deg); opacity: 1; transition: transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease; transition-delay: 1.24s; }
+    .radial-menu-trigger:checked ~ .radial-menu-subs .radial-menu-sub:nth-of-type(3) { transform: translate(130px, 0px) scale(1) rotateY(720deg); opacity: 1; transition: transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease; transition-delay: 1.33s; }
+    .radial-menu-trigger:checked ~ .radial-menu-subs .radial-menu-sub:nth-of-type(4) { transform: translate(92px, 92px) scale(1) rotateY(720deg); opacity: 1; transition: transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease; transition-delay: 1.42s; }
+    .radial-menu-trigger:checked ~ .radial-menu-subs .radial-menu-sub:nth-of-type(5) { transform: translate(0px, 130px) scale(1) rotateY(720deg); opacity: 1; transition: transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease; transition-delay: 1.51s; }
+    .radial-menu-trigger:checked ~ .radial-menu-subs .radial-menu-sub:nth-of-type(6) { transform: translate(-92px, 92px) scale(1) rotateY(720deg); opacity: 1; transition: transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease; transition-delay: 1.60s; }
+    .radial-menu-trigger:checked ~ .radial-menu-subs .radial-menu-sub:nth-of-type(7) { transform: translate(-130px, 0px) scale(1) rotateY(720deg); opacity: 1; transition: transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease; transition-delay: 1.69s; }
+    .radial-menu-trigger:checked ~ .radial-menu-subs .radial-menu-sub:nth-of-type(8) { transform: translate(-92px, -92px) scale(1) rotateY(720deg); opacity: 1; transition: transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease; transition-delay: 1.78s; }
+
+    /* Account "mini" button — smaller (42px vs 72px), sits on the SAME spoke
+       as Games (45deg from top) but at roughly half the radius (~62px instead
+       of 130px), landing it visually in the gap between the center trigger
+       circle and the Games sub-circle. Centered inside the 60px wrapper:
+       (60-42)/2 = 9px. Pops out slightly before the main ring. */
+    .radial-menu-mini {
+      position: absolute;
+      top: 9px;
+      left: 9px;
+      z-index: 1;
+      height: 42px;
+      width: 42px;
+      border-radius: 50%;
+      border: 2px solid var(--red);
+      margin: 0;
+      padding: 0;
+      color: #f3f3f3;
+      background-color: var(--eer-black);
+      box-shadow: 0 4px 10px 0 rgba(0,0,0,0.35);
+      transform: translate(0px, 0px) scale(0.3) rotateY(0deg);
+      opacity: 0;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      cursor: pointer;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .radial-menu-mini svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--red);
+      pointer-events: none;
+    }
+    .radial-menu-mini img.radial-account-avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+    .radial-menu-mini:hover {
+      background-color: var(--black);
+      box-shadow: 0 0 0 2px var(--red), 0 4px 10px 0 rgba(0,0,0,0.35);
+    }
+    .radial-menu-mini .radial-menu-sub-label {
+      font-size: 11px;
+      padding: 3px 7px;
+      top: auto;
+      bottom: 100%;
+      transform: translate(-50%, -6px);
+      z-index: 150; /* clear of the center trigger circle's z-index: 98 */
+    }
+    .radial-menu-mini:hover .radial-menu-sub-label {
+      opacity: 1;
+      transform: translate(-50%, -10px);
+    }
+    .radial-menu-trigger:checked ~ .radial-menu-subs .radial-menu-mini {
+      transform: translate(43.8px, -43.8px) scale(1) rotateY(720deg);
+      opacity: 1;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease;
+      transition-delay: 1.05s;
+    }
+
+    /* ======================================================================
+       Account sub-menu mode — entered by clicking the Account avatar while
+       signed in. The 8 main ring items fade out (handled via inline styles
+       in JS), the avatar morphs into the center, then this back button and
+       secondary ring reveal themselves. Kept as standalone classes (not
+       reusing .radial-menu-sub/.radial-menu-mini's :checked selectors) so
+       visibility is driven purely by JS toggling ".visible" — no CSS
+       specificity fights with the main ring's open/close rules.
+       ====================================================================== */
+    .radial-menu-backbtn {
+      position: absolute;
+      top: 9px;
+      left: 9px;
+      z-index: 5;
+      height: 42px;
+      width: 42px;
+      border-radius: 50%;
+      border: 2px solid var(--red);
+      background-color: var(--eer-black);
+      box-shadow: 0 4px 10px 0 rgba(0,0,0,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transform: translate(0px, 0px) scale(0.3);
+      pointer-events: none;
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+    }
+    .radial-menu-backbtn:hover {
+      background-color: var(--black);
+      box-shadow: 0 0 0 2px var(--red), 0 4px 10px 0 rgba(0,0,0,0.35);
+    }
+    .radial-menu-backbtn.visible {
+      opacity: 1;
+      transform: translate(43.8px, -43.8px) scale(1);
+      pointer-events: auto;
+    }
+    .radial-menu-backbtn-icon { width: 18px; height: 14px; position: relative; }
+    .radial-menu-backbtn-icon span {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      border-radius: 10em;
+      background: var(--red);
+    }
+    .radial-menu-backbtn-icon span:nth-child(1) { top: 0; }
+    .radial-menu-backbtn-icon span:nth-child(2) { top: 6px; }
+    .radial-menu-backbtn-icon span:nth-child(3) { top: 12px; }
+
+    .radial-menu-account-subs {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 60px;
+      height: 60px;
+      pointer-events: none;
+      perspective: 800px;
+    }
+    .acc-sub-item {
+      position: absolute;
+      top: -6px;
+      left: -6px;
+      z-index: 0;
+      height: 72px;
+      width: 72px;
+      border-radius: 50%;
+      border: 3px solid var(--red);
+      background-color: var(--eer-black);
+      box-shadow: 0 6px 14px 0 rgba(0,0,0,0.35);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: translate(0px, 0px) scale(0.3) rotateY(0deg);
+      pointer-events: none;
+      cursor: default;
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+    }
+    .acc-sub-item svg {
+      width: 30px;
+      height: 30px;
+      pointer-events: none;
+    }
+    .acc-sub-item svg path:not([fill]) {
+      fill: var(--red);
+    }
+    .acc-sub-item.acc-sub-active { cursor: pointer; }
+    .acc-sub-item.acc-sub-active:hover {
+      background-color: var(--black);
+      box-shadow: 0 0 0 2px var(--red), 0 6px 14px 0 rgba(0,0,0,0.35);
+    }
+    .acc-sub-item.acc-sub-active:hover .radial-menu-sub-label {
+      opacity: 1;
+      transform: translate(-50%, 10px);
+    }
+    .radial-menu-account-subs.visible .acc-sub-item { opacity: 1; }
+    .radial-menu-account-subs.visible .acc-sub-item.acc-sub-active { pointer-events: auto; }
+    .radial-menu-account-subs.visible .acc-sub-item:nth-child(1) { transform: translate(0px, -130px) scale(1) rotateY(720deg); transition-delay: 0.00s; }
+    .radial-menu-account-subs.visible .acc-sub-item:nth-child(2) { transform: translate(92px, -92px) scale(1) rotateY(720deg); transition-delay: 0.07s; }
+    .radial-menu-account-subs.visible .acc-sub-item:nth-child(3) { transform: translate(130px, 0px) scale(1) rotateY(720deg); transition-delay: 0.14s; }
+    .radial-menu-account-subs.visible .acc-sub-item:nth-child(4) { transform: translate(92px, 92px) scale(1) rotateY(720deg); transition-delay: 0.21s; }
+    .radial-menu-account-subs.visible .acc-sub-item:nth-child(5) { transform: translate(0px, 130px) scale(1) rotateY(720deg); transition-delay: 0.28s; }
+    .radial-menu-account-subs.visible .acc-sub-item:nth-child(6) { transform: translate(-92px, 92px) scale(1) rotateY(720deg); transition-delay: 0.35s; }
+    .radial-menu-account-subs.visible .acc-sub-item:nth-child(7) { transform: translate(-130px, 0px) scale(1) rotateY(720deg); transition-delay: 0.42s; }
+    .radial-menu-account-subs.visible .acc-sub-item:nth-child(8) { transform: translate(-92px, -92px) scale(1) rotateY(720deg); transition-delay: 0.49s; }
+
+    /* ======================================================================
+       Account widget (top-right pill + dropdown + sign in/up modal)
+       Shares the same --red / --eer-black / --black theme as the radial menu.
+       ====================================================================== */
+    .acct-widget {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 10000;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --red: #ff3b30;
+      --eer-black: #1b1b1b;
+      --black: #000000;
+    }
+    .acct-button {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 2px solid var(--red);
+      border-radius: 999px;
+      padding: 6px 16px 6px 16px;
+      color: #f3f3f3;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .acct-button:hover {
+      transform: scale(1.07);
+      background-color: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 6px 16px 0 rgba(0,0,0,0.4);
+    }
+    .acct-button:active { transform: scale(0.97); }
+    .acct-button .acct-avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #000;
+      border: 1px solid var(--red);
+      flex-shrink: 0;
+    }
+    .acct-dropdown {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      min-width: 190px;
+      background: var(--eer-black);
+      border: 2px solid var(--red);
+      border-radius: 12px;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.5);
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(-6px);
+      pointer-events: none;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+    .acct-dropdown.open {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+    .acct-dropdown button {
+      display: block;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      color: #f3f3f3;
+      font-size: 13.5px;
+      padding: 11px 14px;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+    .acct-dropdown button:last-child { border-bottom: none; }
+    .acct-dropdown button:hover { background-color: rgba(255,59,48,0.15); }
+    .acct-dropdown button.acct-danger { color: var(--red); }
+
+    .acct-friends-modal { width: 760px; padding-bottom: 22px; }
+    .acct-messages-modal { width: 520px; padding-bottom: 22px; }
+    .acct-chat-modal { width: 600px; padding-bottom: 22px; }
+    .acct-friends-modal h3 {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .acct-friends-modal h3::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--red);
+      box-shadow: 0 0 8px 1px rgba(255,59,48,0.7);
+    }
+    .acct-add-friend-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .acct-add-friend-row input[type=text] {
+      flex: 1;
+      padding: 10px 13px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.03);
+      color: #f3f3f3;
+      font-size: 13.5px;
+      box-sizing: border-box;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+    .acct-add-friend-row input[type=text]::placeholder { color: #6f6f6f; }
+    .acct-add-friend-row input[type=text]:focus {
+      outline: none;
+      border-color: var(--red);
+      background: rgba(255,255,255,0.05);
+    }
+    .acct-add-friend-row button {
+      background: linear-gradient(135deg, #ff4d40, #d81f14);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 0 20px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(255,59,48,0.35);
+      transition: filter 0.15s ease, transform 0.15s ease;
+    }
+    .acct-add-friend-row button:hover { filter: brightness(1.12); transform: translateY(-1px); }
+    .acct-add-friend-row button:active { transform: translateY(0); }
+    .acct-add-friend-row button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    .acct-friends-modal-body {
+      max-height: 620px;
+      overflow-y: auto;
+      margin-top: 16px;
+      margin-right: -6px;
+      padding-right: 6px;
+    }
+    .acct-friends-modal-body::-webkit-scrollbar { width: 6px; }
+    .acct-friends-modal-body::-webkit-scrollbar-track { background: transparent; }
+    .acct-friends-modal-body::-webkit-scrollbar-thumb { background: rgba(255,59,48,0.35); border-radius: 10px; }
+    .acct-friends-modal-body::-webkit-scrollbar-thumb:hover { background: rgba(255,59,48,0.55); }
+
+    .acct-friends-heading {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 2px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #9a9a9a;
+    }
+    .acct-friends-heading:first-child { padding-top: 0; }
+    .acct-friends-heading::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.12), transparent);
+    }
+    .acct-friends-count {
+      background: rgba(255,59,48,0.15);
+      color: var(--red);
+      border-radius: 999px;
+      padding: 1px 7px;
+      font-size: 10.5px;
+      font-weight: 700;
+    }
+
+    .acct-friend-row {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding: 12px 14px;
+      margin-bottom: 8px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      font-size: 14.5px;
+      color: #f3f3f3;
+      transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    }
+    .acct-friend-row:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,59,48,0.25);
+      transform: translateX(2px);
+    }
+    .acct-friend-row img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #000;
+      flex-shrink: 0;
+      border: 2px solid rgba(255,59,48,0.4);
+    }
+    .acct-friend-name {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: 600;
+    }
+    .acct-friend-actions { display: flex; gap: 6px; flex-shrink: 0; }
+    .acct-mini-btn {
+      background: rgba(255,255,255,0.07);
+      color: #f3f3f3;
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 7px;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.15s ease, transform 0.15s ease;
+    }
+    .acct-mini-btn:hover { background-color: rgba(255,255,255,0.16); transform: translateY(-1px); }
+    .acct-mini-btn.acct-mini-danger {
+      background: rgba(255,59,48,0.1);
+      border-color: rgba(255,59,48,0.3);
+      color: #ff6b60;
+    }
+    .acct-mini-btn.acct-mini-danger:hover { background-color: rgba(255,59,48,0.22); }
+
+    .acct-friends-empty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 26px 10px;
+      font-size: 12.5px;
+      color: #8a8a8a;
+      text-align: center;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.02);
+      border: 1px dashed rgba(255,255,255,0.1);
+    }
+
+
+    .acct-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10001;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    .acct-modal-overlay.open { opacity: 1; pointer-events: auto; }
+    .acct-modal {
+      width: 340px;
+      max-width: 92vw;
+      max-height: 88vh;
+      overflow-y: auto;
+      background: var(--eer-black);
+      border: 2px solid var(--red);
+      border-radius: 16px;
+      padding: 22px 22px 20px;
+      color: #f3f3f3;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      transform: translateY(10px) scale(0.97);
+      transition: transform 0.2s ease;
+      position: relative;
+    }
+    .acct-modal-overlay.open .acct-modal { transform: translateY(0) scale(1); }
+    .acct-modal h3 {
+      margin: 0 0 4px;
+      font-size: 17px;
+      font-weight: 700;
+    }
+    .acct-modal .acct-modal-sub {
+      margin: 0 0 16px;
+      font-size: 12.5px;
+      color: #9a9a9a;
+    }
+    .acct-modal label {
+      display: block;
+      font-size: 12px;
+      color: #9a9a9a;
+      margin: 12px 0 5px;
+    }
+    .acct-modal input[type=text], .acct-modal input[type=email], .acct-modal input[type=password] {
+      width: 100%;
+      padding: 9px 11px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: var(--black);
+      color: #f3f3f3;
+      font-size: 13.5px;
+      box-sizing: border-box;
+    }
+    .acct-modal input[type=text]:focus, .acct-modal input[type=email]:focus, .acct-modal input[type=password]:focus {
+      outline: none;
+      border-color: var(--red);
+    }
+    .acct-modal input[type=file] { color: #9a9a9a; font-size: 12px; margin-top: 4px; }
+    .acct-modal .acct-primary-btn {
+      width: 100%;
+      margin-top: 16px;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: filter 0.15s ease;
+    }
+    .acct-modal .acct-primary-btn:hover { filter: brightness(1.1); }
+    .acct-modal .acct-primary-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .acct-modal .acct-switch-row {
+      margin-top: 14px;
+      font-size: 12.5px;
+      color: #9a9a9a;
+      text-align: center;
+    }
+    .acct-modal .acct-switch-row a {
+      color: var(--red);
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .acct-modal .acct-close-x {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      background: none;
+      border: none;
+      color: #9a9a9a;
+      font-size: 18px;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .acct-modal .acct-close-x:hover { color: var(--red); }
+    .acct-modal-msg {
+      margin-top: 10px;
+      font-size: 12.5px;
+      padding: 8px 10px;
+      border-radius: 7px;
+    }
+    .acct-modal-msg.error { background: rgba(255,59,48,0.15); color: var(--red); }
+    .acct-modal-msg.ok { background: rgba(62,207,142,0.15); color: #3ecf8e; }
+    .acct-preview-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .acct-preview-row img {
+      width: 48px; height: 48px; border-radius: 50%; object-fit: cover; background: #000;
+      border: 1px solid var(--red);
+    }
+
+    /* ---- Chat icon buttons (friend row + messages list) ---- */
+    .acct-mini-btn.acct-mini-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 9px;
+    }
+    .acct-mini-btn.acct-mini-icon svg { width: 15px; height: 15px; display: block; }
+
+    /* ---- Messages list modal ---- */
+    .acct-msg-friend-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      cursor: pointer;
+      transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+    }
+    .acct-msg-friend-row:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,59,48,0.3);
+      transform: translateX(2px);
+    }
+    .acct-msg-friend-row img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #000;
+      flex-shrink: 0;
+      border: 2px solid rgba(255,59,48,0.4);
+    }
+    .acct-msg-friend-name {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: 600;
+      font-size: 13.5px;
+    }
+    .acct-msg-chat-icon { width: 20px; height: 20px; flex-shrink: 0; display: flex; }
+    .acct-msg-chat-icon svg { width: 100%; height: 100%; }
+
+    /* ---- Chat modal ---- */
+    .acct-chat-back {
+      background: none;
+      border: none;
+      color: #9a9a9a;
+      font-size: 12.5px;
+      cursor: pointer;
+      padding: 0;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.15s ease;
+    }
+    .acct-chat-back:hover { color: var(--red); }
+    .acct-chat-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .acct-chat-header img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #000;
+      border: 2px solid var(--red);
+    }
+    .acct-chat-header .acct-chat-name { font-size: 16px; font-weight: 700; }
+    .acct-chat-messages {
+      height: 380px;
+      overflow-y: auto;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .acct-chat-messages::-webkit-scrollbar { width: 6px; }
+    .acct-chat-messages::-webkit-scrollbar-track { background: transparent; }
+    .acct-chat-messages::-webkit-scrollbar-thumb { background: rgba(255,59,48,0.35); border-radius: 10px; }
+    .acct-chat-bubble {
+      max-width: 75%;
+      padding: 8px 12px;
+      border-radius: 14px;
+      font-size: 13.5px;
+      line-height: 1.45;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    .acct-chat-bubble.me {
+      align-self: flex-end;
+      background: var(--red);
+      color: #fff;
+      border-bottom-right-radius: 4px;
+    }
+    .acct-chat-bubble.them {
+      align-self: flex-start;
+      background: rgba(255,255,255,0.09);
+      color: #f3f3f3;
+      border-bottom-left-radius: 4px;
+    }
+    .acct-chat-empty {
+      margin: auto;
+      text-align: center;
+      color: #8a8a8a;
+      font-size: 12.5px;
+      padding: 20px 10px;
+    }
+    .acct-chat-input-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .acct-chat-input-row input[type=text] {
+      flex: 1;
+      padding: 10px 13px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.03);
+      color: #f3f3f3;
+      font-size: 13.5px;
+      box-sizing: border-box;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+    .acct-chat-input-row input[type=text]::placeholder { color: #6f6f6f; }
+    .acct-chat-input-row input[type=text]:focus {
+      outline: none;
+      border-color: var(--red);
+      background: rgba(255,255,255,0.05);
+    }
+    .acct-chat-input-row button {
+      background: linear-gradient(135deg, #ff4d40, #d81f14);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 0 20px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(255,59,48,0.35);
+      transition: filter 0.15s ease, transform 0.15s ease;
+    }
+    .acct-chat-input-row button:hover { filter: brightness(1.12); transform: translateY(-1px); }
+    .acct-chat-input-row button:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+    /* ---- Incoming call banner (fixed top-center toast) ---- */
+    .acct-incoming-call {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translate(-50%, -140%);
+      z-index: 10002;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: var(--eer-black);
+      border: 2px solid var(--red);
+      border-radius: 16px;
+      padding: 14px 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #f3f3f3;
+    }
+    .acct-incoming-call.visible { transform: translate(-50%, 0); }
+    .acct-incoming-call img {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #000;
+      border: 2px solid var(--red);
+      flex-shrink: 0;
+      animation: acct-call-pulse 1.4s ease-in-out infinite;
+    }
+    @keyframes acct-call-pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255,59,48,0.5); }
+      50% { box-shadow: 0 0 0 8px rgba(255,59,48,0); }
+    }
+    .acct-incoming-call-text { display: flex; flex-direction: column; gap: 2px; }
+    .acct-incoming-call-name { font-weight: 700; font-size: 14.5px; }
+    .acct-incoming-call-sub { font-size: 12px; color: #9a9a9a; }
+    .acct-incoming-call-actions { display: flex; gap: 8px; margin-left: 6px; }
+    .acct-call-accept-btn, .acct-call-decline-btn {
+      border: none;
+      border-radius: 10px;
+      padding: 9px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: filter 0.15s ease, transform 0.15s ease;
+    }
+    .acct-call-accept-btn {
+      background: linear-gradient(135deg, #ff4d40, #d81f14);
+      color: #fff;
+      box-shadow: 0 3px 10px rgba(255,59,48,0.35);
+    }
+    .acct-call-decline-btn {
+      background: rgba(255,255,255,0.08);
+      color: #f3f3f3;
+    }
+    .acct-call-accept-btn:hover, .acct-call-decline-btn:hover { filter: brightness(1.12); transform: translateY(-1px); }
+
+    /* ---- In-call modal ---- */
+    .acct-call-modal { width: 340px; text-align: center; padding-top: 34px; }
+    .acct-call-avatar-wrap { position: relative; display: inline-block; margin-bottom: 16px; }
+    .acct-call-avatar-wrap img {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #000;
+      border: 3px solid var(--red);
+    }
+    .acct-call-modal.acct-call-connecting .acct-call-avatar-wrap::after {
+      content: "";
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 3px solid rgba(255,59,48,0.5);
+      animation: acct-call-pulse-ring 1.5s ease-out infinite;
+    }
+    @keyframes acct-call-pulse-ring {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.35); opacity: 0; }
+    }
+    .acct-call-name { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .acct-call-status { font-size: 13px; color: #9a9a9a; margin-bottom: 26px; }
+    .acct-call-status.acct-call-active { color: #3ecf8e; }
+    .acct-call-controls { display: flex; justify-content: center; gap: 16px; }
+    .acct-call-ctrl-btn {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      transition: filter 0.15s ease, transform 0.15s ease;
+    }
+    .acct-call-ctrl-btn:hover { transform: translateY(-2px); }
+    .acct-call-mute-btn { background: rgba(255,255,255,0.1); color: #f3f3f3; }
+    .acct-call-mute-btn.acct-call-muted { background: var(--red); color: #fff; }
+    .acct-call-hangup-btn {
+      background: linear-gradient(135deg, #ff4d40, #d81f14);
+      color: #fff;
+      box-shadow: 0 3px 12px rgba(255,59,48,0.4);
+      transform: rotate(135deg);
+    }
+    .acct-call-hangup-btn:hover { transform: rotate(135deg) translateY(-2px); }
+  `;
+  document.head.appendChild(style);
+
+  const overlay = document.createElement("div");
+  overlay.className = "radial-menu-overlay";
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "radial-menu-wrapper";
+
+  const trigger = document.createElement("input");
+  trigger.type = "checkbox";
+  trigger.id = "radial-menu-trigger";
+  trigger.className = "radial-menu-trigger";
+
+  const label = document.createElement("label");
+  label.setAttribute("for", "radial-menu-trigger");
+  label.className = "radial-menu-circle";
+  label.innerHTML = `
+    <div class="radial-menu-icon">
+      <div class="line line-1"></div>
+      <div class="line line-2"></div>
+      <div class="line line-3"></div>
+    </div>
+  `;
+
+  const subs = document.createElement("div");
+  subs.className = "radial-menu-subs";
+
+  MENU_ITEMS.slice(0, 8).forEach((item) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "radial-menu-sub";
+    const displayName = item.name || item.label || "";
+    if (item.icon) {
+      btn.innerHTML = item.icon;
+      btn.setAttribute("aria-label", displayName);
+    } else {
+      btn.textContent = item.label || "";
+    }
+    if (displayName) {
+      const tooltip = document.createElement("span");
+      tooltip.className = "radial-menu-sub-label";
+      tooltip.textContent = displayName;
+      btn.appendChild(tooltip);
+    }
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (typeof item.onClick === "function") item.onClick();
+      closeMenu();
+    });
+    subs.appendChild(btn);
+  });
+
+  // Account "mini" satellite button — on the Games spoke, between the center
+  // trigger and the ring. Kept as its own element (class .radial-menu-mini)
+  // rather than an nth-of-type ring item.
+  const accountMiniBtn = document.createElement("button");
+  accountMiniBtn.type = "button";
+  accountMiniBtn.className = "radial-menu-mini";
+  accountMiniBtn.innerHTML = ACCOUNT_ICON_SVG;
+  accountMiniBtn.setAttribute("aria-label", "Account");
+  const accountMiniTooltip = document.createElement("span");
+  accountMiniTooltip.className = "radial-menu-sub-label";
+  accountMiniTooltip.textContent = "Account";
+  accountMiniBtn.appendChild(accountMiniTooltip);
+  accountMiniBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    // Signed-in click opens the account sub-menu in place (menu stays open).
+    // Signed-out click opens the sign-in modal, same as before — that path
+    // still collapses the ring back down afterward.
+    const wasSignedIn = AccountWidget.isSignedIn();
+    AccountWidget.handleRadialClick();
+    if (!wasSignedIn) closeMenu();
+  });
+  subs.appendChild(accountMiniBtn);
+
+  // "Back to menu" button — hamburger icon, appears at the Account avatar's
+  // vacated spot once account-mode is entered. Click returns to the normal ring.
+  const backToMenuBtn = document.createElement("button");
+  backToMenuBtn.type = "button";
+  backToMenuBtn.className = "radial-menu-backbtn";
+  backToMenuBtn.setAttribute("aria-label", "Back to menu");
+  backToMenuBtn.innerHTML = `<div class="radial-menu-backbtn-icon"><span></span><span></span><span></span></div>`;
+  backToMenuBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    exitAccountMode();
+  });
+  subs.appendChild(backToMenuBtn);
+
+  // Account sub-menu ring — pops out once the avatar lands in the center.
+  // Mostly blank placeholders; the slot on the same spoke the avatar came
+  // from (slot 2) holds the Friends shortcut.
+  const FRIENDS_SLOT_ICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 149 148"><path fill="transparent" d="M0.08 0.08C49.69 0.08 99.31 0.08 148.92 0.08C148.93 36.73 148.94 73.38 148.94 110.03C148.21 109.68 147.34 103.91 146.98 102.51C145.64 97.41 142.24 92.31 138.89 88.27C127.77 74.88 107.14 71.27 91.24 77.1C86.8 78.72 82.87 81.61 79.18 84.5C79.75 86.47 82.25 87.7 83.65 89.19C86.61 92.35 89.58 95.65 91.73 99.45C94.31 104.02 96.67 108.89 97.81 114.05C98.34 116.43 98.49 121.22 99.41 123.17C115.92 123.23 132.43 123.3 148.94 123.37C148.94 131.55 148.93 139.73 148.92 147.92C99.31 147.92 49.69 147.92 0.08 147.92C0.07 142.39 0.06 136.86 0.06 131.33C29.98 131.26 59.91 131.2 89.83 131.13C90.58 129.74 90.25 127.74 90.22 126.17C90.14 121.7 89.53 117.53 88.2 113.28C81.34 91.51 61.74 81.69 39.83 82.99C26.29 83.79 12.8 92.68 6.1 104.26C3.87 108.1 2.44 112.22 1.28 116.48C0.94 117.73 1.22 120.72 0.06 121.31C0.06 80.9 0.07 40.49 0.08 0.08ZM42.6 16.82C25.66 18.31 13.87 37.41 19.26 53.51C22.41 62.95 28.03 68.66 37.16 72.33C40.44 73.65 44.52 73.91 48.05 73.51C77.42 70.19 80.82 25.68 52.67 17.83C49.32 16.89 46.12 16.51 42.6 16.82ZM105.6 20.83C80.16 22.09 76.06 59.82 99.6 68.21C102.1 69.1 104.79 69.7 107.5 69.62C122.33 69.15 133.38 53.92 129.72 39.5C127.73 31.64 122.78 26.01 115.63 22.53C112.48 20.99 109.09 20.66 105.6 20.83Z"></path><path fill="#ff3b30" d="M42.6 16.82C46.12 16.51 49.32 16.89 52.67 17.83C80.82 25.68 77.42 70.19 48.05 73.51C44.52 73.91 40.44 73.65 37.16 72.33C28.03 68.66 22.41 62.95 19.26 53.51C13.87 37.41 25.66 18.31 42.6 16.82ZM105.6 20.83C109.09 20.66 112.48 20.99 115.63 22.53C122.78 26.01 127.73 31.64 129.72 39.5C133.38 53.92 122.33 69.15 107.5 69.62C104.79 69.7 102.1 69.1 99.6 68.21C76.06 59.82 80.16 22.09 105.6 20.83ZM148.94 110.03C148.94 114.47 148.94 118.92 148.94 123.37C132.43 123.3 115.92 123.23 99.41 123.17C98.49 121.22 98.34 116.43 97.81 114.05C96.67 108.89 94.31 104.02 91.73 99.45C89.58 95.65 86.61 92.35 83.65 89.19C82.25 87.7 79.75 86.47 79.18 84.5C82.87 81.61 86.8 78.72 91.24 77.1C107.14 71.27 127.77 74.88 138.89 88.27C142.24 92.31 145.64 97.41 146.98 102.51C147.34 103.91 148.21 109.68 148.94 110.03ZM0.06 131.33C0.06 127.99 0.06 124.65 0.06 121.31C1.22 120.72 0.94 117.73 1.28 116.48C2.44 112.22 3.87 108.1 6.1 104.26C12.8 92.68 26.29 83.79 39.83 82.99C61.74 81.69 81.34 91.51 88.2 113.28C89.53 117.53 90.14 121.7 90.22 126.17C90.25 127.74 90.58 129.74 89.83 131.13C59.91 131.2 29.98 131.26 0.06 131.33Z"></path></svg>`;
+
+  const accountSubRing = document.createElement("div");
+  accountSubRing.className = "radial-menu-account-subs";
+  for (let i = 1; i <= 8; i++) {
+    const slot = document.createElement("button");
+    slot.type = "button";
+    if (i === 1) {
+      slot.className = "acc-sub-item acc-sub-active";
+      slot.innerHTML = FRIENDS_SLOT_ICON;
+      slot.setAttribute("aria-label", "Friends");
+      const tip = document.createElement("span");
+      tip.className = "radial-menu-sub-label";
+      tip.textContent = "Friends";
+      slot.appendChild(tip);
+      slot.addEventListener("click", (e) => {
+        e.stopPropagation();
+        AccountWidget.openFriendsModal();
+        closeMenu();
+      });
+    } else if (i === 2) {
+      slot.className = "acc-sub-item acc-sub-active";
+      slot.innerHTML = CHAT_ICON_SVG;
+      slot.setAttribute("aria-label", "Messages");
+      const tip = document.createElement("span");
+      tip.className = "radial-menu-sub-label";
+      tip.textContent = "Messages";
+      slot.appendChild(tip);
+      slot.addEventListener("click", (e) => {
+        e.stopPropagation();
+        AccountWidget.openMessagesModal();
+        closeMenu();
+      });
+    } else {
+      slot.className = "acc-sub-item";
+      slot.disabled = true;
+      slot.tabIndex = -1;
+      slot.setAttribute("aria-hidden", "true");
+    }
+    accountSubRing.appendChild(slot);
+  }
+
+  function enterAccountMode() {
+    // 1. fade the 8 main ring items out
+    subs.querySelectorAll(".radial-menu-sub").forEach((btn) => {
+      btn.style.transition = "opacity 0.3s ease";
+      btn.style.opacity = "0";
+      btn.style.pointerEvents = "none";
+    });
+
+    // 2. hide the center X — the avatar is about to take its place
+    label.style.transition = "opacity 0.3s ease";
+    label.style.opacity = "0";
+    label.style.pointerEvents = "none";
+
+    // 3. move + enlarge the avatar into the center
+    accountMiniBtn.style.transition = "transform 0.45s cubic-bezier(0.65, 0, 0.35, 1)";
+    accountMiniBtn.style.transform = "translate(0px, 0px) scale(1.4286)";
+    accountMiniBtn.style.zIndex = "200";
+
+    // 4. once it lands, reveal the back button + the account sub-ring
+    window.setTimeout(() => {
+      backToMenuBtn.classList.add("visible");
+      accountSubRing.classList.add("visible");
+    }, 460);
+  }
+
+  function exitAccountMode() {
+    backToMenuBtn.classList.remove("visible");
+    accountSubRing.classList.remove("visible");
+
+    accountMiniBtn.style.transform = ""; // release back to the CSS-defined ring position
+    accountMiniBtn.style.zIndex = "";
+
+    window.setTimeout(() => {
+      subs.querySelectorAll(".radial-menu-sub").forEach((btn) => {
+        btn.style.opacity = "";
+        btn.style.pointerEvents = "";
+      });
+      label.style.opacity = "";
+      label.style.pointerEvents = "";
+    }, 300);
+  }
+
+  wrapper.appendChild(trigger);
+  wrapper.appendChild(label);
+  wrapper.appendChild(subs);
+  wrapper.appendChild(accountSubRing);
+  document.body.appendChild(overlay);
+  document.body.appendChild(wrapper);
+
+  // Computes how far the wrapper needs to move (via transform) so its
+  // center lands on the viewport center, starting from wherever it
+  // currently sits (its resting bottom-right position).
+  function getCenterOffset() {
+    const rect = wrapper.getBoundingClientRect();
+    // Undo any transform currently applied so we measure the true resting position.
+    const currentTransform = wrapper.style.transform;
+    wrapper.style.transition = "none";
+    wrapper.style.transform = "translate(0px, 0px)";
+    const restRect = wrapper.getBoundingClientRect();
+    wrapper.style.transform = currentTransform;
+    // Force reflow, then restore the transition for the actual animated move.
+    void wrapper.offsetWidth;
+    wrapper.style.transition = "";
+
+    const restCenterX = restRect.left + restRect.width / 2;
+    const restCenterY = restRect.top + restRect.height / 2;
+    const viewportCenterX = window.innerWidth / 2;
+    const viewportCenterY = window.innerHeight / 2;
+
+    return {
+      dx: viewportCenterX - restCenterX,
+      dy: viewportCenterY - restCenterY,
+    };
+  }
+
+  function openMenu() {
+    const { dx, dy } = getCenterOffset();
+    wrapper.style.transform = `translate(${dx}px, ${dy}px)`;
+    trigger.checked = true;
+    overlay.classList.add("active");
+  }
+
+  function closeMenu() {
+    wrapper.style.transform = "translate(0px, 0px)";
+    trigger.checked = false;
+    overlay.classList.remove("active");
+
+    // Instantly reset account sub-menu state (no animation — the whole
+    // menu is already collapsing) so the next open starts from scratch.
+    backToMenuBtn.classList.remove("visible");
+    accountSubRing.classList.remove("visible");
+    accountMiniBtn.style.transition = "none";
+    accountMiniBtn.style.transform = "";
+    accountMiniBtn.style.zIndex = "";
+    subs.querySelectorAll(".radial-menu-sub").forEach((btn) => {
+      btn.style.transition = "none";
+      btn.style.opacity = "";
+      btn.style.pointerEvents = "";
+    });
+    label.style.transition = "none";
+    label.style.opacity = "";
+    label.style.pointerEvents = "";
+    // Restore transitions on the next frame so future opens/account-mode
+    // entries animate normally again.
+    requestAnimationFrame(() => {
+      accountMiniBtn.style.transition = "";
+      subs.querySelectorAll(".radial-menu-sub").forEach((btn) => { btn.style.transition = ""; });
+      label.style.transition = "";
+    });
+  }
+
+  label.addEventListener("click", (e) => {
+    e.preventDefault();
+    trigger.checked ? closeMenu() : openMenu();
+  });
+
+  overlay.addEventListener("click", closeMenu);
+
+  // Keep the menu centered correctly if the window is resized while open.
+  window.addEventListener("resize", () => {
+    if (trigger.checked) {
+      const { dx, dy } = getCenterOffset();
+      wrapper.style.transform = `translate(${dx}px, ${dy}px)`;
+    }
+  });
+
+  // ==========================================================================
+  // AccountWidget: top-right pill button + sign in/create account modal +
+  // dropdown (friends list / sign out), talks to the Stratus account API.
+  // ==========================================================================
+  const AccountWidget = (function () {
+    let currentUser = null; // profile object, or null when signed out
+    let pendingIconDataUrl = null; // for the create-account form
+
+    // Bearer token, not the cookie, is what actually survives page reloads
+    // cross-site — browsers increasingly block third-party cookies outright
+    // (Safari ITP, Chrome's rollout, Firefox ETP), regardless of SameSite.
+    const TOKEN_STORAGE_KEY = "stratusSessionToken";
+    let sessionToken = null;
+    try { sessionToken = localStorage.getItem(TOKEN_STORAGE_KEY); } catch (e) { sessionToken = null; }
+
+    function setSessionToken(token) {
+      sessionToken = token || null;
+      try {
+        if (token) localStorage.setItem(TOKEN_STORAGE_KEY, token);
+        else localStorage.removeItem(TOKEN_STORAGE_KEY);
+      } catch (e) { /* storage unavailable — token still works for this tab's session */ }
+    }
+
+    // ---- API helpers ----
+    async function apiFetch(path, opts = {}) {
+      try {
+        const headers = { "content-type": "application/json" };
+        if (sessionToken) headers["Authorization"] = "Bearer " + sessionToken;
+        const res = await fetch(ACCOUNT_API_BASE + path, {
+          credentials: "include", // harmless to keep; still lets same-origin cookie flow work
+          headers,
+          ...opts,
+        });
+        const data = await res.json().catch(() => ({}));
+        return { ok: res.ok, status: res.status, data };
+      } catch (e) {
+        return { ok: false, status: 0, data: { error: "Network error reaching the account server" } };
+      }
+    }
+
+    function resizeImage(file, maxSize = 256, quality = 0.85) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        const reader = new FileReader();
+        reader.onload = (e) => (img.src = e.target.result);
+        reader.onerror = reject;
+        img.onload = () => {
+          const scale = Math.min(1, maxSize / Math.max(img.width, img.height));
+          const canvas = document.createElement("canvas");
+          canvas.width = Math.round(img.width * scale);
+          canvas.height = Math.round(img.height * scale);
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+          resolve(canvas.toDataURL("image/jpeg", quality));
+        };
+        img.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
+
+    // ---- DOM: top-right widget ----
+    const widget = document.createElement("div");
+    widget.className = "acct-widget";
+
+    const button = document.createElement("div");
+    button.className = "acct-button";
+    button.innerHTML = `<span class="acct-label">Sign in</span>`;
+    widget.appendChild(button);
+
+    const dropdown = document.createElement("div");
+    dropdown.className = "acct-dropdown";
+    // Stop clicks inside the dropdown (Friends, Sign out, Back, etc.) from
+    // bubbling to the document-level "click outside closes it" listener below.
+    // Without this, renderFriendsPanel()/renderDropdownMenu() replace the
+    // dropdown's innerHTML mid-click, detaching the clicked button from the
+    // DOM before the bubbled event reaches document — so widget.contains()
+    // sees it as "outside" and closes the dropdown right after opening it.
+    dropdown.addEventListener("click", (e) => e.stopPropagation());
+    widget.appendChild(dropdown);
+
+    document.body.appendChild(widget);
+
+    // ---- DOM: modal (sign in / create account) ----
+    const modalOverlay = document.createElement("div");
+    modalOverlay.className = "acct-modal-overlay";
+    modalOverlay.innerHTML = `
+      <div class="acct-modal">
+        <button class="acct-close-x" type="button" aria-label="Close">&times;</button>
+        <div class="acct-modal-body"></div>
+      </div>
+    `;
+    document.body.appendChild(modalOverlay);
+    const modalBody = modalOverlay.querySelector(".acct-modal-body");
+
+    modalOverlay.addEventListener("click", (e) => {
+      if (e.target === modalOverlay) closeModal();
+    });
+    modalOverlay.querySelector(".acct-close-x").addEventListener("click", closeModal);
+
+    function openModal() { modalOverlay.classList.add("open"); }
+    function closeModal() { modalOverlay.classList.remove("open"); }
+
+    function showMsg(el, text, isError) {
+      if (!el) return;
+      el.textContent = text || "";
+      el.className = "acct-modal-msg " + (isError ? "error" : "ok");
+      el.style.display = text ? "block" : "none";
+    }
+
+    // ---- Sign-in form ----
+    function renderLoginForm() {
+      pendingIconDataUrl = null;
+      modalBody.innerHTML = `
+        <h3>Sign in</h3>
+        <p class="acct-modal-sub">Use your account name or email.</p>
+        <label>Account name or email</label>
+        <input type="text" id="acctLoginId" autocomplete="username" />
+        <label>Password</label>
+        <input type="password" id="acctLoginPw" autocomplete="current-password" />
+        <div class="acct-modal-msg" style="display:none"></div>
+        <button class="acct-primary-btn" id="acctLoginBtn">Sign in</button>
+        <div class="acct-switch-row">No account yet? <a id="acctGoRegister">Create one</a></div>
+      `;
+      const msgEl = modalBody.querySelector(".acct-modal-msg");
+      modalBody.querySelector("#acctGoRegister").onclick = renderRegisterForm;
+      modalBody.querySelector("#acctLoginBtn").onclick = async () => {
+        const identifier = modalBody.querySelector("#acctLoginId").value.trim();
+        const password = modalBody.querySelector("#acctLoginPw").value;
+        if (!identifier || !password) return showMsg(msgEl, "Enter your account name/email and password", true);
+        const btn = modalBody.querySelector("#acctLoginBtn");
+        btn.disabled = true;
+        const { ok, data } = await apiFetch("/api/login", {
+          method: "POST",
+          body: JSON.stringify({ identifier, password }),
+        });
+        btn.disabled = false;
+        if (!ok) return showMsg(msgEl, data.error || "Sign in failed", true);
+        currentUser = data.profile;
+        setSessionToken(data.token);
+        closeModal();
+        render();
+        connectNotifications();
+      };
+    }
+
+    // ---- Create account form ----
+    function renderRegisterForm() {
+      pendingIconDataUrl = null;
+      modalBody.innerHTML = `
+        <h3>Create account</h3>
+        <p class="acct-modal-sub">5-15 char name, and a 5-8 char password with a letter + number.</p>
+        <label>Account name</label>
+        <input type="text" id="acctRegName" autocomplete="username" />
+        <label>Email</label>
+        <input type="email" id="acctRegEmail" autocomplete="email" />
+        <label>Password</label>
+        <input type="password" id="acctRegPw" autocomplete="new-password" />
+        <label>Icon (optional, under 2MB)</label>
+        <input type="file" id="acctRegIcon" accept="image/*" />
+        <div class="acct-preview-row" style="display:none">
+          <img id="acctRegPreviewImg" />
+          <span style="font-size:12.5px;color:#9a9a9a">Icon preview</span>
+        </div>
+        <div class="acct-modal-msg" style="display:none"></div>
+        <button class="acct-primary-btn" id="acctRegBtn">Create account</button>
+        <div class="acct-switch-row">Already have one? <a id="acctGoLogin">Sign in</a></div>
+      `;
+      const msgEl = modalBody.querySelector(".acct-modal-msg");
+      modalBody.querySelector("#acctGoLogin").onclick = renderLoginForm;
+
+      modalBody.querySelector("#acctRegIcon").onchange = async () => {
+        const file = modalBody.querySelector("#acctRegIcon").files[0];
+        if (!file) { pendingIconDataUrl = null; return; }
+        if (file.size > 2 * 1024 * 1024) {
+          showMsg(msgEl, "Icon must be under 2MB", true);
+          modalBody.querySelector("#acctRegIcon").value = "";
+          return;
+        }
+        pendingIconDataUrl = await resizeImage(file);
+        const previewRow = modalBody.querySelector(".acct-preview-row");
+        previewRow.style.display = "flex";
+        modalBody.querySelector("#acctRegPreviewImg").src = pendingIconDataUrl;
+      };
+
+      modalBody.querySelector("#acctRegBtn").onclick = async () => {
+        const accountName = modalBody.querySelector("#acctRegName").value.trim();
+        const email = modalBody.querySelector("#acctRegEmail").value.trim();
+        const password = modalBody.querySelector("#acctRegPw").value;
+
+        if (!/^[A-Za-z0-9_-]{5,15}$/.test(accountName)) {
+          return showMsg(msgEl, "Account name must be 5-15 chars (letters, numbers, _ or -)", true);
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          return showMsg(msgEl, "Enter a valid email address", true);
+        }
+        if (password.length < 5 || password.length > 8 || !/[A-Za-z]/.test(password) || !/[0-9]/.test(password)) {
+          return showMsg(msgEl, "Password must be 5-8 chars with a letter and a number", true);
+        }
+
+        const btn = modalBody.querySelector("#acctRegBtn");
+        btn.disabled = true;
+        const { ok, data } = await apiFetch("/api/register", {
+          method: "POST",
+          body: JSON.stringify({ accountName, email, password, icon: pendingIconDataUrl }),
+        });
+        btn.disabled = false;
+        if (!ok) return showMsg(msgEl, data.error || "Could not create account", true);
+        currentUser = data.profile;
+        setSessionToken(data.token);
+        closeModal();
+        render();
+        connectNotifications();
+      };
+    }
+
+    // ---- Friends modal: its own popout panel (like the sign-in modal),
+    // not crammed into the small top-right dropdown. Supports sending
+    // requests, accepting/declining incoming ones, and removing friends. ----
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    }
+
+    const friendsModalOverlay = document.createElement("div");
+    friendsModalOverlay.className = "acct-modal-overlay";
+    friendsModalOverlay.innerHTML = `
+      <div class="acct-modal acct-friends-modal">
+        <button class="acct-close-x" type="button" aria-label="Close">&times;</button>
+        <h3>Friends</h3>
+        <p class="acct-modal-sub">Add someone by account name or email.</p>
+        <div class="acct-add-friend-row">
+          <input type="text" id="acctAddFriendInput" placeholder="account name or email" />
+          <button type="button" id="acctAddFriendBtn">Add</button>
+        </div>
+        <div class="acct-modal-msg" id="acctFriendsMsg" style="display:none"></div>
+        <div id="acctFriendsModalBody" class="acct-friends-modal-body">
+          <div class="acct-friends-empty">Loading…</div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(friendsModalOverlay);
+    friendsModalOverlay.addEventListener("click", (e) => {
+      if (e.target === friendsModalOverlay) closeFriendsModal();
+    });
+    friendsModalOverlay.querySelector(".acct-close-x").addEventListener("click", closeFriendsModal);
+
+    const friendsMsgEl = friendsModalOverlay.querySelector("#acctFriendsMsg");
+    const friendsBodyEl = friendsModalOverlay.querySelector("#acctFriendsModalBody");
+    const addFriendInput = friendsModalOverlay.querySelector("#acctAddFriendInput");
+    const addFriendBtn = friendsModalOverlay.querySelector("#acctAddFriendBtn");
+
+    function openFriendsModal() {
+      friendsModalOverlay.classList.add("open");
+      loadFriendsModal();
+    }
+    function closeFriendsModal() {
+      friendsModalOverlay.classList.remove("open");
+    }
+
+    addFriendBtn.onclick = async () => {
+      const identifier = addFriendInput.value.trim();
+      if (!identifier) return;
+      addFriendBtn.disabled = true;
+      const { ok, data } = await apiFetch("/api/friends/request", {
+        method: "POST",
+        body: JSON.stringify({ identifier }),
+      });
+      addFriendBtn.disabled = false;
+      if (!ok) return showMsg(friendsMsgEl, data.error || "Could not send request", true);
+      addFriendInput.value = "";
+      showMsg(friendsMsgEl, "Friend request sent", false);
+      loadFriendsModal();
+    };
+    addFriendInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") addFriendBtn.click();
+    });
+
+    async function loadFriendsModal() {
+      friendsBodyEl.innerHTML = `<div class="acct-friends-empty">Loading…</div>`;
+      const { ok, data } = await apiFetch("/api/friends");
+      if (!ok) {
+        friendsBodyEl.innerHTML = `<div class="acct-friends-empty">${escapeHtml(data.error || "Could not load friends")}</div>`;
+        return;
+      }
+      const incoming = data.incomingRequests || [];
+      const friends = data.friends || [];
+      let html = "";
+
+      if (incoming.length) {
+        html += `<div class="acct-friends-heading">Requests <span class="acct-friends-count">${incoming.length}</span></div>`;
+        html += incoming.map((r) => `
+          <div class="acct-friend-row">
+            <img src="${r.icon}" alt="" />
+            <span class="acct-friend-name">${escapeHtml(r.accountName)}</span>
+            <div class="acct-friend-actions">
+              <button type="button" class="acct-mini-btn" data-accept="${r.userId}">Accept</button>
+              <button type="button" class="acct-mini-btn acct-mini-danger" data-decline="${r.userId}">Decline</button>
+            </div>
+          </div>
+        `).join("");
+      }
+
+      html += `<div class="acct-friends-heading">Friends${friends.length ? ` <span class="acct-friends-count">${friends.length}</span>` : ""}</div>`;
+      html += friends.length
+        ? friends.map((f) => `
+          <div class="acct-friend-row">
+            <img src="${f.icon}" alt="" />
+            <span class="acct-friend-name">${escapeHtml(f.accountName)}</span>
+            <div class="acct-friend-actions">
+              <button type="button" class="acct-mini-btn acct-mini-icon" data-call="${f.userId}" data-name="${escapeHtml(f.accountName)}" data-icon="${f.icon}" aria-label="Call">${CALL_ICON_SVG}</button>
+              <button type="button" class="acct-mini-btn acct-mini-icon" data-chat="${f.userId}" data-name="${escapeHtml(f.accountName)}" data-icon="${f.icon}" aria-label="Chat">${CHAT_ICON_SVG}</button>
+              <button type="button" class="acct-mini-btn acct-mini-danger" data-remove="${f.userId}">Remove</button>
+            </div>
+          </div>
+        `).join("")
+        : `<div class="acct-friends-empty">No friends yet.<br/>Add someone by account name or email above.</div>`;
+
+      friendsBodyEl.innerHTML = html;
+      friends.forEach((f) => { friendInfoCache[f.userId] = { accountName: f.accountName, icon: f.icon }; });
+
+      friendsBodyEl.querySelectorAll("[data-call]").forEach((btn) => {
+        btn.onclick = () => {
+          startOutgoingCall(btn.dataset.call, btn.dataset.name, btn.dataset.icon);
+        };
+      });
+
+      friendsBodyEl.querySelectorAll("[data-chat]").forEach((btn) => {
+        btn.onclick = () => {
+          openChatModal(btn.dataset.chat, btn.dataset.name, btn.dataset.icon);
+        };
+      });
+
+      friendsBodyEl.querySelectorAll("[data-accept]").forEach((btn) => {
+        btn.onclick = async () => {
+          await apiFetch("/api/friends/accept", { method: "POST", body: JSON.stringify({ targetId: btn.dataset.accept }) });
+          loadFriendsModal();
+        };
+      });
+      friendsBodyEl.querySelectorAll("[data-decline]").forEach((btn) => {
+        btn.onclick = async () => {
+          await apiFetch("/api/friends/decline", { method: "POST", body: JSON.stringify({ targetId: btn.dataset.decline }) });
+          loadFriendsModal();
+        };
+      });
+      friendsBodyEl.querySelectorAll("[data-remove]").forEach((btn) => {
+        btn.onclick = async () => {
+          await apiFetch("/api/friends/remove", { method: "POST", body: JSON.stringify({ targetId: btn.dataset.remove }) });
+          loadFriendsModal();
+        };
+      });
+    }
+
+    // ---- Messages modal: pick a friend to chat with (mirrors the friends
+    // list but stripped down to just "who do I want to talk to"). Every row
+    // is clickable and jumps straight into the chat with that friend. ----
+    const messagesModalOverlay = document.createElement("div");
+    messagesModalOverlay.className = "acct-modal-overlay";
+    messagesModalOverlay.innerHTML = `
+      <div class="acct-modal acct-messages-modal">
+        <button class="acct-close-x" type="button" aria-label="Close">&times;</button>
+        <h3>Messages</h3>
+        <p class="acct-modal-sub">Pick a friend to chat with.</p>
+        <div id="acctMessagesListBody" class="acct-friends-modal-body">
+          <div class="acct-friends-empty">Loading…</div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(messagesModalOverlay);
+    messagesModalOverlay.addEventListener("click", (e) => {
+      if (e.target === messagesModalOverlay) closeMessagesModal();
+    });
+    messagesModalOverlay.querySelector(".acct-close-x").addEventListener("click", closeMessagesModal);
+    const messagesListBodyEl = messagesModalOverlay.querySelector("#acctMessagesListBody");
+
+    function openMessagesModal() {
+      closeFriendsModal();
+      messagesModalOverlay.classList.add("open");
+      loadMessagesList();
+    }
+    function closeMessagesModal() {
+      messagesModalOverlay.classList.remove("open");
+    }
+
+    async function loadMessagesList() {
+      messagesListBodyEl.innerHTML = `<div class="acct-friends-empty">Loading…</div>`;
+      const { ok, data } = await apiFetch("/api/friends");
+      if (!ok) {
+        messagesListBodyEl.innerHTML = `<div class="acct-friends-empty">${escapeHtml(data.error || "Could not load friends")}</div>`;
+        return;
+      }
+      const friends = data.friends || [];
+      friends.forEach((f) => { friendInfoCache[f.userId] = { accountName: f.accountName, icon: f.icon }; });
+      messagesListBodyEl.innerHTML = friends.length
+        ? friends.map((f) => `
+          <div class="acct-msg-friend-row" data-open-chat="${f.userId}" data-name="${escapeHtml(f.accountName)}" data-icon="${f.icon}">
+            <img src="${f.icon}" alt="" />
+            <span class="acct-msg-friend-name">${escapeHtml(f.accountName)}</span>
+            <button type="button" class="acct-mini-btn acct-mini-icon" data-call="${f.userId}" data-name="${escapeHtml(f.accountName)}" data-icon="${f.icon}" aria-label="Call">${CALL_ICON_SVG}</button>
+            <span class="acct-msg-chat-icon">${CHAT_ICON_SVG}</span>
+          </div>
+        `).join("")
+        : `<div class="acct-friends-empty">No friends yet.<br/>Add friends first to start chatting.</div>`;
+
+      messagesListBodyEl.querySelectorAll("[data-call]").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          startOutgoingCall(btn.dataset.call, btn.dataset.name, btn.dataset.icon);
+        });
+      });
+
+      messagesListBodyEl.querySelectorAll("[data-open-chat]").forEach((row) => {
+        row.onclick = () => {
+          openChatModal(row.dataset.openChat, row.dataset.name, row.dataset.icon);
+        };
+      });
+    }
+
+    // ---- Chat modal: an actual conversation with one friend, backed by the
+    // /api/dm/:friendId endpoints. Polls lightly while open so the other
+    // side's replies show up without a manual refresh. ----
+    let currentChatFriendId = null;
+    let chatPollTimer = null;
+
+    const chatModalOverlay = document.createElement("div");
+    chatModalOverlay.className = "acct-modal-overlay";
+    chatModalOverlay.innerHTML = `
+      <div class="acct-modal acct-chat-modal">
+        <button class="acct-close-x" type="button" aria-label="Close">&times;</button>
+        <button class="acct-chat-back" type="button">&larr; Back to friends</button>
+        <div class="acct-chat-header">
+          <img id="acctChatAvatar" src="" alt="" />
+          <div class="acct-chat-name" id="acctChatName"></div>
+          <button type="button" class="acct-mini-btn acct-mini-icon" id="acctChatCallBtn" style="margin-left:auto" aria-label="Call">${CALL_ICON_SVG}</button>
+        </div>
+        <div class="acct-chat-messages" id="acctChatMessages"></div>
+        <div class="acct-chat-input-row">
+          <input type="text" id="acctChatInput" placeholder="Message (auto-deletes after 7 days)" />
+          <button type="button" id="acctChatSendBtn">Send</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(chatModalOverlay);
+    chatModalOverlay.addEventListener("click", (e) => {
+      if (e.target === chatModalOverlay) closeChatModal();
+    });
+    chatModalOverlay.querySelector(".acct-close-x").addEventListener("click", closeChatModal);
+    chatModalOverlay.querySelector(".acct-chat-back").addEventListener("click", () => {
+      closeChatModal();
+      openFriendsModal();
+    });
+
+    const chatAvatarEl = chatModalOverlay.querySelector("#acctChatAvatar");
+    const chatNameEl = chatModalOverlay.querySelector("#acctChatName");
+    const chatMessagesEl = chatModalOverlay.querySelector("#acctChatMessages");
+    const chatInputEl = chatModalOverlay.querySelector("#acctChatInput");
+    const chatSendBtnEl = chatModalOverlay.querySelector("#acctChatSendBtn");
+    const chatCallBtnEl = chatModalOverlay.querySelector("#acctChatCallBtn");
+    chatCallBtnEl.addEventListener("click", () => {
+      if (currentChatFriendId) startOutgoingCall(currentChatFriendId, chatNameEl.textContent, chatAvatarEl.src);
+    });
+
+    function openChatModal(friendId, friendName, friendIcon) {
+      currentChatFriendId = friendId;
+      closeFriendsModal();
+      closeMessagesModal();
+      chatNameEl.textContent = friendName || "";
+      chatAvatarEl.src = friendIcon || "";
+      chatMessagesEl.innerHTML = `<div class="acct-chat-empty">Loading…</div>`;
+      chatModalOverlay.classList.add("open");
+      loadChatMessages();
+      if (chatPollTimer) clearInterval(chatPollTimer);
+      chatPollTimer = setInterval(loadChatMessages, 4000);
+    }
+
+    function closeChatModal() {
+      chatModalOverlay.classList.remove("open");
+      currentChatFriendId = null;
+      if (chatPollTimer) {
+        clearInterval(chatPollTimer);
+        chatPollTimer = null;
+      }
+    }
+
+    async function loadChatMessages() {
+      if (!currentChatFriendId) return;
+      const friendId = currentChatFriendId;
+      const { ok, data } = await apiFetch(`/api/dm/${friendId}`);
+      if (friendId !== currentChatFriendId) return; // modal moved on to a different friend meanwhile
+      if (!ok) return;
+      const messages = data.messages || [];
+      const wasNearBottom = chatMessagesEl.scrollHeight - chatMessagesEl.scrollTop - chatMessagesEl.clientHeight < 40;
+      chatMessagesEl.innerHTML = messages.length
+        ? messages.map((m) => `<div class="acct-chat-bubble ${m.from === (currentUser && currentUser.userId) ? "me" : "them"}">${escapeHtml(m.text)}</div>`).join("")
+        : `<div class="acct-chat-empty">No messages yet. Say hi!</div>`;
+      if (wasNearBottom) chatMessagesEl.scrollTop = chatMessagesEl.scrollHeight;
+    }
+
+    async function sendChatMessage() {
+      const text = chatInputEl.value.trim();
+      if (!text || !currentChatFriendId) return;
+      chatInputEl.value = "";
+      chatSendBtnEl.disabled = true;
+      await apiFetch(`/api/dm/${currentChatFriendId}`, {
+        method: "POST",
+        body: JSON.stringify({ text }),
+      });
+      chatSendBtnEl.disabled = false;
+      loadChatMessages();
+    }
+    chatSendBtnEl.addEventListener("click", sendChatMessage);
+    chatInputEl.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") sendChatMessage();
+    });
+
+    // ==========================================================================
+    // Live notifications socket - lets us receive "a friend is calling" pushes
+    // in real time. Reconnects automatically while signed in. Authenticated
+    // via ?token= since a browser WebSocket can't carry an Authorization header.
+    // ==========================================================================
+    let notifySocket = null;
+    let notifyReconnectTimer = null;
+
+    function connectNotifications() {
+      if (!sessionToken) return;
+      if (notifySocket && (notifySocket.readyState === WebSocket.OPEN || notifySocket.readyState === WebSocket.CONNECTING)) return;
+      try {
+        notifySocket = new WebSocket(`${ACCOUNT_WS_BASE}/api/notifications?token=${encodeURIComponent(sessionToken)}`);
+      } catch (e) {
+        return;
+      }
+      notifySocket.onmessage = (e) => {
+        let msg;
+        try { msg = JSON.parse(e.data); } catch (err) { return; }
+        if (msg.type === "call" && msg.data && msg.data.from) {
+          handleIncomingCallPush(msg.data.from);
+        }
+        if (msg.type === "call-declined" && msg.data && msg.data.from === callFriendId && callState === "calling") {
+          endCall("Call declined");
+        }
+      };
+      notifySocket.onclose = () => {
+        notifySocket = null;
+        if (currentUser && !notifyReconnectTimer) {
+          notifyReconnectTimer = setTimeout(() => {
+            notifyReconnectTimer = null;
+            connectNotifications();
+          }, 3000);
+        }
+      };
+      notifySocket.onerror = () => {
+        try { notifySocket.close(); } catch (err) {}
+      };
+    }
+
+    function disconnectNotifications() {
+      if (notifyReconnectTimer) { clearTimeout(notifyReconnectTimer); notifyReconnectTimer = null; }
+      if (notifySocket) { try { notifySocket.close(); } catch (err) {} notifySocket = null; }
+    }
+
+    // Small cache of friend name/icon, filled whenever a friends/messages
+    // list loads, so an incoming-call banner can show who's calling without
+    // an extra round trip most of the time.
+    const friendInfoCache = {};
+    async function getFriendInfo(friendId) {
+      if (friendInfoCache[friendId]) return friendInfoCache[friendId];
+      const { ok, data } = await apiFetch("/api/friends");
+      if (ok) {
+        (data.friends || []).forEach((f) => {
+          friendInfoCache[f.userId] = { accountName: f.accountName, icon: f.icon };
+        });
+      }
+      return friendInfoCache[friendId] || { accountName: "Someone", icon: "" };
+    }
+
+    // ==========================================================================
+    // Voice calls - real WebRTC audio, signaled through the /api/call/:friendId
+    // relay (Thread Durable Object). The relay only ever sees SDP offers/
+    // answers and ICE candidates; the audio itself flows directly between the
+    // two browsers once that handshake completes. Only a STUN server is
+    // configured here (no TURN relay), so a call between two networks that
+    // both do strict/symmetric NAT can fail to connect - that's a limitation
+    // of not having a TURN server, not of the signaling relay itself.
+    // ==========================================================================
+    const ICE_SERVERS = [
+      { urls: "stun:stun.l.google.com:19302" },
+      { urls: "stun:stun1.l.google.com:19302" },
+    ];
+
+    let callSocket = null;
+    let peerConnection = null;
+    let localStream = null;
+    let pendingRemoteCandidates = [];
+    let callState = "idle"; // idle | calling | ringing | active
+    let callFriendId = null;
+    let callIsCaller = false;
+    let callTimerInterval = null;
+    let callStartedAt = null;
+    let callMuted = false;
+    let callSessionId = 0;
+    let incomingCallFromId = null;
+
+    const remoteAudioEl = document.createElement("audio");
+    remoteAudioEl.autoplay = true;
+    document.body.appendChild(remoteAudioEl);
+
+    // ---- Incoming call banner ----
+    const incomingCallBanner = document.createElement("div");
+    incomingCallBanner.className = "acct-incoming-call";
+    incomingCallBanner.innerHTML = `
+      <img id="acctIncomingCallIcon" src="" alt="" />
+      <div class="acct-incoming-call-text">
+        <div class="acct-incoming-call-name" id="acctIncomingCallName"></div>
+        <div class="acct-incoming-call-sub">Incoming call</div>
+      </div>
+      <div class="acct-incoming-call-actions">
+        <button type="button" class="acct-call-decline-btn" id="acctIncomingDeclineBtn">Decline</button>
+        <button type="button" class="acct-call-accept-btn" id="acctIncomingAcceptBtn">Accept</button>
+      </div>
+    `;
+    document.body.appendChild(incomingCallBanner);
+
+    incomingCallBanner.querySelector("#acctIncomingAcceptBtn").addEventListener("click", () => {
+      hideIncomingCallBanner();
+      acceptIncomingCall();
+    });
+    incomingCallBanner.querySelector("#acctIncomingDeclineBtn").addEventListener("click", () => {
+      hideIncomingCallBanner();
+      if (incomingCallFromId) {
+        apiFetch(`/api/call/${incomingCallFromId}/decline`, { method: "POST" }).catch(() => {});
+      }
+      incomingCallFromId = null;
+    });
+
+    function showIncomingCallBanner(fromId, info) {
+      incomingCallFromId = fromId;
+      incomingCallBanner.querySelector("#acctIncomingCallName").textContent = info.accountName || "Someone";
+      incomingCallBanner.querySelector("#acctIncomingCallIcon").src = info.icon || "";
+      incomingCallBanner.classList.add("visible");
+    }
+    function hideIncomingCallBanner() {
+      incomingCallBanner.classList.remove("visible");
+    }
+
+    async function handleIncomingCallPush(fromId) {
+      // Already on a call - ignore further pings (most commonly the
+      // redundant one fired when we ourselves join the relay after accepting).
+      if (callState !== "idle") return;
+      const info = await getFriendInfo(fromId);
+      showIncomingCallBanner(fromId, info);
+    }
+
+    // ---- In-call modal (avatar, status, mute/hangup) ----
+    const callModalOverlay = document.createElement("div");
+    callModalOverlay.className = "acct-modal-overlay";
+    callModalOverlay.innerHTML = `
+      <div class="acct-modal acct-call-modal" id="acctCallModalInner">
+        <div class="acct-call-avatar-wrap">
+          <img id="acctCallAvatar" src="" alt="" />
+        </div>
+        <div class="acct-call-name" id="acctCallName"></div>
+        <div class="acct-call-status" id="acctCallStatus">Calling…</div>
+        <div class="acct-call-controls">
+          <button type="button" class="acct-call-ctrl-btn acct-call-mute-btn" id="acctCallMuteBtn" aria-label="Mute">🎤</button>
+          <button type="button" class="acct-call-ctrl-btn acct-call-hangup-btn" id="acctCallHangupBtn" aria-label="Hang up">${CALL_ICON_SVG}</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(callModalOverlay);
+    const callModalInner = callModalOverlay.querySelector("#acctCallModalInner");
+    const callAvatarEl = callModalOverlay.querySelector("#acctCallAvatar");
+    const callNameEl = callModalOverlay.querySelector("#acctCallName");
+    const callStatusEl = callModalOverlay.querySelector("#acctCallStatus");
+    const callMuteBtnEl = callModalOverlay.querySelector("#acctCallMuteBtn");
+    const callHangupBtnEl = callModalOverlay.querySelector("#acctCallHangupBtn");
+
+    callMuteBtnEl.addEventListener("click", toggleMute);
+    callHangupBtnEl.addEventListener("click", () => endCall("You hung up"));
+
+    function openCallModal(name, icon) {
+      callNameEl.textContent = name || "";
+      callAvatarEl.src = icon || "";
+      setCallStatus("Calling…", false);
+      callMuteBtnEl.classList.remove("acct-call-muted");
+      callMuted = false;
+      callModalOverlay.classList.add("open");
+    }
+    function closeCallModal() {
+      callModalOverlay.classList.remove("open");
+      if (callTimerInterval) { clearInterval(callTimerInterval); callTimerInterval = null; }
+    }
+
+    function setCallStatus(text, active) {
+      callStatusEl.textContent = text;
+      callStatusEl.classList.toggle("acct-call-active", !!active);
+      callModalInner.classList.toggle("acct-call-connecting", !active);
+    }
+
+    function startCallTimer() {
+      callStartedAt = Date.now();
+      if (callTimerInterval) clearInterval(callTimerInterval);
+      callTimerInterval = setInterval(() => {
+        const secs = Math.floor((Date.now() - callStartedAt) / 1000);
+        const m = String(Math.floor(secs / 60)).padStart(2, "0");
+        const s = String(secs % 60).padStart(2, "0");
+        setCallStatus(`Connected ${m}:${s}`, true);
+      }, 1000);
+    }
+
+    function toggleMute() {
+      if (!localStream) return;
+      callMuted = !callMuted;
+      localStream.getAudioTracks().forEach((t) => { t.enabled = !callMuted; });
+      callMuteBtnEl.classList.toggle("acct-call-muted", callMuted);
+    }
+
+    function createPeerConnection() {
+      const pc = new RTCPeerConnection({ iceServers: ICE_SERVERS });
+      pc.onicecandidate = (event) => {
+        if (event.candidate && callSocket && callSocket.readyState === WebSocket.OPEN) {
+          callSocket.send(JSON.stringify({ type: "candidate", candidate: event.candidate }));
+        }
+      };
+      pc.ontrack = (event) => {
+        remoteAudioEl.srcObject = event.streams[0];
+      };
+      pc.onconnectionstatechange = () => {
+        if (pc.connectionState === "connected" && callState !== "active") {
+          callState = "active";
+          startCallTimer();
+        }
+        if (pc.connectionState === "failed") {
+          endCall("Connection failed");
+        }
+      };
+      return pc;
+    }
+
+    async function flushPendingCandidates() {
+      if (!peerConnection || !peerConnection.remoteDescription) return;
+      for (const c of pendingRemoteCandidates) {
+        try { await peerConnection.addIceCandidate(new RTCIceCandidate(c)); } catch (e) { /* ignore */ }
+      }
+      pendingRemoteCandidates = [];
+    }
+
+    function openCallSocket(friendId) {
+      const socket = new WebSocket(`${ACCOUNT_WS_BASE}/api/call/${friendId}?token=${encodeURIComponent(sessionToken)}`);
+
+      socket.onmessage = async (e) => {
+        let msg;
+        try { msg = JSON.parse(e.data); } catch (err) { return; }
+
+        if (msg.type === "presence") {
+          if (callIsCaller && msg.participants && msg.participants.length === 2 && peerConnection && !peerConnection.localDescription) {
+            setCallStatus("Ringing…", false);
+            const offer = await peerConnection.createOffer();
+            await peerConnection.setLocalDescription(offer);
+            socket.send(JSON.stringify({ type: "offer", sdp: peerConnection.localDescription }));
+          }
+          if (msg.participants && msg.participants.length < 2 && callState !== "idle") {
+            endCall("Call ended");
+          }
+          return;
+        }
+
+        if (msg.type === "offer" && peerConnection) {
+          await peerConnection.setRemoteDescription(new RTCSessionDescription(msg.sdp));
+          await flushPendingCandidates();
+          const answer = await peerConnection.createAnswer();
+          await peerConnection.setLocalDescription(answer);
+          socket.send(JSON.stringify({ type: "answer", sdp: peerConnection.localDescription }));
+          return;
+        }
+
+        if (msg.type === "answer" && peerConnection) {
+          await peerConnection.setRemoteDescription(new RTCSessionDescription(msg.sdp));
+          await flushPendingCandidates();
+          return;
+        }
+
+        if (msg.type === "candidate" && msg.candidate) {
+          if (peerConnection && peerConnection.remoteDescription) {
+            try { await peerConnection.addIceCandidate(new RTCIceCandidate(msg.candidate)); } catch (err) { /* ignore */ }
+          } else {
+            pendingRemoteCandidates.push(msg.candidate);
+          }
+          return;
+        }
+      };
+
+      socket.onclose = () => {
+        if (callState !== "idle") endCall("Call ended");
+      };
+      socket.onerror = () => {
+        try { socket.close(); } catch (err) {}
+      };
+
+      return socket;
+    }
+
+    async function startOutgoingCall(friendId, friendName, friendIcon) {
+      if (callState !== "idle" || !friendId) return;
+      hideIncomingCallBanner();
+      const mySession = ++callSessionId;
+      callIsCaller = true;
+      callState = "calling";
+      callFriendId = friendId;
+      openCallModal(friendName, friendIcon);
+
+      try {
+        localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      } catch (e) {
+        setCallStatus("Microphone access denied", false);
+        setTimeout(() => endCall(), 1500);
+        return;
+      }
+      if (callSessionId !== mySession) return; // call was cancelled while awaiting mic permission
+
+      peerConnection = createPeerConnection();
+      localStream.getTracks().forEach((t) => peerConnection.addTrack(t, localStream));
+      callSocket = openCallSocket(friendId);
+
+      setTimeout(() => {
+        if (callSessionId === mySession && callState === "calling") endCall("No answer");
+      }, 30000);
+    }
+
+    async function acceptIncomingCall() {
+      if (!incomingCallFromId || callState !== "idle") return;
+      const friendId = incomingCallFromId;
+      incomingCallFromId = null;
+      const info = await getFriendInfo(friendId);
+
+      const mySession = ++callSessionId;
+      callIsCaller = false;
+      callState = "ringing";
+      callFriendId = friendId;
+      openCallModal(info.accountName, info.icon);
+      setCallStatus("Connecting…", false);
+
+      try {
+        localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      } catch (e) {
+        setCallStatus("Microphone access denied", false);
+        setTimeout(() => endCall(), 1500);
+        return;
+      }
+      if (callSessionId !== mySession) return;
+
+      peerConnection = createPeerConnection();
+      localStream.getTracks().forEach((t) => peerConnection.addTrack(t, localStream));
+      callSocket = openCallSocket(friendId);
+    }
+
+    function endCall(reason) {
+      if (callState === "idle" && !callSocket && !peerConnection) return;
+      callSessionId++;
+      callState = "idle";
+      callIsCaller = false;
+      callFriendId = null;
+      pendingRemoteCandidates = [];
+
+      if (callSocket) { try { callSocket.close(); } catch (err) {} callSocket = null; }
+      if (peerConnection) { try { peerConnection.close(); } catch (err) {} peerConnection = null; }
+      if (localStream) { localStream.getTracks().forEach((t) => t.stop()); localStream = null; }
+      remoteAudioEl.srcObject = null;
+
+      if (reason) {
+        setCallStatus(reason, false);
+        setTimeout(closeCallModal, 900);
+      } else {
+        closeCallModal();
+      }
+    }
+
+    // ---- Signed-in dropdown menu ----
+    function renderDropdownMenu() {
+      dropdown.innerHTML = "";
+      const friendsBtn = document.createElement("button");
+      friendsBtn.type = "button";
+      friendsBtn.textContent = "Friends";
+      friendsBtn.onclick = () => {
+        dropdown.classList.remove("open");
+        openFriendsModal();
+      };
+      dropdown.appendChild(friendsBtn);
+
+      const signOutBtn = document.createElement("button");
+      signOutBtn.type = "button";
+      signOutBtn.className = "acct-danger";
+      signOutBtn.textContent = "Sign out";
+      signOutBtn.onclick = async () => {
+        await apiFetch("/api/logout", { method: "POST" });
+        setSessionToken(null);
+        currentUser = null;
+        dropdown.classList.remove("open");
+        closeChatModal();
+        closeMessagesModal();
+        closeFriendsModal();
+        hideIncomingCallBanner();
+        endCall();
+        disconnectNotifications();
+        render();
+      };
+      dropdown.appendChild(signOutBtn);
+    }
+
+    function toggleDropdown() {
+      if (dropdown.classList.contains("open")) {
+        dropdown.classList.remove("open");
+        return;
+      }
+      renderDropdownMenu();
+      dropdown.classList.add("open");
+    }
+
+    document.addEventListener("click", (e) => {
+      if (!widget.contains(e.target)) dropdown.classList.remove("open");
+    });
+
+    button.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (currentUser) {
+        toggleDropdown();
+      } else {
+        dropdown.classList.remove("open");
+        renderLoginForm();
+        openModal();
+      }
+    });
+
+    // ---- Render (top-right pill + radial menu account mini-button) ----
+    function render() {
+      if (currentUser) {
+        button.innerHTML = `
+          <span class="acct-label">${escapeHtml(currentUser.accountName)}</span>
+          <img class="acct-avatar" src="${currentUser.icon}" alt="" />
+        `;
+      } else {
+        button.innerHTML = `<span class="acct-label">Sign in</span>`;
+        dropdown.classList.remove("open");
+      }
+
+      const tooltip = accountMiniBtn.querySelector(".radial-menu-sub-label");
+      if (currentUser) {
+        accountMiniBtn.innerHTML = `<img class="radial-account-avatar" src="${currentUser.icon}" alt="" />`;
+        accountMiniBtn.setAttribute("aria-label", currentUser.accountName);
+      } else {
+        accountMiniBtn.innerHTML = ACCOUNT_ICON_SVG;
+        accountMiniBtn.setAttribute("aria-label", "Account");
+      }
+      if (tooltip) accountMiniBtn.appendChild(tooltip);
+      else {
+        const t = document.createElement("span");
+        t.className = "radial-menu-sub-label";
+        t.textContent = currentUser ? currentUser.accountName : "Account";
+        accountMiniBtn.appendChild(t);
+      }
+    }
+
+    function handleRadialClick() {
+      if (currentUser) {
+        enterAccountMode(); // outer-scope function — fades the ring, morphs the avatar to center
+      } else {
+        renderLoginForm();
+        openModal();
+      }
+    }
+
+    async function init() {
+      if (!sessionToken) {
+        currentUser = null;
+        render();
+        return;
+      }
+      const { ok, data } = await apiFetch("/api/me");
+      if (ok) {
+        currentUser = data.profile;
+      } else {
+        currentUser = null;
+        setSessionToken(null); // stale/expired token — drop it so we don't keep retrying
+      }
+      render();
+      if (currentUser) connectNotifications();
+    }
+
+    init();
+
+    return { handleRadialClick, openFriendsModal, openMessagesModal, isSignedIn: () => !!currentUser };
+  })();
+})();
+</script>

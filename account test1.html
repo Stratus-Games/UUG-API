@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stratus — Apps</title>
+<title>Stratus — call</title>
 <link href="/assets/fonts/css2.css" rel="stylesheet">
 <style>
   :root{
@@ -498,7 +499,7 @@
 </body>
 </html>
 <script>
-(function () {
+  (function () {
   // ==========================================================================
   // Account API config
   // ==========================================================================
@@ -1535,6 +1536,200 @@
       transform: rotate(135deg);
     }
     .acct-call-hangup-btn:hover { transform: rotate(135deg) translateY(-2px); }
+
+    /* ======================================================================
+       NEW: video tiles, screen-share, deafen, connection-quality, ringtone-
+       era controls, minimizable/draggable call bar, and call-history list.
+       Kept in the same --red/--eer-black/--black theme as everything above.
+       ====================================================================== */
+    .acct-call-modal.acct-call-video { width: 620px; max-width: 94vw; padding-top: 20px; text-align: left; }
+    .acct-call-video-stage {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background: #000;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .acct-call-video-remote {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: #050505;
+      display: block;
+    }
+    .acct-call-video-remote.acct-call-video-hidden { display: none; }
+    .acct-call-video-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: radial-gradient(circle at 50% 40%, #232323, #0b0b0b);
+    }
+    .acct-call-video-placeholder img {
+      width: 88px; height: 88px; border-radius: 50%; object-fit: cover; border: 3px solid var(--red);
+    }
+    .acct-call-video-local {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      width: 132px;
+      height: 88px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid var(--red);
+      background: #000;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.45);
+      cursor: grab;
+    }
+    .acct-call-video-local video {
+      width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); /* mirror, like every other camera preview */
+    }
+    .acct-call-video-local.acct-call-video-off { display: flex; align-items: center; justify-content: center; }
+    .acct-call-video-local.acct-call-video-off::after { content: "Camera off"; font-size: 10.5px; color: #9a9a9a; }
+    .acct-call-video-local.acct-call-video-off video { display: none; }
+
+    .acct-call-speaking { box-shadow: 0 0 0 3px #3ecf8e !important; }
+
+    .acct-call-quality-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: rgba(0,0,0,0.55);
+      border-radius: 999px;
+      padding: 4px 9px 4px 7px;
+      font-size: 11px;
+      color: #f3f3f3;
+    }
+    .acct-call-quality-dot { width: 7px; height: 7px; border-radius: 50%; background: #3ecf8e; }
+    .acct-call-quality-dot.acct-quality-fair { background: #e8b95b; }
+    .acct-call-quality-dot.acct-quality-poor { background: var(--red); }
+    .acct-call-quality-dot.acct-quality-reconnecting { background: #e8b95b; animation: acct-call-pulse-ring 1s ease-out infinite; }
+
+    .acct-call-below-video { padding: 14px 2px 0; text-align: center; }
+    .acct-call-modal.acct-call-video .acct-call-name { font-size: 15.5px; margin-bottom: 2px; }
+    .acct-call-modal.acct-call-video .acct-call-status { margin-bottom: 16px; }
+
+    .acct-call-controls-row { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .acct-call-ctrl-btn.acct-call-ctrl-small { width: 46px; height: 46px; font-size: 17px; }
+    .acct-call-ctrl-btn svg { width: 19px; height: 19px; pointer-events: none; }
+    .acct-call-deafen-btn.acct-call-deafened { background: var(--red); color: #fff; }
+    .acct-call-video-btn.acct-call-video-on { background: #3ecf8e; color: #05130d; }
+    .acct-call-screen-btn.acct-call-screen-on { background: #5b8cff; color: #061226; }
+
+    .acct-call-minimize-btn {
+      position: absolute;
+      top: 14px;
+      left: 16px;
+      background: none;
+      border: none;
+      color: #9a9a9a;
+      font-size: 13px;
+      cursor: pointer;
+      padding: 4px;
+      line-height: 1;
+    }
+    .acct-call-minimize-btn:hover { color: var(--red); }
+
+    /* Minimized/floating call bar, shown once the in-call modal is
+       minimized so the person can keep browsing/using the site mid-call -
+       draggable anywhere on screen, like Discord's popout call window. */
+    .acct-call-bar {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 10003;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--eer-black);
+      border: 2px solid var(--red);
+      border-radius: 14px;
+      padding: 8px 10px;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.5);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #f3f3f3;
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.9);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      cursor: grab;
+      user-select: none;
+    }
+    .acct-call-bar.visible { opacity: 1; pointer-events: auto; transform: scale(1); }
+    .acct-call-bar.dragging { cursor: grabbing; transition: none; }
+    .acct-call-bar img.acct-call-bar-avatar {
+      width: 34px; height: 34px; border-radius: 50%; object-fit: cover; background: #000; border: 1px solid var(--red); flex-shrink: 0;
+    }
+    .acct-call-bar video.acct-call-bar-video {
+      width: 46px; height: 34px; object-fit: cover; border-radius: 6px; background: #000; flex-shrink: 0;
+    }
+    .acct-call-bar-info { display: flex; flex-direction: column; gap: 1px; }
+    .acct-call-bar-name { font-size: 12.5px; font-weight: 700; }
+    .acct-call-bar-time { font-size: 11px; color: #9a9a9a; }
+    .acct-call-bar-actions { display: flex; gap: 6px; margin-left: 4px; }
+    .acct-call-bar-btn {
+      width: 30px; height: 30px; border-radius: 50%; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; font-size: 13px;
+      background: rgba(255,255,255,0.1); color: #f3f3f3;
+    }
+    .acct-call-bar-btn.acct-call-bar-hangup { background: var(--red); color: #fff; transform: rotate(135deg); }
+    .acct-call-bar-btn.acct-call-bar-expand { background: rgba(255,255,255,0.14); }
+
+    /* Missed-call toast (top-right, auto-dismisses) */
+    .acct-toast-stack {
+      position: fixed;
+      top: 74px;
+      right: 20px;
+      z-index: 10002;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: flex-end;
+    }
+    .acct-toast {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--eer-black);
+      border: 2px solid var(--red);
+      border-radius: 12px;
+      padding: 10px 14px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.45);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #f3f3f3;
+      font-size: 12.5px;
+      max-width: 280px;
+      animation: acct-toast-in 0.2s ease;
+    }
+    @keyframes acct-toast-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+    .acct-toast img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; background: #000; flex-shrink: 0; }
+
+    /* Call history modal (Discord "recent calls" style list) */
+    .acct-call-log-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      margin-bottom: 6px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      font-size: 13px;
+    }
+    .acct-call-log-row img { width: 36px; height: 36px; border-radius: 50%; object-fit: cover; background: #000; flex-shrink: 0; }
+    .acct-call-log-row .acct-call-log-info { flex: 1; overflow: hidden; }
+    .acct-call-log-row .acct-call-log-name { font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .acct-call-log-row .acct-call-log-meta { font-size: 11.5px; color: #9a9a9a; display: flex; align-items: center; gap: 5px; }
+    .acct-call-log-row .acct-call-log-meta.acct-call-log-missed { color: var(--red); }
+    .acct-call-log-row button { flex-shrink: 0; }
   `;
   document.head.appendChild(style);
 
@@ -1625,9 +1820,11 @@
   subs.appendChild(backToMenuBtn);
 
   // Account sub-menu ring — pops out once the avatar lands in the center.
-  // Mostly blank placeholders; the slot on the same spoke the avatar came
-  // from (slot 2) holds the Friends shortcut.
+  // Slot 1 = Friends, slot 2 = Messages, slot 3 = Call history (new). The
+  // rest stay blank placeholders, same as the original build.
   const FRIENDS_SLOT_ICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 149 148"><path fill="transparent" d="M0.08 0.08C49.69 0.08 99.31 0.08 148.92 0.08C148.93 36.73 148.94 73.38 148.94 110.03C148.21 109.68 147.34 103.91 146.98 102.51C145.64 97.41 142.24 92.31 138.89 88.27C127.77 74.88 107.14 71.27 91.24 77.1C86.8 78.72 82.87 81.61 79.18 84.5C79.75 86.47 82.25 87.7 83.65 89.19C86.61 92.35 89.58 95.65 91.73 99.45C94.31 104.02 96.67 108.89 97.81 114.05C98.34 116.43 98.49 121.22 99.41 123.17C115.92 123.23 132.43 123.3 148.94 123.37C148.94 131.55 148.93 139.73 148.92 147.92C99.31 147.92 49.69 147.92 0.08 147.92C0.07 142.39 0.06 136.86 0.06 131.33C29.98 131.26 59.91 131.2 89.83 131.13C90.58 129.74 90.25 127.74 90.22 126.17C90.14 121.7 89.53 117.53 88.2 113.28C81.34 91.51 61.74 81.69 39.83 82.99C26.29 83.79 12.8 92.68 6.1 104.26C3.87 108.1 2.44 112.22 1.28 116.48C0.94 117.73 1.22 120.72 0.06 121.31C0.06 80.9 0.07 40.49 0.08 0.08ZM42.6 16.82C25.66 18.31 13.87 37.41 19.26 53.51C22.41 62.95 28.03 68.66 37.16 72.33C40.44 73.65 44.52 73.91 48.05 73.51C77.42 70.19 80.82 25.68 52.67 17.83C49.32 16.89 46.12 16.51 42.6 16.82ZM105.6 20.83C80.16 22.09 76.06 59.82 99.6 68.21C102.1 69.1 104.79 69.7 107.5 69.62C122.33 69.15 133.38 53.92 129.72 39.5C127.73 31.64 122.78 26.01 115.63 22.53C112.48 20.99 109.09 20.66 105.6 20.83Z"></path><path fill="#ff3b30" d="M42.6 16.82C46.12 16.51 49.32 16.89 52.67 17.83C80.82 25.68 77.42 70.19 48.05 73.51C44.52 73.91 40.44 73.65 37.16 72.33C28.03 68.66 22.41 62.95 19.26 53.51C13.87 37.41 25.66 18.31 42.6 16.82ZM105.6 20.83C109.09 20.66 112.48 20.99 115.63 22.53C122.78 26.01 127.73 31.64 129.72 39.5C133.38 53.92 122.33 69.15 107.5 69.62C104.79 69.7 102.1 69.1 99.6 68.21C76.06 59.82 80.16 22.09 105.6 20.83ZM148.94 110.03C148.94 114.47 148.94 118.92 148.94 123.37C132.43 123.3 115.92 123.23 99.41 123.17C98.49 121.22 98.34 116.43 97.81 114.05C96.67 108.89 94.31 104.02 91.73 99.45C89.58 95.65 86.61 92.35 83.65 89.19C82.25 87.7 79.75 86.47 79.18 84.5C82.87 81.61 86.8 78.72 91.24 77.1C107.14 71.27 127.77 74.88 138.89 88.27C142.24 92.31 145.64 97.41 146.98 102.51C147.34 103.91 148.21 109.68 148.94 110.03ZM0.06 131.33C0.06 127.99 0.06 124.65 0.06 121.31C1.22 120.72 0.94 117.73 1.28 116.48C2.44 112.22 3.87 108.1 6.1 104.26C12.8 92.68 26.29 83.79 39.83 82.99C61.74 81.69 81.34 91.51 88.2 113.28C89.53 117.53 90.14 121.7 90.22 126.17C90.25 127.74 90.58 129.74 89.83 131.13C59.91 131.2 29.98 131.26 0.06 131.33Z"></path></svg>`;
+
+  const CALL_LOG_SLOT_ICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>`;
 
   const accountSubRing = document.createElement("div");
   accountSubRing.className = "radial-menu-account-subs";
@@ -1658,6 +1855,19 @@
       slot.addEventListener("click", (e) => {
         e.stopPropagation();
         AccountWidget.openMessagesModal();
+        closeMenu();
+      });
+    } else if (i === 3) {
+      slot.className = "acc-sub-item acc-sub-active";
+      slot.innerHTML = CALL_LOG_SLOT_ICON;
+      slot.setAttribute("aria-label", "Call history");
+      const tip = document.createElement("span");
+      tip.className = "radial-menu-sub-label";
+      tip.textContent = "Calls";
+      slot.appendChild(tip);
+      slot.addEventListener("click", (e) => {
+        e.stopPropagation();
+        AccountWidget.openCallLogModal();
         closeMenu();
       });
     } else {
@@ -1868,10 +2078,6 @@
     dropdown.className = "acct-dropdown";
     // Stop clicks inside the dropdown (Friends, Sign out, Back, etc.) from
     // bubbling to the document-level "click outside closes it" listener below.
-    // Without this, renderFriendsPanel()/renderDropdownMenu() replace the
-    // dropdown's innerHTML mid-click, detaching the clicked button from the
-    // DOM before the bubbled event reaches document — so widget.contains()
-    // sees it as "outside" and closes the dropdown right after opening it.
     dropdown.addEventListener("click", (e) => e.stopPropagation());
     widget.appendChild(dropdown);
 
@@ -2010,13 +2216,11 @@
       };
     }
 
-    // ---- Friends modal: its own popout panel (like the sign-in modal),
-    // not crammed into the small top-right dropdown. Supports sending
-    // requests, accepting/declining incoming ones, and removing friends. ----
     function escapeHtml(s) {
       return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
     }
 
+    // ---- Friends modal ----
     const friendsModalOverlay = document.createElement("div");
     friendsModalOverlay.className = "acct-modal-overlay";
     friendsModalOverlay.innerHTML = `
@@ -2071,6 +2275,8 @@
       if (e.key === "Enter") addFriendBtn.click();
     });
 
+    const friendInfoCache = {};
+
     async function loadFriendsModal() {
       friendsBodyEl.innerHTML = `<div class="acct-friends-empty">Loading…</div>`;
       const { ok, data } = await apiFetch("/api/friends");
@@ -2115,17 +2321,11 @@
       friends.forEach((f) => { friendInfoCache[f.userId] = { accountName: f.accountName, icon: f.icon }; });
 
       friendsBodyEl.querySelectorAll("[data-call]").forEach((btn) => {
-        btn.onclick = () => {
-          startOutgoingCall(btn.dataset.call, btn.dataset.name, btn.dataset.icon);
-        };
+        btn.onclick = () => startOutgoingCall(btn.dataset.call, btn.dataset.name, btn.dataset.icon, true);
       });
-
       friendsBodyEl.querySelectorAll("[data-chat]").forEach((btn) => {
-        btn.onclick = () => {
-          openChatModal(btn.dataset.chat, btn.dataset.name, btn.dataset.icon);
-        };
+        btn.onclick = () => openChatModal(btn.dataset.chat, btn.dataset.name, btn.dataset.icon);
       });
-
       friendsBodyEl.querySelectorAll("[data-accept]").forEach((btn) => {
         btn.onclick = async () => {
           await apiFetch("/api/friends/accept", { method: "POST", body: JSON.stringify({ targetId: btn.dataset.accept }) });
@@ -2146,9 +2346,7 @@
       });
     }
 
-    // ---- Messages modal: pick a friend to chat with (mirrors the friends
-    // list but stripped down to just "who do I want to talk to"). Every row
-    // is clickable and jumps straight into the chat with that friend. ----
+    // ---- Messages modal ----
     const messagesModalOverlay = document.createElement("div");
     messagesModalOverlay.className = "acct-modal-overlay";
     messagesModalOverlay.innerHTML = `
@@ -2200,20 +2398,15 @@
       messagesListBodyEl.querySelectorAll("[data-call]").forEach((btn) => {
         btn.addEventListener("click", (e) => {
           e.stopPropagation();
-          startOutgoingCall(btn.dataset.call, btn.dataset.name, btn.dataset.icon);
+          startOutgoingCall(btn.dataset.call, btn.dataset.name, btn.dataset.icon, true);
         });
       });
-
       messagesListBodyEl.querySelectorAll("[data-open-chat]").forEach((row) => {
-        row.onclick = () => {
-          openChatModal(row.dataset.openChat, row.dataset.name, row.dataset.icon);
-        };
+        row.onclick = () => openChatModal(row.dataset.openChat, row.dataset.name, row.dataset.icon);
       });
     }
 
-    // ---- Chat modal: an actual conversation with one friend, backed by the
-    // /api/dm/:friendId endpoints. Polls lightly while open so the other
-    // side's replies show up without a manual refresh. ----
+    // ---- Chat modal ----
     let currentChatFriendId = null;
     let chatPollTimer = null;
 
@@ -2252,7 +2445,7 @@
     const chatSendBtnEl = chatModalOverlay.querySelector("#acctChatSendBtn");
     const chatCallBtnEl = chatModalOverlay.querySelector("#acctChatCallBtn");
     chatCallBtnEl.addEventListener("click", () => {
-      if (currentChatFriendId) startOutgoingCall(currentChatFriendId, chatNameEl.textContent, chatAvatarEl.src);
+      if (currentChatFriendId) startOutgoingCall(currentChatFriendId, chatNameEl.textContent, chatAvatarEl.src, true);
     });
 
     function openChatModal(friendId, friendName, friendIcon) {
@@ -2281,7 +2474,7 @@
       if (!currentChatFriendId) return;
       const friendId = currentChatFriendId;
       const { ok, data } = await apiFetch(`/api/dm/${friendId}`);
-      if (friendId !== currentChatFriendId) return; // modal moved on to a different friend meanwhile
+      if (friendId !== currentChatFriendId) return;
       if (!ok) return;
       const messages = data.messages || [];
       const wasNearBottom = chatMessagesEl.scrollHeight - chatMessagesEl.scrollTop - chatMessagesEl.clientHeight < 40;
@@ -2308,10 +2501,102 @@
       if (e.key === "Enter") sendChatMessage();
     });
 
+    // ---- Call history modal ----
+    const callLogModalOverlay = document.createElement("div");
+    callLogModalOverlay.className = "acct-modal-overlay";
+    callLogModalOverlay.innerHTML = `
+      <div class="acct-modal acct-messages-modal">
+        <button class="acct-close-x" type="button" aria-label="Close">&times;</button>
+        <h3>Calls</h3>
+        <p class="acct-modal-sub">Recent calls with your friends.</p>
+        <div id="acctCallLogBody" class="acct-friends-modal-body">
+          <div class="acct-friends-empty">Loading…</div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(callLogModalOverlay);
+    callLogModalOverlay.addEventListener("click", (e) => {
+      if (e.target === callLogModalOverlay) closeCallLogModal();
+    });
+    callLogModalOverlay.querySelector(".acct-close-x").addEventListener("click", closeCallLogModal);
+    const callLogBodyEl = callLogModalOverlay.querySelector("#acctCallLogBody");
+
+    function openCallLogModal() {
+      callLogModalOverlay.classList.add("open");
+      loadCallLog();
+    }
+    function closeCallLogModal() {
+      callLogModalOverlay.classList.remove("open");
+    }
+
+    function formatCallMeta(entry) {
+      const mins = Math.floor((entry.durationMs || 0) / 60000);
+      const secs = Math.floor(((entry.durationMs || 0) % 60000) / 1000);
+      const durStr = entry.durationMs ? `${mins}:${String(secs).padStart(2, "0")}` : null;
+      const when = new Date(entry.ts).toLocaleString([], { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" });
+      const arrow = entry.direction === "incoming" ? "↙" : "↗";
+      let label;
+      if (entry.status === "missed" || entry.status === "no-answer") label = "Missed";
+      else if (entry.status === "declined") label = "Declined";
+      else if (entry.status === "canceled") label = "Canceled";
+      else label = durStr ? `${durStr}` : "Completed";
+      return { label, when, arrow, missed: entry.status === "missed" || entry.status === "no-answer" || entry.status === "declined" };
+    }
+
+    async function loadCallLog() {
+      callLogBodyEl.innerHTML = `<div class="acct-friends-empty">Loading…</div>`;
+      const { ok, data } = await apiFetch("/api/call-log");
+      if (!ok) {
+        callLogBodyEl.innerHTML = `<div class="acct-friends-empty">${escapeHtml(data.error || "Could not load call history")}</div>`;
+        return;
+      }
+      const log = data.log || [];
+      if (!log.length) {
+        callLogBodyEl.innerHTML = `<div class="acct-friends-empty">No calls yet.<br/>Call a friend to see history here.</div>`;
+        return;
+      }
+      callLogBodyEl.innerHTML = log.map((entry) => {
+        const meta = formatCallMeta(entry);
+        return `
+          <div class="acct-call-log-row">
+            <img src="${entry.peerIcon}" alt="" />
+            <div class="acct-call-log-info">
+              <div class="acct-call-log-name">${escapeHtml(entry.peerName)}</div>
+              <div class="acct-call-log-meta ${meta.missed ? "acct-call-log-missed" : ""}">${meta.arrow} ${meta.label} · ${meta.when}</div>
+            </div>
+            <button type="button" class="acct-mini-btn acct-mini-icon" data-log-call="${entry.peerId}" data-name="${escapeHtml(entry.peerName)}" data-icon="${entry.peerIcon}" aria-label="Call back">${CALL_ICON_SVG}</button>
+          </div>
+        `;
+      }).join("");
+      callLogBodyEl.querySelectorAll("[data-log-call]").forEach((btn) => {
+        btn.onclick = () => {
+          closeCallLogModal();
+          startOutgoingCall(btn.dataset.logCall, btn.dataset.name, btn.dataset.icon, true);
+        };
+      });
+    }
+
     // ==========================================================================
-    // Live notifications socket - lets us receive "a friend is calling" pushes
-    // in real time. Reconnects automatically while signed in. Authenticated
-    // via ?token= since a browser WebSocket can't carry an Authorization header.
+    // Toasts (missed call, etc.)
+    // ==========================================================================
+    const toastStack = document.createElement("div");
+    toastStack.className = "acct-toast-stack";
+    document.body.appendChild(toastStack);
+
+    function showToast(html, ms = 6000) {
+      const el = document.createElement("div");
+      el.className = "acct-toast";
+      el.innerHTML = html;
+      toastStack.appendChild(el);
+      setTimeout(() => el.remove(), ms);
+      return el;
+    }
+
+    // ==========================================================================
+    // Live notifications socket - lets us receive "a friend is calling" pushes,
+    // declines, and hangups in real time. Reconnects automatically while
+    // signed in. Authenticated via ?token= since a browser WebSocket can't
+    // carry an Authorization header.
     // ==========================================================================
     let notifySocket = null;
     let notifyReconnectTimer = null;
@@ -2331,7 +2616,7 @@
           handleIncomingCallPush(msg.data.from);
         }
         if (msg.type === "call-declined" && msg.data && msg.data.from === callFriendId && callState === "calling") {
-          endCall("Call declined");
+          endCall("Call declined", "declined");
         }
       };
       notifySocket.onclose = () => {
@@ -2353,10 +2638,6 @@
       if (notifySocket) { try { notifySocket.close(); } catch (err) {} notifySocket = null; }
     }
 
-    // Small cache of friend name/icon, filled whenever a friends/messages
-    // list loads, so an incoming-call banner can show who's calling without
-    // an extra round trip most of the time.
-    const friendInfoCache = {};
     async function getFriendInfo(friendId) {
       if (friendInfoCache[friendId]) return friendInfoCache[friendId];
       const { ok, data } = await apiFetch("/api/friends");
@@ -2369,35 +2650,52 @@
     }
 
     // ==========================================================================
-    // Voice calls - real WebRTC audio, signaled through the /api/call/:friendId
-    // relay (Thread Durable Object). The relay only ever sees SDP offers/
-    // answers and ICE candidates; the audio itself flows directly between the
-    // two browsers once that handshake completes. Only a STUN server is
-    // configured here (no TURN relay), so a call between two networks that
-    // both do strict/symmetric NAT can fail to connect - that's a limitation
-    // of not having a TURN server, not of the signaling relay itself.
+    // Ringtone - a small WebAudio-generated two-tone chime, looped, so there's
+    // no external audio asset to host/fetch. Plays while calling/ringing,
+    // stops the instant the call connects, is declined, or ends.
     // ==========================================================================
-    const ICE_SERVERS = [
-      { urls: "stun:stun.l.google.com:19302" },
-      { urls: "stun:stun1.l.google.com:19302" },
-    ];
+    let ringAudioCtx = null;
+    let ringLoopTimer = null;
+    let ringOscillators = [];
 
-    let callSocket = null;
-    let peerConnection = null;
-    let localStream = null;
-    let pendingRemoteCandidates = [];
-    let callState = "idle"; // idle | calling | ringing | active
-    let callFriendId = null;
-    let callIsCaller = false;
-    let callTimerInterval = null;
-    let callStartedAt = null;
-    let callMuted = false;
-    let callSessionId = 0;
-    let incomingCallFromId = null;
+    function playRingtoneOnce() {
+      if (!ringAudioCtx) return;
+      const now = ringAudioCtx.currentTime;
+      [820, 660].forEach((freq, i) => {
+        const osc = ringAudioCtx.createOscillator();
+        const gain = ringAudioCtx.createGain();
+        osc.type = "sine";
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0, now + i * 0.28);
+        gain.gain.linearRampToValueAtTime(0.11, now + i * 0.28 + 0.03);
+        gain.gain.linearRampToValueAtTime(0, now + i * 0.28 + 0.24);
+        osc.connect(gain);
+        gain.connect(ringAudioCtx.destination);
+        osc.start(now + i * 0.28);
+        osc.stop(now + i * 0.28 + 0.26);
+        ringOscillators.push(osc);
+      });
+    }
 
-    const remoteAudioEl = document.createElement("audio");
-    remoteAudioEl.autoplay = true;
-    document.body.appendChild(remoteAudioEl);
+    function startRingtone() {
+      stopRingtone();
+      try {
+        ringAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      } catch (e) {
+        return;
+      }
+      playRingtoneOnce();
+      ringLoopTimer = setInterval(playRingtoneOnce, 2000);
+    }
+
+    function stopRingtone() {
+      if (ringLoopTimer) { clearInterval(ringLoopTimer); ringLoopTimer = null; }
+      ringOscillators = [];
+      if (ringAudioCtx) {
+        try { ringAudioCtx.close(); } catch (e) {}
+        ringAudioCtx = null;
+      }
+    }
 
     // ---- Incoming call banner ----
     const incomingCallBanner = document.createElement("div");
@@ -2422,7 +2720,12 @@
     incomingCallBanner.querySelector("#acctIncomingDeclineBtn").addEventListener("click", () => {
       hideIncomingCallBanner();
       if (incomingCallFromId) {
-        apiFetch(`/api/call/${incomingCallFromId}/decline`, { method: "POST" }).catch(() => {});
+        const fromId = incomingCallFromId;
+        apiFetch(`/api/call/${fromId}/decline`, { method: "POST" }).catch(() => {});
+        apiFetch(`/api/call/${fromId}/log`, {
+          method: "POST",
+          body: JSON.stringify({ status: "declined", direction: "incoming", durationMs: 0 }),
+        }).catch(() => {});
       }
       incomingCallFromId = null;
     });
@@ -2432,9 +2735,11 @@
       incomingCallBanner.querySelector("#acctIncomingCallName").textContent = info.accountName || "Someone";
       incomingCallBanner.querySelector("#acctIncomingCallIcon").src = info.icon || "";
       incomingCallBanner.classList.add("visible");
+      startRingtone();
     }
     function hideIncomingCallBanner() {
       incomingCallBanner.classList.remove("visible");
+      stopRingtone();
     }
 
     async function handleIncomingCallPush(fromId) {
@@ -2445,50 +2750,230 @@
       showIncomingCallBanner(fromId, info);
     }
 
-    // ---- In-call modal (avatar, status, mute/hangup) ----
+    // ==========================================================================
+    // Voice/video calls - real WebRTC, signaled through the /api/call/:friendId
+    // relay (Thread Durable Object). The relay only ever sees SDP offers/
+    // answers, ICE candidates, and small call-control messages; the actual
+    // media flows directly between the two browsers once the handshake
+    // completes. This uses the "perfect negotiation" pattern so tracks can be
+    // added/removed at any time (camera on/off, screen share on/off) without
+    // hand-rolled offer/answer bookkeeping, and ICE restarts fall out of the
+    // same code path for free when the connection drops and recovers.
+    //
+    // NOTE ON SCOPE: this relay supports exactly two participants per call
+    // (it's a 1:1 mesh, not an SFU). A true Discord-style group call with
+    // many participants would need a real media server (SFU) sitting in
+    // front of the Worker - that's a materially bigger infrastructure piece
+    // than a Durable Object can provide on its own, so it's out of scope
+    // here. Everything else - video, screen share, mute, deafen, speaking
+    // indicators, reconnect/ICE-restart, dynamic TURN, ringtone, call
+    // history, and a minimizable floating call window - is implemented.
+    // ==========================================================================
+
+    let cachedIceServers = null;
+    async function fetchIceServers() {
+      if (cachedIceServers) return cachedIceServers;
+      const fallback = [
+        { urls: "stun:stun.l.google.com:19302" },
+        { urls: "stun:stun1.l.google.com:19302" },
+      ];
+      const { ok, data } = await apiFetch("/api/ice-servers");
+      cachedIceServers = ok && Array.isArray(data.iceServers) && data.iceServers.length ? data.iceServers : fallback;
+      return cachedIceServers;
+    }
+
+    let callSocket = null;
+    let peerConnection = null;
+    let localStream = null; // mic (+ camera track once enabled)
+    let cameraTrack = null;
+    let screenTrack = null;
+    let videoSender = null;
+    let makingOffer = false;
+    let ignoreOffer = false;
+    let callState = "idle"; // idle | calling | ringing | active
+    let callFriendId = null;
+    let callFriendName = "";
+    let callFriendIcon = "";
+    let callIsCaller = false; // caller = impolite peer, callee = polite peer
+    let callTimerInterval = null;
+    let callStartedAt = null;
+    let callMuted = false;
+    let callDeafened = false;
+    let callVideoOn = false;
+    let callScreenOn = false;
+    let callSessionId = 0;
+    let incomingCallFromId = null;
+    let reconnectTimeout = null;
+    let noAnswerTimeout = null;
+    let remoteHasVideo = false;
+
+    const remoteStream = new MediaStream();
+    const remoteAudioEl = document.createElement("audio");
+    remoteAudioEl.autoplay = true;
+    document.body.appendChild(remoteAudioEl);
+    remoteAudioEl.srcObject = remoteStream;
+
+    // ---- Simple draggable helper, reused for the local PiP tile and the
+    // minimized floating call bar. ----
+    function makeDraggable(handle, moveTarget) {
+      let dragging = false, startX = 0, startY = 0, origX = 0, origY = 0;
+      handle.addEventListener("mousedown", (e) => {
+        dragging = true;
+        moveTarget.classList.add("dragging");
+        startX = e.clientX; startY = e.clientY;
+        const rect = moveTarget.getBoundingClientRect();
+        origX = rect.left; origY = rect.top;
+        e.preventDefault();
+      });
+      window.addEventListener("mousemove", (e) => {
+        if (!dragging) return;
+        const nx = Math.max(4, Math.min(window.innerWidth - moveTarget.offsetWidth - 4, origX + (e.clientX - startX)));
+        const ny = Math.max(4, Math.min(window.innerHeight - moveTarget.offsetHeight - 4, origY + (e.clientY - startY)));
+        moveTarget.style.left = nx + "px";
+        moveTarget.style.top = ny + "px";
+        moveTarget.style.right = "auto";
+        moveTarget.style.bottom = "auto";
+      });
+      window.addEventListener("mouseup", () => {
+        if (dragging) { dragging = false; moveTarget.classList.remove("dragging"); }
+      });
+    }
+
+    // ---- In-call modal (video stage + controls) ----
     const callModalOverlay = document.createElement("div");
     callModalOverlay.className = "acct-modal-overlay";
     callModalOverlay.innerHTML = `
       <div class="acct-modal acct-call-modal" id="acctCallModalInner">
-        <div class="acct-call-avatar-wrap">
-          <img id="acctCallAvatar" src="" alt="" />
+        <button type="button" class="acct-call-minimize-btn" id="acctCallMinimizeBtn" title="Minimize">— Minimize</button>
+        <div class="acct-call-video-stage" id="acctCallStage">
+          <video class="acct-call-video-remote acct-call-video-hidden" id="acctCallRemoteVideo" autoplay playsinline></video>
+          <div class="acct-call-video-placeholder" id="acctCallPlaceholder">
+            <img id="acctCallAvatar" src="" alt="" />
+          </div>
+          <div class="acct-call-quality-badge" id="acctCallQualityBadge">
+            <span class="acct-call-quality-dot" id="acctCallQualityDot"></span>
+            <span id="acctCallQualityText">Connecting</span>
+          </div>
+          <div class="acct-call-video-local acct-call-video-off" id="acctCallLocalTile">
+            <video id="acctCallLocalVideo" autoplay playsinline muted></video>
+          </div>
         </div>
-        <div class="acct-call-name" id="acctCallName"></div>
-        <div class="acct-call-status" id="acctCallStatus">Calling…</div>
-        <div class="acct-call-controls">
-          <button type="button" class="acct-call-ctrl-btn acct-call-mute-btn" id="acctCallMuteBtn" aria-label="Mute">🎤</button>
-          <button type="button" class="acct-call-ctrl-btn acct-call-hangup-btn" id="acctCallHangupBtn" aria-label="Hang up">${CALL_ICON_SVG}</button>
+        <div class="acct-call-below-video">
+          <div class="acct-call-name" id="acctCallName"></div>
+          <div class="acct-call-status" id="acctCallStatus">Calling…</div>
+          <div class="acct-call-controls-row">
+            <button type="button" class="acct-call-ctrl-btn acct-call-mute-btn" id="acctCallMuteBtn" aria-label="Mute">🎤</button>
+            <button type="button" class="acct-call-ctrl-btn acct-call-deafen-btn" id="acctCallDeafenBtn" aria-label="Deafen">🔊</button>
+            <button type="button" class="acct-call-ctrl-btn acct-call-video-btn" id="acctCallVideoBtn" aria-label="Toggle camera">📷</button>
+            <button type="button" class="acct-call-ctrl-btn acct-call-screen-btn" id="acctCallScreenBtn" aria-label="Share screen">🖥️</button>
+            <button type="button" class="acct-call-ctrl-btn acct-call-hangup-btn" id="acctCallHangupBtn" aria-label="Hang up">${CALL_ICON_SVG}</button>
+          </div>
         </div>
       </div>
     `;
     document.body.appendChild(callModalOverlay);
     const callModalInner = callModalOverlay.querySelector("#acctCallModalInner");
+    const callStageEl = callModalOverlay.querySelector("#acctCallStage");
+    const callRemoteVideoEl = callModalOverlay.querySelector("#acctCallRemoteVideo");
+    const callPlaceholderEl = callModalOverlay.querySelector("#acctCallPlaceholder");
     const callAvatarEl = callModalOverlay.querySelector("#acctCallAvatar");
+    const callLocalTileEl = callModalOverlay.querySelector("#acctCallLocalTile");
+    const callLocalVideoEl = callModalOverlay.querySelector("#acctCallLocalVideo");
     const callNameEl = callModalOverlay.querySelector("#acctCallName");
     const callStatusEl = callModalOverlay.querySelector("#acctCallStatus");
     const callMuteBtnEl = callModalOverlay.querySelector("#acctCallMuteBtn");
+    const callDeafenBtnEl = callModalOverlay.querySelector("#acctCallDeafenBtn");
+    const callVideoBtnEl = callModalOverlay.querySelector("#acctCallVideoBtn");
+    const callScreenBtnEl = callModalOverlay.querySelector("#acctCallScreenBtn");
     const callHangupBtnEl = callModalOverlay.querySelector("#acctCallHangupBtn");
+    const callMinimizeBtnEl = callModalOverlay.querySelector("#acctCallMinimizeBtn");
+    const callQualityDotEl = callModalOverlay.querySelector("#acctCallQualityDot");
+    const callQualityTextEl = callModalOverlay.querySelector("#acctCallQualityText");
+
+    makeDraggable(callLocalTileEl, callLocalTileEl); // drag the PiP tile around within the stage's containing box visually (fixed-position drag)
 
     callMuteBtnEl.addEventListener("click", toggleMute);
-    callHangupBtnEl.addEventListener("click", () => endCall("You hung up"));
+    callDeafenBtnEl.addEventListener("click", toggleDeafen);
+    callVideoBtnEl.addEventListener("click", toggleVideo);
+    callScreenBtnEl.addEventListener("click", toggleScreenShare);
+    callHangupBtnEl.addEventListener("click", () => endCall("You hung up", "completed"));
+    callMinimizeBtnEl.addEventListener("click", minimizeCall);
+
+    // ---- Minimized floating call bar ----
+    const callBar = document.createElement("div");
+    callBar.className = "acct-call-bar";
+    callBar.innerHTML = `
+      <img class="acct-call-bar-avatar" id="acctCallBarAvatar" src="" alt="" />
+      <video class="acct-call-bar-video" id="acctCallBarVideo" autoplay playsinline muted style="display:none"></video>
+      <div class="acct-call-bar-info">
+        <div class="acct-call-bar-name" id="acctCallBarName"></div>
+        <div class="acct-call-bar-time" id="acctCallBarTime">Calling…</div>
+      </div>
+      <div class="acct-call-bar-actions">
+        <button type="button" class="acct-call-bar-btn acct-call-bar-expand" id="acctCallBarExpand" aria-label="Expand" title="Expand">⤢</button>
+        <button type="button" class="acct-call-bar-btn acct-call-bar-hangup" id="acctCallBarHangup" aria-label="Hang up">${CALL_ICON_SVG}</button>
+      </div>
+    `;
+    document.body.appendChild(callBar);
+    const callBarAvatarEl = callBar.querySelector("#acctCallBarAvatar");
+    const callBarVideoEl = callBar.querySelector("#acctCallBarVideo");
+    const callBarNameEl = callBar.querySelector("#acctCallBarName");
+    const callBarTimeEl = callBar.querySelector("#acctCallBarTime");
+    makeDraggable(callBar, callBar);
+    callBar.querySelector("#acctCallBarExpand").addEventListener("click", (e) => { e.stopPropagation(); expandCall(); });
+    callBar.querySelector("#acctCallBarHangup").addEventListener("click", (e) => { e.stopPropagation(); endCall("You hung up", "completed"); });
+
+    function minimizeCall() {
+      callModalOverlay.classList.remove("open");
+      callBar.classList.add("visible");
+      callBarNameEl.textContent = callFriendName;
+      callBarAvatarEl.src = callFriendIcon;
+      syncBarVideo();
+    }
+    function expandCall() {
+      callBar.classList.remove("visible");
+      callModalOverlay.classList.add("open");
+      syncBarVideo();
+    }
+    function syncBarVideo() {
+      const showBarVideo = callBar.classList.contains("visible") && remoteHasVideo;
+      callBarVideoEl.style.display = showBarVideo ? "block" : "none";
+      callBarAvatarEl.style.display = showBarVideo ? "none" : "block";
+      if (showBarVideo) callBarVideoEl.srcObject = remoteStream;
+    }
 
     function openCallModal(name, icon) {
       callNameEl.textContent = name || "";
       callAvatarEl.src = icon || "";
-      setCallStatus("Calling…", false);
+      callFriendName = name || "";
+      callFriendIcon = icon || "";
+      setCallStatus("Calling…", "reconnecting");
       callMuteBtnEl.classList.remove("acct-call-muted");
+      callDeafenBtnEl.classList.remove("acct-call-deafened");
+      callVideoBtnEl.classList.remove("acct-call-video-on");
+      callScreenBtnEl.classList.remove("acct-call-screen-on");
       callMuted = false;
+      callDeafened = false;
+      remoteHasVideo = false;
+      callRemoteVideoEl.classList.add("acct-call-video-hidden");
+      callPlaceholderEl.style.display = "flex";
+      callLocalTileEl.classList.add("acct-call-video-off");
+      callBar.classList.remove("visible");
       callModalOverlay.classList.add("open");
     }
     function closeCallModal() {
       callModalOverlay.classList.remove("open");
+      callBar.classList.remove("visible");
       if (callTimerInterval) { clearInterval(callTimerInterval); callTimerInterval = null; }
     }
 
-    function setCallStatus(text, active) {
+    function setCallStatus(text, quality) {
       callStatusEl.textContent = text;
-      callStatusEl.classList.toggle("acct-call-active", !!active);
-      callModalInner.classList.toggle("acct-call-connecting", !active);
+      callBarTimeEl.textContent = text;
+      callStatusEl.classList.toggle("acct-call-active", quality === "good");
+      const dotClass = { good: "", fair: "acct-quality-fair", poor: "acct-quality-poor", reconnecting: "acct-quality-reconnecting" }[quality] || "";
+      callQualityDotEl.className = "acct-call-quality-dot " + dotClass;
+      callQualityTextEl.textContent = { good: "Connected", fair: "Fair connection", poor: "Poor connection", reconnecting: "Connecting" }[quality] || "";
     }
 
     function startCallTimer() {
@@ -2498,10 +2983,14 @@
         const secs = Math.floor((Date.now() - callStartedAt) / 1000);
         const m = String(Math.floor(secs / 60)).padStart(2, "0");
         const s = String(secs % 60).padStart(2, "0");
-        setCallStatus(`Connected ${m}:${s}`, true);
+        setCallStatus(`${m}:${s}`, currentQuality || "good");
       }, 1000);
     }
+    function callDurationMs() {
+      return callStartedAt ? Date.now() - callStartedAt : 0;
+    }
 
+    // ---- Mute / deafen / video / screen share ----
     function toggleMute() {
       if (!localStream) return;
       callMuted = !callMuted;
@@ -2509,83 +2998,335 @@
       callMuteBtnEl.classList.toggle("acct-call-muted", callMuted);
     }
 
+    function toggleDeafen() {
+      callDeafened = !callDeafened;
+      remoteAudioEl.muted = callDeafened;
+      callDeafenBtnEl.classList.toggle("acct-call-deafened", callDeafened);
+      // Deafening also mutes your own mic, like Discord - talking while you
+      // can't hear anyone is rarely intentional. Un-deafening does not
+      // automatically un-mute, matching the same convention.
+      if (callDeafened && !callMuted) toggleMute();
+    }
+
+    async function toggleVideo() {
+      if (!peerConnection) return;
+      if (callVideoOn && !callScreenOn) {
+        disableCamera();
+        return;
+      }
+      try {
+        const camStream = await navigator.mediaDevices.getUserMedia({ video: { width: 640, height: 480 } });
+        cameraTrack = camStream.getVideoTracks()[0];
+      } catch (e) {
+        showToast(`<span>Could not access your camera</span>`, 4000);
+        return;
+      }
+      if (callScreenOn) stopScreenTrackOnly();
+      applyVideoTrack(cameraTrack, false);
+      callVideoOn = true;
+      callVideoBtnEl.classList.add("acct-call-video-on");
+      localStream.getVideoTracks().forEach((t) => localStream.removeTrack(t));
+      localStream.addTrack(cameraTrack);
+      callLocalVideoEl.srcObject = localStream;
+      callLocalTileEl.classList.remove("acct-call-video-off");
+      startSpeakingMeter(localStream, callLocalTileEl, true);
+    }
+
+    function disableCamera() {
+      if (cameraTrack) { try { cameraTrack.stop(); } catch (e) {} cameraTrack = null; }
+      if (videoSender && peerConnection) { try { peerConnection.removeTrack(videoSender); } catch (e) {} }
+      videoSender = null;
+      callVideoOn = false;
+      callVideoBtnEl.classList.remove("acct-call-video-on");
+      callLocalTileEl.classList.add("acct-call-video-off");
+      callLocalVideoEl.srcObject = null;
+    }
+
+    async function toggleScreenShare() {
+      if (callScreenOn) {
+        stopScreenTrackOnly();
+        if (callVideoOn && cameraTrack) {
+          applyVideoTrack(cameraTrack, false);
+        } else {
+          disableCamera();
+        }
+        return;
+      }
+      let screenStream;
+      try {
+        screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: false });
+      } catch (e) {
+        return; // user canceled the picker
+      }
+      screenTrack = screenStream.getVideoTracks()[0];
+      screenTrack.addEventListener("ended", () => {
+        // user stopped sharing via the browser's own "Stop sharing" UI
+        if (callScreenOn) toggleScreenShare();
+      });
+      applyVideoTrack(screenTrack, true);
+      callScreenOn = true;
+      callVideoOn = true;
+      callScreenBtnEl.classList.add("acct-call-screen-on");
+      callVideoBtnEl.classList.add("acct-call-video-on");
+      callLocalVideoEl.srcObject = new MediaStream([screenTrack]);
+      callLocalTileEl.classList.remove("acct-call-video-off");
+    }
+
+    function stopScreenTrackOnly() {
+      if (screenTrack) { try { screenTrack.stop(); } catch (e) {} screenTrack = null; }
+      callScreenOn = false;
+      callScreenBtnEl.classList.remove("acct-call-screen-on");
+    }
+
+    // Adds or replaces the single outgoing video track (camera XOR screen -
+    // never both at once, matching how most 1:1 call UIs behave). Uses
+    // replaceTrack when a sender already exists so switching camera<->screen
+    // doesn't require a fresh renegotiation round trip; addTrack (which
+    // triggers onnegotiationneeded automatically) only happens the first
+    // time video turns on.
+    function applyVideoTrack(track, isScreen) {
+      if (!peerConnection) return;
+      if (videoSender) {
+        videoSender.replaceTrack(track);
+      } else {
+        videoSender = peerConnection.addTrack(track, localStream);
+      }
+      callLocalVideoEl.srcObject = new MediaStream([track]);
+      callLocalTileEl.classList.toggle("acct-call-video-off", false);
+      callLocalVideoEl.style.transform = isScreen ? "none" : ""; // don't mirror screen shares
+    }
+
+    // ---- Speaking indicators (local + remote) via WebAudio analyser ----
+    const speakingMeters = [];
+    function startSpeakingMeter(stream, targetEl, isLocal) {
+      speakingMeters.forEach((m) => { if (m.el === targetEl) m.stop(); });
+      let ctx, analyser, data, raf, stopped = false;
+      try {
+        ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const src = ctx.createMediaStreamSource(stream);
+        analyser = ctx.createAnalyser();
+        analyser.fftSize = 512;
+        src.connect(analyser);
+        data = new Uint8Array(analyser.frequencyBinCount);
+      } catch (e) {
+        return;
+      }
+      function tick() {
+        if (stopped) return;
+        analyser.getByteFrequencyData(data);
+        const avg = data.reduce((a, b) => a + b, 0) / data.length;
+        const speaking = avg > 14 && (isLocal ? !callMuted : true);
+        targetEl.classList.toggle("acct-call-speaking", speaking);
+        raf = requestAnimationFrame(tick);
+      }
+      tick();
+      const stop = () => {
+        stopped = true;
+        if (raf) cancelAnimationFrame(raf);
+        try { ctx.close(); } catch (e) {}
+        targetEl.classList.remove("acct-call-speaking");
+      };
+      speakingMeters.push({ el: targetEl, stop });
+    }
+    function stopAllSpeakingMeters() {
+      speakingMeters.forEach((m) => m.stop());
+      speakingMeters.length = 0;
+    }
+
+    // ---- Connection quality monitoring (via getStats) ----
+    let currentQuality = "reconnecting";
+    let statsInterval = null;
+    function startStatsMonitor() {
+      if (statsInterval) clearInterval(statsInterval);
+      let lastBytes = null, lastTs = null;
+      statsInterval = setInterval(async () => {
+        if (!peerConnection) return;
+        try {
+          const stats = await peerConnection.getStats();
+          let packetsLost = 0, packetsReceived = 0, rtt = null;
+          stats.forEach((r) => {
+            if (r.type === "inbound-rtp" && !r.isRemote) {
+              packetsLost += r.packetsLost || 0;
+              packetsReceived += r.packetsReceived || 0;
+            }
+            if (r.type === "candidate-pair" && r.state === "succeeded" && r.currentRoundTripTime != null) {
+              rtt = r.currentRoundTripTime;
+            }
+          });
+          const lossRatio = packetsReceived > 0 ? packetsLost / (packetsLost + packetsReceived) : 0;
+          let quality = "good";
+          if (rtt !== null && rtt > 0.35) quality = "poor";
+          else if (lossRatio > 0.08 || (rtt !== null && rtt > 0.15)) quality = "fair";
+          if (callState === "active") {
+            currentQuality = quality;
+            setCallStatus(callStatusEl.textContent, quality);
+          }
+        } catch (e) { /* ignore */ }
+      }, 3000);
+    }
+    function stopStatsMonitor() {
+      if (statsInterval) { clearInterval(statsInterval); statsInterval = null; }
+    }
+
     function createPeerConnection() {
-      const pc = new RTCPeerConnection({ iceServers: ICE_SERVERS });
+      const pc = new RTCPeerConnection({ iceServers: cachedIceServers || [{ urls: "stun:stun.l.google.com:19302" }] });
+
       pc.onicecandidate = (event) => {
         if (event.candidate && callSocket && callSocket.readyState === WebSocket.OPEN) {
           callSocket.send(JSON.stringify({ type: "candidate", candidate: event.candidate }));
         }
       };
-      pc.ontrack = (event) => {
-        remoteAudioEl.srcObject = event.streams[0];
+
+      // Perfect-negotiation: fires whenever tracks are added/removed and
+      // handles re-offering automatically, including for ICE restarts
+      // (pc.restartIce() below also triggers this).
+      pc.onnegotiationneeded = async () => {
+        try {
+          makingOffer = true;
+          await pc.setLocalDescription();
+          if (callSocket && callSocket.readyState === WebSocket.OPEN) {
+            callSocket.send(JSON.stringify({ type: pc.localDescription.type, sdp: pc.localDescription }));
+          }
+        } catch (e) {
+          // ignore - a follow-up negotiationneeded will retry
+        } finally {
+          makingOffer = false;
+        }
       };
+
+      pc.ontrack = (event) => {
+        remoteStream.addTrack(event.track);
+        if (event.track.kind === "video") {
+          remoteHasVideo = true;
+          callRemoteVideoEl.srcObject = remoteStream;
+          callRemoteVideoEl.classList.remove("acct-call-video-hidden");
+          callPlaceholderEl.style.display = "none";
+          syncBarVideo();
+          event.track.addEventListener("ended", () => {
+            remoteStream.removeTrack(event.track);
+            if (!remoteStream.getVideoTracks().length) {
+              remoteHasVideo = false;
+              callRemoteVideoEl.classList.add("acct-call-video-hidden");
+              callPlaceholderEl.style.display = "flex";
+              syncBarVideo();
+            }
+          });
+        } else {
+          startSpeakingMeter(new MediaStream([event.track]), callStageEl, false);
+        }
+      };
+
       pc.onconnectionstatechange = () => {
-        if (pc.connectionState === "connected" && callState !== "active") {
-          callState = "active";
-          startCallTimer();
+        if (pc.connectionState === "connected") {
+          if (callState !== "active") {
+            callState = "active";
+            startCallTimer();
+            startStatsMonitor();
+            stopRingtone();
+          }
+          currentQuality = "good";
+          if (reconnectTimeout) { clearTimeout(reconnectTimeout); reconnectTimeout = null; }
+        }
+        if (pc.connectionState === "disconnected") {
+          // Transient blips are common (wifi handoff, brief packet loss) -
+          // give it a few seconds before actively restarting ICE so a
+          // momentary hiccup doesn't cause a visible reconnect cycle.
+          setCallStatus("Reconnecting…", "reconnecting");
+          if (!reconnectTimeout) {
+            reconnectTimeout = setTimeout(() => {
+              reconnectTimeout = null;
+              if (pc.connectionState === "disconnected" && pc.restartIce) {
+                try { pc.restartIce(); } catch (e) {}
+              }
+            }, 2500);
+          }
         }
         if (pc.connectionState === "failed") {
-          endCall("Connection failed");
+          endCall("Connection failed", "no-answer");
         }
       };
+
       return pc;
     }
 
-    async function flushPendingCandidates() {
-      if (!peerConnection || !peerConnection.remoteDescription) return;
-      for (const c of pendingRemoteCandidates) {
-        try { await peerConnection.addIceCandidate(new RTCIceCandidate(c)); } catch (e) { /* ignore */ }
-      }
-      pendingRemoteCandidates = [];
+    // ---- Heartbeat so the Thread DO doesn't reap us as a stale socket, and
+    // so we can detect the server itself pinging back within a bounded time. ----
+    function startCallHeartbeat(socket) {
+      const iv = setInterval(() => {
+        if (socket.readyState === WebSocket.OPEN) {
+          try { socket.send(JSON.stringify({ type: "ping" })); } catch (e) {}
+        } else {
+          clearInterval(iv);
+        }
+      }, 15000);
+      return iv;
     }
 
     function openCallSocket(friendId) {
       const socket = new WebSocket(`${ACCOUNT_WS_BASE}/api/call/${friendId}?token=${encodeURIComponent(sessionToken)}`);
+      const heartbeatIv = startCallHeartbeat(socket);
 
       socket.onmessage = async (e) => {
         let msg;
         try { msg = JSON.parse(e.data); } catch (err) { return; }
 
-        if (msg.type === "presence") {
-          if (callIsCaller && msg.participants && msg.participants.length === 2 && peerConnection && !peerConnection.localDescription) {
-            setCallStatus("Ringing…", false);
-            const offer = await peerConnection.createOffer();
-            await peerConnection.setLocalDescription(offer);
-            socket.send(JSON.stringify({ type: "offer", sdp: peerConnection.localDescription }));
-          }
-          if (msg.participants && msg.participants.length < 2 && callState !== "idle") {
-            endCall("Call ended");
+        if (msg.type === "presence" || msg.type === "server-ping" || msg.type === "pong") {
+          if (msg.type === "presence" && msg.participants && msg.participants.length < 2 && callState !== "idle") {
+            // the other side hasn't necessarily hung up for good (could be a
+            // brief reconnect) - the connection-state handler above already
+            // manages the "give it a few seconds" grace period, so this is
+            // just a status hint, not an immediate hangup.
+            setCallStatus("Waiting for the other side…", "reconnecting");
           }
           return;
         }
 
-        if (msg.type === "offer" && peerConnection) {
-          await peerConnection.setRemoteDescription(new RTCSessionDescription(msg.sdp));
-          await flushPendingCandidates();
-          const answer = await peerConnection.createAnswer();
-          await peerConnection.setLocalDescription(answer);
-          socket.send(JSON.stringify({ type: "answer", sdp: peerConnection.localDescription }));
+        if (msg.type === "call-full") {
+          showToast(`<span>${escapeHtml(callFriendName || "This call")} already has two participants</span>`);
+          endCall(null, "canceled");
           return;
         }
 
-        if (msg.type === "answer" && peerConnection) {
-          await peerConnection.setRemoteDescription(new RTCSessionDescription(msg.sdp));
-          await flushPendingCandidates();
+        const polite = !callIsCaller;
+
+        if ((msg.type === "offer" || msg.type === "answer") && peerConnection) {
+          const description = { type: msg.type, sdp: msg.sdp.sdp || msg.sdp };
+          const offerCollision = msg.type === "offer" && (makingOffer || peerConnection.signalingState !== "stable");
+          ignoreOffer = !polite && offerCollision;
+          if (ignoreOffer) return;
+
+          try {
+            if (offerCollision) {
+              await Promise.all([
+                peerConnection.setLocalDescription({ type: "rollback" }),
+                peerConnection.setRemoteDescription(msg.sdp),
+              ]);
+            } else {
+              await peerConnection.setRemoteDescription(msg.sdp);
+            }
+            if (msg.type === "offer") {
+              await peerConnection.setLocalDescription();
+              socket.send(JSON.stringify({ type: peerConnection.localDescription.type, sdp: peerConnection.localDescription }));
+            }
+          } catch (err) {
+            // ignore malformed/late descriptions from a stale renegotiation
+          }
           return;
         }
 
-        if (msg.type === "candidate" && msg.candidate) {
-          if (peerConnection && peerConnection.remoteDescription) {
-            try { await peerConnection.addIceCandidate(new RTCIceCandidate(msg.candidate)); } catch (err) { /* ignore */ }
-          } else {
-            pendingRemoteCandidates.push(msg.candidate);
+        if (msg.type === "candidate" && msg.candidate && peerConnection) {
+          try {
+            await peerConnection.addIceCandidate(msg.candidate);
+          } catch (err) {
+            if (!ignoreOffer) { /* benign - candidate arrived before remote description */ }
           }
           return;
         }
       };
 
       socket.onclose = () => {
-        if (callState !== "idle") endCall("Call ended");
+        clearInterval(heartbeatIv);
+        if (callState !== "idle") endCall("Call ended", "completed");
       };
       socket.onerror = () => {
         try { socket.close(); } catch (err) {}
@@ -2602,23 +3343,30 @@
       callState = "calling";
       callFriendId = friendId;
       openCallModal(friendName, friendIcon);
+      startRingtone(); // ringback tone while the other side's phone "rings"
 
-      try {
-        localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      } catch (e) {
-        setCallStatus("Microphone access denied", false);
-        setTimeout(() => endCall(), 1500);
-        return;
-      }
-      if (callSessionId !== mySession) return; // call was cancelled while awaiting mic permission
-
-      peerConnection = createPeerConnection();
-      localStream.getTracks().forEach((t) => peerConnection.addTrack(t, localStream));
-      callSocket = openCallSocket(friendId);
-
-      setTimeout(() => {
-        if (callSessionId === mySession && callState === "calling") endCall("No answer");
+      noAnswerTimeout = setTimeout(() => {
+        if (callSessionId === mySession && callState !== "active") endCall("No answer", "no-answer");
       }, 30000);
+
+      await fetchIceServers();
+      if (callSessionId !== mySession) return;
+
+      callSocket = openCallSocket(friendId);
+      callSocket.addEventListener("open", async () => {
+        if (callSessionId !== mySession) return;
+        try {
+          localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        } catch (e) {
+          setCallStatus("Microphone access denied", "poor");
+          setTimeout(() => endCall(null, "canceled"), 1500);
+          return;
+        }
+        if (callSessionId !== mySession) { localStream.getTracks().forEach((t) => t.stop()); return; }
+        peerConnection = createPeerConnection();
+        localStream.getTracks().forEach((t) => peerConnection.addTrack(t, localStream));
+        startSpeakingMeter(localStream, callLocalTileEl, true);
+      });
     }
 
     async function acceptIncomingCall() {
@@ -2632,40 +3380,82 @@
       callState = "ringing";
       callFriendId = friendId;
       openCallModal(info.accountName, info.icon);
-      setCallStatus("Connecting…", false);
+      setCallStatus("Connecting…", "reconnecting");
 
-      try {
-        localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-      } catch (e) {
-        setCallStatus("Microphone access denied", false);
-        setTimeout(() => endCall(), 1500);
-        return;
-      }
+      await fetchIceServers();
       if (callSessionId !== mySession) return;
 
-      peerConnection = createPeerConnection();
-      localStream.getTracks().forEach((t) => peerConnection.addTrack(t, localStream));
       callSocket = openCallSocket(friendId);
+      callSocket.addEventListener("open", async () => {
+        if (callSessionId !== mySession) return;
+        try {
+          localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        } catch (e) {
+          setCallStatus("Microphone access denied", "poor");
+          setTimeout(() => endCall(null, "canceled"), 1500);
+          return;
+        }
+        if (callSessionId !== mySession) { localStream.getTracks().forEach((t) => t.stop()); return; }
+        peerConnection = createPeerConnection();
+        localStream.getTracks().forEach((t) => peerConnection.addTrack(t, localStream));
+        startSpeakingMeter(localStream, callLocalTileEl, true);
+      });
     }
 
-    function endCall(reason) {
+    function endCall(reason, logStatus) {
       if (callState === "idle" && !callSocket && !peerConnection) return;
+
+      const wasActive = callState === "active";
+      const direction = callIsCaller ? "outgoing" : "incoming";
+      const durationMs = wasActive ? callDurationMs() : 0;
+      const finalStatus = logStatus || (wasActive ? "completed" : "canceled");
+      if (callFriendId && sessionToken) {
+        apiFetch(`/api/call/${callFriendId}/log`, {
+          method: "POST",
+          body: JSON.stringify({ status: finalStatus, direction, durationMs }),
+        }).catch(() => {});
+      }
+
       callSessionId++;
       callState = "idle";
       callIsCaller = false;
+      const endedFriendId = callFriendId;
       callFriendId = null;
-      pendingRemoteCandidates = [];
+      makingOffer = false;
+      ignoreOffer = false;
+      videoSender = null;
+      cameraTrack = null;
+      screenTrack = null;
+      callVideoOn = false;
+      callScreenOn = false;
+      remoteHasVideo = false;
+
+      if (noAnswerTimeout) { clearTimeout(noAnswerTimeout); noAnswerTimeout = null; }
+      if (reconnectTimeout) { clearTimeout(reconnectTimeout); reconnectTimeout = null; }
+      stopStatsMonitor();
+      stopAllSpeakingMeters();
+      stopRingtone();
 
       if (callSocket) { try { callSocket.close(); } catch (err) {} callSocket = null; }
       if (peerConnection) { try { peerConnection.close(); } catch (err) {} peerConnection = null; }
       if (localStream) { localStream.getTracks().forEach((t) => t.stop()); localStream = null; }
-      remoteAudioEl.srcObject = null;
+      remoteStream.getTracks().forEach((t) => remoteStream.removeTrack(t));
+      remoteAudioEl.srcObject = remoteStream;
+      callRemoteVideoEl.srcObject = null;
 
       if (reason) {
-        setCallStatus(reason, false);
+        setCallStatus(reason, "poor");
         setTimeout(closeCallModal, 900);
       } else {
         closeCallModal();
+      }
+
+      if (finalStatus === "missed" || finalStatus === "no-answer") {
+        const info = friendInfoCache[endedFriendId];
+        showToast(
+          `<img src="${info ? info.icon : ""}" alt="" /><span>Missed call from <b>${escapeHtml(info ? info.accountName : "a friend")}</b></span>`,
+          7000
+        );
       }
     }
 
@@ -2681,6 +3471,15 @@
       };
       dropdown.appendChild(friendsBtn);
 
+      const callsBtn = document.createElement("button");
+      callsBtn.type = "button";
+      callsBtn.textContent = "Calls";
+      callsBtn.onclick = () => {
+        dropdown.classList.remove("open");
+        openCallLogModal();
+      };
+      dropdown.appendChild(callsBtn);
+
       const signOutBtn = document.createElement("button");
       signOutBtn.type = "button";
       signOutBtn.className = "acct-danger";
@@ -2693,8 +3492,9 @@
         closeChatModal();
         closeMessagesModal();
         closeFriendsModal();
+        closeCallLogModal();
         hideIncomingCallBanner();
-        endCall();
+        endCall(null, "canceled");
         disconnectNotifications();
         render();
       };
@@ -2782,7 +3582,13 @@
 
     init();
 
-    return { handleRadialClick, openFriendsModal, openMessagesModal, isSignedIn: () => !!currentUser };
+    return {
+      handleRadialClick,
+      openFriendsModal,
+      openMessagesModal,
+      openCallLogModal,
+      isSignedIn: () => !!currentUser,
+    };
   })();
 })();
 </script>

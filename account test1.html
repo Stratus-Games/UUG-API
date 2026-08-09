@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stratus — call</title>
+<title>Stratus — Acalllshjn</title>
 <link href="/assets/fonts/css2.css" rel="stylesheet">
 <style>
   :root{
@@ -2771,15 +2771,46 @@
     // ==========================================================================
 
     let cachedIceServers = null;
+    let cachedIceServersAt = 0;
+    let lastFetchedIceServers = [
+      { urls: "stun:stun.l.google.com:19302" },
+      { urls: "stun:stun1.l.google.com:19302" },
+    ];
+    const ICE_SERVERS_CACHE_MS = 20 * 60 * 1000; // well under Cloudflare's 1hr credential TTL
     async function fetchIceServers() {
-      if (cachedIceServers) return cachedIceServers;
+      // Only ever cache a servers list that actually contains a TURN entry.
+      // Caching a STUN-only fallback (e.g. from a transient network error,
+      // or from testing before TURN secrets were deployed) would otherwise
+      // stick around for the rest of the page session even after the real
+      // servers become available - every call in that tab would silently
+      // keep using STUN-only until a hard refresh.
+      if (cachedIceServers && Date.now() - cachedIceServersAt < ICE_SERVERS_CACHE_MS) {
+        lastFetchedIceServers = cachedIceServers;
+        return cachedIceServers;
+      }
       const fallback = [
         { urls: "stun:stun.l.google.com:19302" },
         { urls: "stun:stun1.l.google.com:19302" },
       ];
       const { ok, data } = await apiFetch("/api/ice-servers");
-      cachedIceServers = ok && Array.isArray(data.iceServers) && data.iceServers.length ? data.iceServers : fallback;
-      return cachedIceServers;
+      const servers = ok && Array.isArray(data.iceServers) && data.iceServers.length ? data.iceServers : fallback;
+      const hasTurn = servers.some((s) => [].concat(s.urls || []).some((u) => /^turns?:/i.test(u)));
+
+      // eslint-disable-next-line no-console
+      console.log(
+        "[call] ICE servers:", hasTurn ? "TURN configured ✓" : "STUN-only (no TURN - calls across strict NATs will likely fail)",
+        servers
+      );
+      if (!ok) console.warn("[call] /api/ice-servers request failed, using STUN-only fallback:", data);
+
+      lastFetchedIceServers = servers;
+      if (hasTurn) {
+        cachedIceServers = servers;
+        cachedIceServersAt = Date.now();
+      } else {
+        cachedIceServers = null; // don't cache a bad/fallback result - retry fresh next call
+      }
+      return servers;
     }
 
     let callSocket = null;
@@ -2806,6 +2837,27 @@
     let reconnectTimeout = null;
     let noAnswerTimeout = null;
     let remoteHasVideo = false;
+
+    // ---- Race-condition fix ----
+    // The relay never queues messages - it only forwards to sockets that
+    // are ACTUALLY connected right now. The caller's socket connects well
+    // before the callee's (the callee only joins once they hit "Accept"),
+    // so if the caller creates its WebRTC offer immediately on socket-open,
+    // that offer is sent into an empty room and silently lost. The callee
+    // then joins, sends its own offer, and the caller (being the "impolite"
+    // peer in perfect negotiation) ignores it as a collision - both sides
+    // sit there forever with signalingState stuck, which is exactly the
+    // "stuck on Connecting until it auto-hangs-up" symptom.
+    //
+    // Fix: don't create the RTCPeerConnection / add local tracks (which is
+    // what triggers the first offer via onnegotiationneeded) until we've
+    // actually observed BOTH participants present in the relay's presence
+    // broadcast. Any offer/answer/candidate that somehow still arrives
+    // before the peer connection exists gets queued and replayed once it
+    // does, instead of being dropped.
+    let bothPresent = false;
+    let pendingSignaling = [];
+    let iceCandidateQueue = [];
 
     const remoteStream = new MediaStream();
     const remoteAudioEl = document.createElement("audio");
@@ -3169,13 +3221,52 @@
     }
 
     function createPeerConnection() {
-      const pc = new RTCPeerConnection({ iceServers: cachedIceServers || [{ urls: "stun:stun.l.google.com:19302" }] });
+      // eslint-disable-next-line no-console
+      console.log("[call] creating peer connection with ICE servers:", lastFetchedIceServers);
+      const pc = new RTCPeerConnection({ iceServers: lastFetchedIceServers, iceCandidatePoolSize: 4 });
 
       pc.onicecandidate = (event) => {
         if (event.candidate && callSocket && callSocket.readyState === WebSocket.OPEN) {
           callSocket.send(JSON.stringify({ type: "candidate", candidate: event.candidate }));
         }
       };
+
+      // Fires when gathering a candidate from a specific STUN/TURN server
+      // fails outright (bad credentials, server unreachable, port blocked,
+      // etc). If you see repeated errors here for the turn: urls specifically,
+      // that's the smoking gun for "TURN configured but calls still don't
+      // connect cross-network" - check TURN_KEY_ID/TURN_KEY_API_TOKEN are
+      // correct and that the key hasn't been deleted/rotated in the
+      // Cloudflare dashboard.
+      pc.addEventListener("icecandidateerror", (event) => {
+        console.warn("[call] ICE candidate error:", event.errorCode, event.errorText, event.url);
+      });
+
+      pc.addEventListener("iceconnectionstatechange", () => {
+        console.log("[call] iceConnectionState:", pc.iceConnectionState);
+        if (pc.iceConnectionState === "connected" || pc.iceConnectionState === "completed") {
+          // Log which candidate pair actually won, so it's obvious whether
+          // the connection went direct (host/srflx) or had to relay through
+          // TURN - useful for confirming TURN is the thing that saved a
+          // cross-network call rather than assuming it worked.
+          pc.getStats().then((stats) => {
+            stats.forEach((r) => {
+              if (r.type === "candidate-pair" && r.state === "succeeded" && r.nominated) {
+                const local = stats.get(r.localCandidateId);
+                const remote = stats.get(r.remoteCandidateId);
+                console.log(
+                  "[call] active candidate pair:",
+                  local && local.candidateType, "<->", remote && remote.candidateType,
+                  (local && local.candidateType === "relay") || (remote && remote.candidateType === "relay") ? "(via TURN relay)" : "(direct)"
+                );
+              }
+            });
+          }).catch(() => {});
+        }
+        if (pc.iceConnectionState === "failed") {
+          console.warn("[call] ICE failed - no usable path found between the two browsers. This means TURN either wasn't offered, wasn't reachable, or credentials were rejected. Check the [call] ICE servers log above for whether TURN was configured, and the icecandidateerror warnings for why a specific server failed.");
+        }
+      });
 
       // Perfect-negotiation: fires whenever tracks are added/removed and
       // handles re-offering automatically, including for ICE restarts
@@ -3262,6 +3353,73 @@
       return iv;
     }
 
+    // Creates the RTCPeerConnection and adds local tracks - but only once
+    // we know the other side has actually joined the relay, and only once
+    // our own local media is ready. Safe to call multiple times; it's a
+    // no-op after the first successful setup for this call session.
+    function ensurePeerConnection(socket) {
+      if (peerConnection || !localStream || !bothPresent) return;
+      peerConnection = createPeerConnection();
+      localStream.getTracks().forEach((t) => peerConnection.addTrack(t, localStream));
+      startSpeakingMeter(localStream, callLocalTileEl, true);
+      // Anything that arrived before we had a peer connection to hand it to
+      // (shouldn't normally happen now, but be defensive) gets replayed.
+      const queued = pendingSignaling;
+      pendingSignaling = [];
+      queued.forEach((m) => handleSignalingMessage(m, socket));
+    }
+
+    async function flushIceCandidateQueue() {
+      if (!peerConnection || !peerConnection.remoteDescription) return;
+      const queued = iceCandidateQueue;
+      iceCandidateQueue = [];
+      for (const candidate of queued) {
+        try { await peerConnection.addIceCandidate(candidate); } catch (err) { /* stale candidate - ignore */ }
+      }
+    }
+
+    async function handleSignalingMessage(msg, socket) {
+      if (!peerConnection) {
+        pendingSignaling.push(msg);
+        return;
+      }
+
+      const polite = !callIsCaller;
+
+      if (msg.type === "offer" || msg.type === "answer") {
+        const offerCollision = msg.type === "offer" && (makingOffer || peerConnection.signalingState !== "stable");
+        ignoreOffer = !polite && offerCollision;
+        if (ignoreOffer) return;
+
+        try {
+          if (offerCollision) {
+            await Promise.all([
+              peerConnection.setLocalDescription({ type: "rollback" }),
+              peerConnection.setRemoteDescription(msg.sdp),
+            ]);
+          } else {
+            await peerConnection.setRemoteDescription(msg.sdp);
+          }
+          await flushIceCandidateQueue();
+          if (msg.type === "offer") {
+            await peerConnection.setLocalDescription();
+            socket.send(JSON.stringify({ type: peerConnection.localDescription.type, sdp: peerConnection.localDescription }));
+          }
+        } catch (err) {
+          // ignore malformed/late descriptions from a stale renegotiation
+        }
+        return;
+      }
+
+      if (msg.type === "candidate" && msg.candidate) {
+        if (!peerConnection.remoteDescription) {
+          iceCandidateQueue.push(msg.candidate);
+          return;
+        }
+        try { await peerConnection.addIceCandidate(msg.candidate); } catch (err) { /* benign */ }
+      }
+    }
+
     function openCallSocket(friendId) {
       const socket = new WebSocket(`${ACCOUNT_WS_BASE}/api/call/${friendId}?token=${encodeURIComponent(sessionToken)}`);
       const heartbeatIv = startCallHeartbeat(socket);
@@ -3270,13 +3428,19 @@
         let msg;
         try { msg = JSON.parse(e.data); } catch (err) { return; }
 
-        if (msg.type === "presence" || msg.type === "server-ping" || msg.type === "pong") {
-          if (msg.type === "presence" && msg.participants && msg.participants.length < 2 && callState !== "idle") {
+        if (msg.type === "server-ping" || msg.type === "pong") return;
+
+        if (msg.type === "presence") {
+          const count = (msg.participants && msg.participants.length) || 0;
+          bothPresent = count >= 2;
+          if (bothPresent) {
+            ensurePeerConnection(socket);
+          } else if (callState !== "idle") {
             // the other side hasn't necessarily hung up for good (could be a
             // brief reconnect) - the connection-state handler above already
-            // manages the "give it a few seconds" grace period, so this is
-            // just a status hint, not an immediate hangup.
-            setCallStatus("Waiting for the other side…", "reconnecting");
+            // manages the "give it a few seconds" grace period once we've
+            // connected, so before that this is just a status hint.
+            setCallStatus(callIsCaller ? "Ringing…" : "Connecting…", "reconnecting");
           }
           return;
         }
@@ -3287,40 +3451,8 @@
           return;
         }
 
-        const polite = !callIsCaller;
-
-        if ((msg.type === "offer" || msg.type === "answer") && peerConnection) {
-          const description = { type: msg.type, sdp: msg.sdp.sdp || msg.sdp };
-          const offerCollision = msg.type === "offer" && (makingOffer || peerConnection.signalingState !== "stable");
-          ignoreOffer = !polite && offerCollision;
-          if (ignoreOffer) return;
-
-          try {
-            if (offerCollision) {
-              await Promise.all([
-                peerConnection.setLocalDescription({ type: "rollback" }),
-                peerConnection.setRemoteDescription(msg.sdp),
-              ]);
-            } else {
-              await peerConnection.setRemoteDescription(msg.sdp);
-            }
-            if (msg.type === "offer") {
-              await peerConnection.setLocalDescription();
-              socket.send(JSON.stringify({ type: peerConnection.localDescription.type, sdp: peerConnection.localDescription }));
-            }
-          } catch (err) {
-            // ignore malformed/late descriptions from a stale renegotiation
-          }
-          return;
-        }
-
-        if (msg.type === "candidate" && msg.candidate && peerConnection) {
-          try {
-            await peerConnection.addIceCandidate(msg.candidate);
-          } catch (err) {
-            if (!ignoreOffer) { /* benign - candidate arrived before remote description */ }
-          }
-          return;
+        if (msg.type === "offer" || msg.type === "answer" || msg.type === "candidate") {
+          await handleSignalingMessage(msg, socket);
         }
       };
 
@@ -3342,6 +3474,9 @@
       callIsCaller = true;
       callState = "calling";
       callFriendId = friendId;
+      bothPresent = false;
+      pendingSignaling = [];
+      iceCandidateQueue = [];
       openCallModal(friendName, friendIcon);
       startRingtone(); // ringback tone while the other side's phone "rings"
 
@@ -3363,9 +3498,11 @@
           return;
         }
         if (callSessionId !== mySession) { localStream.getTracks().forEach((t) => t.stop()); return; }
-        peerConnection = createPeerConnection();
-        localStream.getTracks().forEach((t) => peerConnection.addTrack(t, localStream));
-        startSpeakingMeter(localStream, callLocalTileEl, true);
+        // Only actually wires up the RTCPeerConnection once the callee has
+        // joined (bothPresent) - see ensurePeerConnection(). Until then we
+        // just hold the mic stream ready so there's no extra delay once
+        // they accept.
+        ensurePeerConnection(callSocket);
       });
     }
 
@@ -3379,6 +3516,9 @@
       callIsCaller = false;
       callState = "ringing";
       callFriendId = friendId;
+      bothPresent = false;
+      pendingSignaling = [];
+      iceCandidateQueue = [];
       openCallModal(info.accountName, info.icon);
       setCallStatus("Connecting…", "reconnecting");
 
@@ -3396,9 +3536,12 @@
           return;
         }
         if (callSessionId !== mySession) { localStream.getTracks().forEach((t) => t.stop()); return; }
-        peerConnection = createPeerConnection();
-        localStream.getTracks().forEach((t) => peerConnection.addTrack(t, localStream));
-        startSpeakingMeter(localStream, callLocalTileEl, true);
+        // The caller is already in the room by the time we (the callee)
+        // connect, so the relay's presence broadcast on our own join should
+        // arrive (or may have already arrived) showing 2 participants -
+        // ensurePeerConnection() proceeds as soon as both that and our mic
+        // are ready, in whichever order they land.
+        ensurePeerConnection(callSocket);
       });
     }
 
@@ -3429,6 +3572,9 @@
       callVideoOn = false;
       callScreenOn = false;
       remoteHasVideo = false;
+      bothPresent = false;
+      pendingSignaling = [];
+      iceCandidateQueue = [];
 
       if (noAnswerTimeout) { clearTimeout(noAnswerTimeout); noAnswerTimeout = null; }
       if (reconnectTimeout) { clearTimeout(reconnectTimeout); reconnectTimeout = null; }
